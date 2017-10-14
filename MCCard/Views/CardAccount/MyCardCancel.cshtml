@@ -1,0 +1,349 @@
+﻿
+@{
+    ViewBag.Title = "MyCardCancel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MCCard.Controllers.CardModel>
+<style>
+    .modal-dialog .card-payments .cardinfo-title .modal-dialog .card-payments .cardinfo-text {
+        font-size: 1rem;
+    }
+</style>
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">點點卡帳戶</li>
+    <li class="link-text ">取消記名</li>
+</ol>
+<!-- main-banner -->
+<div class="main-banner">
+    <picture>
+        <!-- 當解析度大於等於1024像素時，載入此圖-->
+        <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+        <!-- 當解析度低於1024像素時，載入此圖-->
+        <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+    </picture>
+</div>
+<!-- 取消卡片寄明內容 -->
+<div class="container-fluid account-form-box">
+    <!-- 步驟 -->
+    <div class="stepwizard">
+        <div class="row stepwizard-row setup-panel">
+            <div class="stepwizard-step stepwizard-step-on col-sm-12 col-md-6 col-lg-6 ">
+                <span href="#step-1" type="button" class="stepbar-on"><label class="circle">1</label>選擇卡片</span>
+            </div>
+            <div class="stepwizard-step col-sm-12 col-md-6 col-lg-6">
+                <span href="#step-2" type="button" class="stepbar-off" disabled="disabled"><label class="circle">2</label>取消記名成功</span>
+            </div>
+        </div>
+    </div>
+    <!-- 第一步，選擇卡片 -->
+    <div class="row setup-content" id="step-1">
+        <div class="form-group form-item-base" id="noLogin" style="display:none">
+            <div class="acc-title">您尚未登入，請先登入帳號</div>
+        </div>
+        <div id="IsLogin" style="display:none">
+            @if (Model.Count == 0)
+            {
+                <div class="form-group form-item-base">
+                    <div class="acc-title" id="lblTitle">您尚未記名卡片</div>
+                </div>
+            }
+            @if (Model.Count >= 1)
+            {
+                <div>
+                    <div class="form-group form-item-base">
+                        <div class="acc-title" id="lblTitle">請勾選欲取消記名的點點卡</div>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        @foreach (var item in Model)
+                        {
+                            <div class="form-group card-group CardItems">
+                                <div class="radio-group radio-inline account-text card-radio">
+                                    <label>
+                                        <input type="radio" id="card1" value="@item.ID" name="cancelcard"><span></span>
+                                        <img src="@item.CardImg" class="img-responsive" alt="Responsive image">
+                                    </label>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">卡號</span>
+                                        <span class="cardinfo-text" id="lbl_cardnumber">@item.CardID</span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">餘額</span>
+                                        <span class="cardinfo-text" id="bl_balance">@item.Balance 元</span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">點數</span>
+                                        <span class="cardinfo-text" id="lbl_bonus">@item.Points 點</span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="lbl_UID">@item.ID</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- 下一步按鈕 -->
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3  ">
+                            &nbsp;
+                        </div>
+                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+                            <button type="button" class="account-btn nextBtn" id="btn_Member_Card_Remove" style="width:100%">確定</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3  ">&nbsp;</div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- 沒有選卡片就下一步的提醒popup -->
+        <div class="modal LoseErr" id="LoseErr" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="message-box-body modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button>
+                        <h3 class="modal-title">訊息</h3>
+                    </div>
+                    <div id="messageBoxBody" class="modal-body">
+                        <span class="alert-text">請選擇欲取消記名的卡片</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnMessageBoxConfirm" class="alert-btn" data-dismiss="modal" aria-label="Close">確定</button>
+                    </div>
+                    <div class="message-box-footer">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal Cancel" id="CancelCheck" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-md " role="document" id="Cancel_modal_dialog">
+                <div class="modal-content" id="CancelArea">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button>
+                        <h3 class="modal-title">請確認要取消記名的卡片</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-item-caption">
+                            <h4>請再次確認是否要取消記名此張卡片?</h4>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-12 col-md-12" style="text-align:center">
+                            <div class="card-popup">
+                                <label class="account-text">
+                                    <img src="" class="img-responsive" alt="Responsive image" id="CancelCardImg" style="width:80%; margin:0 auto;">
+                                </label>
+                                <div class="card-payments">
+                                    <span class="cardinfo-title">卡號</span>
+                                    <span class="cardinfo-text" id="lbl_cardnumber"></span>
+                                </div>
+                                <div class="card-payments">
+                                    <span class="cardinfo-title">餘額</span>
+                                    <span class="cardinfo-text" id="bl_balance"></span>
+                                </div>
+                                <div class="card-payments">
+                                    <span class="cardinfo-title">點數</span>
+                                    <span class="cardinfo-text" id="lbl_bonus"></span>
+                                </div>
+                                <div class="card-payments" style="display:none">
+                                    <span class="cardinfo-title"></span>
+                                    <span class="cardinfo-text" id="lbl_UID"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="card-box-confirm">
+                                <button type="button" class="alert-btn nextBtn" id="btn_Member_Card_Remove_Select">確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal ReKeyMyPassword" tabindex="-1" role="dialog" aria-labelledby="ReKeyMyPassword">
+            <div class="modal-dialog modal-md" role="document">
+                <div id="ReKeyMyPasswordArea" class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button>
+                        <h3 class="modal-title">取消記名</h3>
+                    </div>
+                    <div class="modal-body">
+                        <span class="alert-text">請輸入您的會員密碼，以確認取消記名點點卡，確定取消記名?</span>
+                        <input type="password" maxlength="12" id="ReKeyMyPassword" class="form-control account-input" placeholder="請輸入您的會員密碼">
+                    </div>
+                    <div class="modal-footer center-block " style="padding:0 44px">
+                        <button type="button" class="account-btn nextBtn" style="width:40%" id="btn_Card_Remove_Password_Cancel">取消</button>
+                        <button type="button" class="account-btn nextBtn" style="width:40%" id="btnReKeyMyPassword">確定</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第二步，完成取消記名 -->
+    <div class="container setup-content" id="step-2" style="display:none">
+        <div class="row">
+            <div class="form-group">
+                <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-3">
+                    <img src="~/wwwroot/Image/desktop_img/ic_done.png" class="img-done" />
+                </div>
+                <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12 col-md-6 mobile_no_padding">
+                    <h2>取消記名成功！</h2>
+                    <span>
+                        提醒您，卡片記名才能享有相關點點卡專屬優惠喔！
+                    </span>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3  ">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //驗證登入
+        ExecuteAjax('@Url.Action("CheckLoginStatus", "Authority")', null, function (data) {
+            if (!data.Result) {
+                $('.ForcedLogin').modal('show');
+                $('#noLogin').show();
+                $('#IsLogin').hide();
+            }
+            else {
+
+                $('#noLogin').hide();
+                $('#IsLogin').show();
+            }
+        });
+
+        //變更呈現方式
+        if (@Model.Count == 1) {
+            $(".CardItems").addClass('col-xs-12 col-sm-12 col-md-6 col-lg-12');
+        }
+        else if (@Model.Count == 2) {
+            $(".CardItems").addClass('col-xs-12 col-sm-12 col-md-6 col-lg-6');
+        }
+        else if (@Model.Count >= 3) {
+            $(".CardItems").addClass('col-xs-12 col-sm-12 col-md-6 col-lg-4');
+        }
+
+        var navListItems = $('div.setup-panel div span'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.change(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+            $(".stepwizard-step-in").removeClass("stepwizard-step-in");
+            if (!$item.hasClass('disabled')) {
+                $item.addClass('stepbar-on');
+                $item.parent().addClass("stepwizard-step-on").addClass("stepwizard-step-in");
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+
+            //非該步驟移除橘色顯示CSS
+            $(".stepwizard-step").each(function () {
+                if (!$(this).hasClass("stepwizard-step-in")) {
+                    $(this).removeClass("stepwizard-step-on");
+                }
+            });
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                btnID = $(this).attr("id"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div span[href="#' + curStepBtn + '"]').parent().next().children("span"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+            if (isValid) {
+                switch (btnID) {
+                    case "btn_Member_Card_Remove":
+                        var selected = $("input[name=cancelcard]:checked")
+                        if (selected.length > 0) {
+                            var selectArea = selected.closest("div.form-group")
+                            $("#CancelCardImg").attr("src", selectArea.find("img").attr("src"));
+                            $("#CancelArea #lbl_cardnumber").text(selectArea.find("span#lbl_cardnumber").text());
+                            $("#CancelArea #lbl_bonus").text(selectArea.find("span#lbl_bonus").text());
+                            $("#CancelArea #bl_balance").text(selectArea.find("span#bl_balance").text());
+                            $("#CancelArea #lbl_UID").text(selectArea.find("span#lbl_UID").text());
+                            $('.Cancel').modal('show');
+                        } else {
+                            $('.LoseErr').modal('toggle');
+                        }
+                        isValid = false;
+                        break;
+                    case "btn_Member_Card_Remove_Select":
+                        isValid = false;
+                        $('.Cancel').modal('hide');
+                        $('.ReKeyMyPassword').modal('show');
+                        break;
+                    case "btn_Member_Card_Remove_Cancel":
+                        isValid = false;
+                        $('.Cancel').modal('toggle');
+                        break;
+                    case "btn_Card_Remove_Password_Cancel":
+                        isValid = false;
+                        $('.ReKeyMyPassword').modal('toggle');
+                        break;
+                    case "btnReKeyMyPassword":
+                        var password = $("#ReKeyMyPassword").val();
+                        if (password.length > 0) {
+                            if (CheckPW(password)) {
+                                $('.ReKeyMyPassword').modal('hide');
+                                CancelCard();
+                            }
+                            else {
+                                showMessageBox({ title: '提示', body: "密碼錯誤" });
+                                return false;
+                            }
+                        } else {
+                            showMessageBox({ title: '提示', body: "請輸入密碼" });
+                            return false;
+                        }
+                        break;
+                }
+            }
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('change');
+        });
+
+        $('div.setup-panel div span.stepbar-on').trigger('change');
+    });
+
+    function CheckPW(password) {
+        var check = false;
+        ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+            var ObjData = {
+                "uid": data.Result.UID,
+                "pwd": password
+            };
+            ExecuteAjax('@Url.Action("CheckPW", "Authority")', ObjData, function (data) {
+                if (data.Result) {
+                    check = true;
+                }
+            });
+        });
+        return check;
+    }
+    function CancelCard() {
+        var ObjData = {
+            "uid": $("#CancelArea #lbl_UID").text()
+        };
+        ExecuteAjax('@Url.Action("CancelCard", "CardAccount")', ObjData, function (data) {
+            if (data.Result !== "") {
+                showMessageBox({ title: '提示', body: data.Result });
+            }
+        });
+    }
+</script>

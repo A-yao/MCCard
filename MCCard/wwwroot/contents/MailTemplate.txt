@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <title></title>    
+</head>
+
+<body>
+    <table border="0" width="1138" height="640" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="24" rowspan="3"><img border="0" src="email_left.png" width="24" height="640"></td>
+            <td height="24" valign="top" width="1090"><img border="0" src="email_top.png" width="1090" height="24"></td>
+            <td width="24" rowspan="3"><img border="0" src="email_right.png" width="24" height="640"></td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" width="100%" id="table1" cellspacing="0" cellpadding="0" height="100%">
+                    <tr>
+                        <td height="30%" width="7%">&nbsp;</td>
+                        <td height="30%" width="86%"><img src="ic_mlogo.png" style="width:86px;height:86px"></td>
+                        <td height="30%" width="7%">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td height="53%" width="7%">&nbsp;</td>
+                        <td height="53%" width="86%">
+                            <div><font face="Microsoft JhengHei" size="5" color="#000">Hi [LastName],</font></p></div>
+                            <div style="font-family:'Microsoft JhengHei', sans-serif;font-size:24px;color:#8c8c8c;">
+                                <font face="Microsoft JhengHei" size="5" color="#8c8c8c">感謝您成為麥當勞電子會員！您所註冊的電子會員帳號為[UID]，<p />請立即點擊下方按鈕完成繼續完成變更密碼，開始享受更多專屬優惠！<p /></font>
+                                <p>
+                                    <table cellspacing="0" cellpadding="0" height="86">
+                                        <tr>
+                                            <td width="24" rowspan="3"><img border="0" src="btn_left.png" width="24" height="94"></td>
+                                            <td width="180" valign="top"><img border="0" src="btn_top.png" width="180" height="22"></td>
+                                            <td width="24" rowspan="3"><img border="0" src="btn_right.png" width="24" height="94"></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="42" align="center" width="180"><a target="_blank" href="[URL][LINK]"><font face="Microsoft JhengHei" size="5" color="#000">前往變更密碼</font></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="180" valign="bottom"><img border="0" src="btn_bottom.png" width="180" height="22"></td>
+                                        </tr>
+                                    </table>
+                            </div>
+                        </td>
+                        <td height="53%" width="7%">&nbsp;</td>
+                    </tr>
+                    <tr>
+
+                        <td height="17%" width="7%">&nbsp;</td>
+                        <td height="17%" width="86%">&nbsp;</td>
+                        <td height="17%" width="7%">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+
+            <td height="24" valign="bottom" width="1090"><img border="0" src="email_bottom.png" width="1090" height="24"></td>
+        </tr>
+    </table>
+
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+﻿@{
+    ViewBag.Title = "MyCardTranspose";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MCCard.Controllers.CardModel>
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">點點卡帳戶</li>
+    <li class="link-text ">轉出餘額點數</li>
+</ol>
+<!-- main-banner -->
+<div class="main-banner">
+    <picture>
+        <!-- 當解析度大於等於1024像素時，載入此圖-->
+        <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+        <!-- 當解析度低於1024像素時，載入此圖-->
+        <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+    </picture>
+</div>
+<!-- 點數餘額轉置 -->
+<div class="container-fluid account-form-box" style="max-width: 970px;">
+    <!-- 步驟 -->
+    <div class="stepwizard">
+        <div class="row stepwizard-row setup-panel">
+            <div class="col-sm-12 col-md-4 col-lg-4 stepwizard-step stepwizard-step-on">
+                <span href="#step-1" class="stepbar-on"><label class="circle">1</label> <span class="Tab-View">選擇欲轉出點數卡片</span></span>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 stepwizard-step">
+                <span href="#step-2" class="stepbar-off" disabled="disabled"><label class="circle">2</label><span class="Tab-View">確認移轉餘額點數</span></span>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 stepwizard-step">
+                <span href="#step-3" class="stepbar-off" disabled="disabled"><label class="circle">3</label> <span class="Tab-View">移轉成功</span></span>
+            </div>
+        </div>
+    </div>
+    <!-- 第一步，選擇卡片 -->
+    <div class="row setup-content" id="step-1">
+        <div class="form-group form-item-base" id="noLogin" style="display:none">
+            <div class="acc-title">您尚未登入，請先登入帳號</div>
+        </div>
+        <div id="IsLogin" style="display:none">
+            @if (Model.Count == 0)
+            {
+            <div class="form-group form-item-base">
+                <div class="acc-title">您尚未記名卡片</div>
+            </div>
+            }
+            @if (Model.Count >= 1)
+            {
+            <div class="col-md-12">
+                <div class="form-group form-item-base">
+                    <div class="acc-title">選擇欲轉出點數的點點卡</div>
+                </div>
+                <div class="transfer-box row">
+                    @* 轉出 *@
+                    <div class="form-group col-xs-12 col-sm-12 col-md-4" id="TransposeFromArea">
+                        <div class="account-text ">
+                            <img id="btn_Member_Card_Transfer_Out" src="~/wwwroot/image/desktop_img/pic_card05.png" class="img-responsive" alt="" onclick="TransposeFrom()">
+                            <input name="CardTransposeFrom" type="hidden" id="CardTransposeFrom">
+                        </div>
+                        <span class="Not-Card">請選擇轉出卡</span>
+                        <div class="CardDetail" style="display:none;">
+                            <div class="card-payments">
+                                <span class="cardinfo-title">卡號</span>
+                                <span class="cardinfo-text" id="CardNumber"></span>
+                            </div>
+                            <div class="card-payments">
+                                <span class="cardinfo-title">餘額</span>
+                                <span class="cardinfo-text" id="Balance"></span>
+                            </div>
+                            <div class="card-payments">
+                                <span class="cardinfo-title">點數</span>
+                                <span class="cardinfo-text" id="Bonus"></span>
+                            </div>
+                            <div class="card-payments" style="display:none">
+                                <span class="cardinfo-title"></span>
+                                <span class="cardinfo-text" id="SecurityCode"></span>
+                            </div>
+                            <div class="card-payments" style="display:none">
+                                <span class="cardinfo-title"></span>
+                                <span class="cardinfo-text" id="Status"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group hidden-xs hidden-sm transfer-img-top col-xs-12 col-sm-12 col-md-4 ">
+                        <img src="~/wwwroot/Image/desktop_img/ic_transfer.png" class="img-responsive">
+                    </div>
+                    <div class="form-group visible-xs visible-sm transfer-img-top col-xs-12 col-sm-12 ">
+                        <img src="~/wwwroot/Image/mobile_img/ic_transfer_down.png" class="img-responsive">
+                    </div>
+                    @* 轉入 *@
+                    <div class="form-group col-xs-12 col-sm-12 col-md-4" id="TransposeToArea">
+                        <div class="account-text ">
+                            <img id="btn_Member_Card_Transfer_In" src="~/wwwroot/Image/desktop_img/pic_card05.png" class="img-responsive" alt="" onclick="TransposeTo()">
+                            <input name="CardTransposeTo" type="hidden" id="CardTransposeTo">
+                        </div>
+                        <span class="Not-Card">請選擇轉入卡</span>
+                        <div class="CardDetail" style="display:none;">
+                            <div class="card-payments">
+                                <span class="cardinfo-title">卡號</span>
+                                <span class="cardinfo-text" id="CardNumber"></span>
+                            </div>
+                            <div class="card-payments">
+                                <span class="cardinfo-title">餘額</span>
+                                <span class="cardinfo-text" id="Balance"></span>
+                            </div>
+                            <div class="card-payments">
+                                <span class="cardinfo-title">點數</span>
+                                <span class="cardinfo-text" id="Bonus"></span>
+                            </div>
+                            <div class="card-payments" style="display:none">
+                                <span class="cardinfo-title"></span>
+                                <span class="cardinfo-text" id="SecurityCode"></span>
+                            </div>
+                            <div class="card-payments" style="display:none">
+                                <span class="cardinfo-title"></span>
+                                <span class="cardinfo-text" id="Status"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 下一步按鈕 -->
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3  ">
+                        &nbsp;
+                    </div>
+                    <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+                        <button type="button" class="account-btn" id="btnOK" onclick="ConfirmPopup()" style="display:none">確定</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ">&nbsp;</div>
+                </div>
+            </div>
+            }
+        </div>
+
+        @* 彈跳視窗 *@
+        <div class="modal bs-example-modal-lg Transpose" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" id="TransposeArea">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button> <h3 class="modal-title" id="TransposeTitle">選擇欲轉出點數的點點卡</h3>
+                    </div>
+                    <div class="modal-body">
+                        @foreach (var item in Model)
+                        {
+                            <div class="form-group card-group col-xs-12 col-sm-6 col-md-4" style="text-align:center">
+                                <div class="card-popup radio-group">
+                                    <label class="radio-inline account-text card-radio">
+                                        <input type="radio" id="card1" value="@item.ID" name="TransposeCard"><span></span>
+                                        <img src="@item.CardImg" class="img-responsive" alt="Responsive image">
+                                    </label>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">卡號</span>
+                                        <span class="cardinfo-text" id="CardNumber">@item.CardID</span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">餘額</span>
+                                        <span class="cardinfo-text" id="Balance">@item.Balance 元</span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">點數</span>
+                                        <span class="cardinfo-text" id="Bonus">@item.Points 點</span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="SecurityCode">@item.SecurityCode</span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="Status">@item.Status</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <div class="card-box-confirm">
+                            <button type="button" id="btn_Member_Card_Transfer_Select" class="alert-btn" data-dismiss="modal" aria-label="Close" onclick="TransposeCheck()">確定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal bs-example-modal-lg ReCheck" tabindex="-1" role="dialog" aria-labelledby="ReCheck">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" id="CheckArea">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span>
+                        </button>
+                        <h3 class="modal-title">重要提醒</h3>
+                    </div>
+                    <div class="modal-body" style="padding:0;">
+                        <div class="col-md-12">
+                            <div class="form-group form-item-base">
+                                <div class="alert-text">
+                                    <span>確認移轉後，轉出之點點卡餘額和點數將「全數」移轉至指定轉入之點點卡之中</span>
+                                </div>
+                            </div>
+                            <div class="transfer-box">
+                                <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                                    <div class="account-text ">
+                                        <img id="Confirm_img_card_output" src="/wwwroot/Image/desktop_img/pic_card05.png" class="img-responsive" alt="">
+                                        <input name="hidden_card_output" type="hidden" id="hidden_card_output">
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">卡號</span>
+                                        <span class="cardinfo-text" id="Confirm_output_CardNumber"></span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">餘額</span>
+                                        <span class="cardinfo-text" id="Confirm_output_Balance"></span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">點數</span>
+                                        <span class="cardinfo-text" id="Confirm_output_Bonus"></span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="Confirm_output_SecurityCode"></span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="Confirm_output_Status"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group hidden-xs hidden-sm transfer-img-top col-xs-12 col-sm-12 col-md-4">
+                                    <img src="/wwwroot/Image/desktop_img/ic_transfer.png" class="img-responsive">
+                                </div>
+                                <div class="form-group visible-xs visible-sm transfer-img-top col-xs-12 col-sm-12">
+                                    <img src="/wwwroot/Image/mobile_img/ic_transfer_down.png" class="img-responsive">
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                                    <div class="account-text ">
+                                        <img id="Confirm_img_card_input" src="/wwwroot/Image/desktop_img/pic_card05.png" class="img-responsive" alt="">
+                                        <input name="hidden_card_input" type="hidden" id="hidden_card_input">
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">卡號</span>
+                                        <span class="cardinfo-text" id="Confirm_input_CardNumber"></span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">餘額</span>
+                                        <span class="cardinfo-text" id="Confirm_input_Balance"></span>
+                                    </div>
+                                    <div class="card-payments">
+                                        <span class="cardinfo-title">點數</span>
+                                        <span class="cardinfo-text" id="Confirm_input_Bonus"></span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="Confirm_input_SecurityCode"></span>
+                                    </div>
+                                    <div class="card-payments" style="display:none">
+                                        <span class="cardinfo-title"></span>
+                                        <span class="cardinfo-text" id="Confirm_input_Status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 下一步按鈕 -->
+                    <div class="modal-footer">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3  ">
+                            &nbsp;
+                        </div>
+                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+                            <button type="button" class="account-btn nextBtn" id="btn_Member_Card_Transfer_Double_Confirm">確認移轉</button>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第二步，確認轉置資料 -->
+    <div class="row setup-content" id="step-2" style="display:none">
+        <div class="col-md-12">
+            <div class="form-group form-item-base">
+                <div class="form-group col-xs-12 col-sm-12 col-md-4 hidden-xs hidden-sm">
+                    <span class="acc-title" style="margin-left:125px">轉出卡片</span>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-4 ">
+                    <span></span>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-4 hidden-xs hidden-sm">
+                    <span class="acc-title">轉入卡片</span>
+                </div>
+            </div>
+            <div class="transfer-box row">
+                <div class="form-group visible-xs visible-sm" style="text-align:left">
+                    <span class="acc-title">轉出卡片</span>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-4 ">
+                    <div class="account-text ">
+                        <img id="step2_img_card_output" src="" class="img-responsive" alt="">
+                        <input name="hidden_card_output" type="hidden" id="hidden_card_output">
+                    </div>
+                    <div class="card-payments">
+                        <span class="cardinfo-title">卡號</span>
+                        <span class="cardinfo-text" id="step2_output_CardNumber"></span>
+                    </div>
+                    <div class="card-payments">
+                        <span class="cardinfo-title">餘額</span>
+                        <span class="cardinfo-text" id="step2_output_Balance"></span>
+                    </div>
+                    <div class="card-payments">
+                        <span class="cardinfo-title">點數</span>
+                        <span class="cardinfo-text" id="step2_output_Bonus"></span>
+                    </div>
+                    <input type="hidden" style="display:none" disabled="disabled" id="step2_output_SecurityCode" />
+                    <input type="hidden" style="display:none" disabled="disabled" id="step2_output_Status" />
+                </div>
+                <div class="form-group hidden-xs hidden-sm transfer-img-top col-xs-12 col-sm-12 col-md-4 ">
+                    <img src="~/wwwroot/Image/desktop_img/ic_transfer.png" class="img-responsive">
+                </div>
+                <div class="form-group visible-xs visible-sm transfer-img-top col-xs-12 col-sm-12 ">
+                    <img src="~/wwwroot/Image/mobile_img/ic_transfer_down.png" class="img-responsive">
+                </div>
+                <div class="form-group visible-xs visible-sm" style="text-align:left">
+                    <span class="acc-title">轉入卡片</span>
+                </div>
+                <div class="form-group col-xs-12 col-sm-12 col-md-4">
+                    <div class="account-text ">
+                        <img id="step2_img_card_input" src="" class="img-responsive" alt="">
+                        <input name="hidden_card_input" type="hidden" id="hidden_card_input">
+                    </div>
+                    <div class="card-payments">
+                        <span class="cardinfo-title">卡號</span>
+                        <span class="cardinfo-text" id="step2_input_CardNumber"></span>
+                    </div>
+                    <div class="card-payments">
+                        <span class="cardinfo-title">餘額</span>
+                        <span class="cardinfo-text" id="step2_input_Balance"></span>
+                    </div>
+                    <div class="card-payments">
+                        <span class="cardinfo-title">點數</span>
+                        <span class="cardinfo-text" id="step2_input_Bonus"></span>
+                    </div>
+                    <div class="card-payments" style="display:none">
+                        <span class="cardinfo-title"></span>
+                        <span class="cardinfo-text" id="step2_input_SecurityCode"></span>
+                    </div>
+                    <div class="card-payments" style="display:none">
+                        <span class="cardinfo-title"></span>
+                        <span class="cardinfo-text" id="step2_input_Status"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 下一步按鈕 -->
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3  ">
+                    &nbsp;
+                </div>
+                <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+                    <button type="button" class="account-btn nextBtn" id="btn_Member_Card_Transfer_Confirm">確定</button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ">&nbsp;</div>
+            </div>
+        </div>
+
+
+        <div class="modal ReKeyMyPassword" tabindex="-1" role="dialog" aria-labelledby="ReKeyMyPassword">
+            <div class="modal-dialog modal-md" role="document">
+                <div id="ReKeyMyPasswordArea" class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button>
+                        <h3 class="modal-title">移轉餘額點數</h3>
+                    </div>
+                    <div class="modal-body">
+                        <span class="alert-text">請輸入您的會員密碼，以確認轉移所有餘額與點數，確定移轉?</span>
+                        <input type="password" maxlength="12" id="ReKeyMyPassword" class="form-control account-input" placeholder="請輸入您的會員密碼">
+                    </div>
+                    <div class="modal-footer center-block " style="padding:0 44px">
+                        <button type="button" class="account-btn nextBtn" style="width:40%" id="btn_Card_Transpose_Password_Cancel">取消</button>
+                        <button type="button" class="account-btn nextBtn" style="width:40%" id="btnReKeyMyPassword">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 第三步，轉置成功 -->
+    <div class="row setup-content" id="step-3" style="display:none">
+        <div class="row">
+            <div id="regstep" class="form-group">
+                <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-4">
+                    <img src="~/wwwroot/Image/desktop_img/ic_done.png" class="img-done" />
+                </div>
+                <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12  col-md-8">
+                    <h2>恭喜您移轉成功</h2>
+                    <span>已為您移轉餘額點數</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-30px;">
+            <div class="form-item-title form-item-title-1  col-xs-12 col-sm-12 col-md-1">
+            </div>
+            <div class="form-item-title form-item-title-1  col-xs-12 col-sm-12 col-md-5">
+                <img id="CardImg" src="" alt="" style="width:250px;">
+            </div>
+            <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12 col-md-6 cordInfo">
+                <form class="form-horizontal ">
+                    <div class="form-group cardsign-text" style="margin-bottom:0px;">
+                        <div class="col-xs-4 col-sm-4 col-md-3 pull-left">帳號</div>
+                        <div class="col-sm-8 col-md-9 " id="UserID"></div>
+                    </div>
+                    <div class="form-group cardsign-text" style="margin-bottom:0px;">
+                        <div class="col-xs-4 col-sm-4 col-md-3 pull-left">卡號</div>
+                        <div class="col-sm-8 col-md-9" id="CardID"></div>
+                    </div>
+                    <div class="form-group cardsign-text" style="margin-bottom:0px;">
+                        <div class="col-xs-4 col-sm-4 col-md-3 pull-left">認證碼</div>
+                        <div class="col-sm-8 col-md-9" id="CardRugNo"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var type = "From";
+    $(document).ready(function () {
+        //驗證登入
+        ExecuteAjax('@Url.Action("CheckLoginStatus", "Authority")', null, function (data) {
+            if (!data.Result) {
+                $('.ForcedLogin').modal('show');
+                $('#noLogin').show();
+                $('#IsLogin').hide();
+            }
+            else {
+                $('#noLogin').hide();
+                $('#IsLogin').show();
+            }
+        });
+
+        var navListItems = $('div.setup-panel div span'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.change(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+            $(".stepwizard-step-in").removeClass("stepwizard-step-in");
+            if (!$item.hasClass('disabled')) {
+                // navListItems.removeClass('stepbar-on').addClass('stepbar-off');
+                $item.addClass('stepbar-on');
+                $item.parent().addClass("stepwizard-step-on").addClass("stepwizard-step-in");
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+
+            //非該步驟移除橘色顯示CSS
+            $(".stepwizard-step").each(function () {
+                if (!$(this).hasClass("stepwizard-step-in")) {
+                    $(this).removeClass("stepwizard-step-on");
+                }
+            });
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                btnID = $(this).attr("id"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div span[href="#' + curStepBtn + '"]').parent().next().children("span"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+            if (isValid) {
+                switch (btnID) {
+                    case "btn_Member_Card_Transfer_Confirm":
+                        isValid = false;
+                        $('.ReKeyMyPassword').modal('toggle');
+                        break;
+                    case "btn_Member_Card_Transfer_Double_Confirm":
+                        isValid = true;
+                        $("#step2_img_card_output").attr("src", $("#Confirm_img_card_output").attr("src"));
+                        $("#step2_output_CardNumber").text($("#Confirm_output_CardNumber").text());
+                        $("#step2_output_Bonus").text($("#Confirm_output_Bonus").text());
+                        $("#step2_output_Balance").text($("#Confirm_output_Balance").text());
+                        $("#step2_output_SecurityCode").text($("#Confirm_output_SecurityCode").text());
+                        $("#step2_output_Status").text($("#Confirm_output_Status").text());
+
+                        $("#step2_img_card_input").attr("src", $("#Confirm_img_card_input").attr("src"));
+                        $("#step2_input_CardNumber").text($("#Confirm_input_CardNumber").text());
+                        $("#step2_input_Bonus").text($("#Confirm_input_Bonus").text());
+                        $("#step2_input_Balance").text($("#Confirm_input_Balance").text());
+                        $("#step2_input_SecurityCode").text($("#Confirm_input_SecurityCode").text());
+                        $("#step2_input_Status").text($("#Confirm_input_Status").text());
+                        $('.ReCheck').modal('toggle');
+                        break;
+                    case "btn_Card_Transpose_Password_Cancel":
+                        isValid = false;
+                        $('.ReKeyMyPassword').modal('toggle');
+                        break;
+                    case "btnReKeyMyPassword":
+                        var password = $("#ReKeyMyPassword").val();
+                        if (password.length > 0) {
+                            if (CheckPW(password)) {
+                                $('.ReKeyMyPassword').modal('hide');
+                                isValid = Transpose();
+                                if (isValid) {
+                                    $("#CardImg").attr("src", $("#step2_img_card_input").attr("src"));
+                                    //取得使用者帳號(手機號碼)
+                                    ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+                                        $("#UserID").html(data.Result.UID);
+                                    });                                    
+                                    $("#CardID").html($("#step2_input_CardNumber").text());
+                                    $("#CardRugNo").html($("#step2_input_SecurityCode").text());
+                                }
+                            }
+                            else {
+                                showMessageBox({ title: '提示', body: '密碼錯誤' });
+                                return false;
+                            }
+                        } else {
+                            showMessageBox({ title: '提示', body: '請輸入密碼' });
+                            return false;
+                        }
+                        break;
+                }
+            }
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('change');
+        });
+
+        $('div.setup-panel div span.stepbar-on').trigger('change'); 
+    });
+
+    function ConfirmPopup() {
+        $("#Confirm_img_card_output").attr("src", $("#btn_Member_Card_Transfer_Out").attr("src"));
+        $("#Confirm_output_CardNumber").text($("#TransposeFromArea .CardDetail #CardNumber").text());
+        $("#Confirm_output_Bonus").text($("#TransposeFromArea .CardDetail #Bonus").text());
+        $("#Confirm_output_Balance").text($("#TransposeFromArea .CardDetail #Balance").text());
+        $("#Confirm_output_SecurityCode").text($("#TransposeFromArea .CardDetail #SecurityCode").text());
+        $("#Confirm_output_Status").text($("#TransposeFromArea .CardDetail #Status").text());
+
+        $("#Confirm_img_card_input").attr("src", $("#btn_Member_Card_Transfer_In").attr("src"));
+        $("#Confirm_input_CardNumber").text($("#TransposeToArea .CardDetail #CardNumber").text());
+        $("#Confirm_input_Bonus").text($("#TransposeToArea .CardDetail #Bonus").text());
+        $("#Confirm_input_Balance").text($("#TransposeToArea .CardDetail #Balance").text());
+        $("#Confirm_input_SecurityCode").text($("#TransposeToArea .CardDetail #SecurityCode").text());
+        $("#Confirm_input_Status").text($("#TransposeToArea .CardDetail #Status").text());
+        $('.ReCheck').modal('toggle');
+    }
+    function CheckPW(password) {
+        var check = false;
+        ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+            var ObjData = {
+                "uid": data.Result.UID,
+                "pwd": password
+            };
+            ExecuteAjax('@Url.Action("CheckPW", "Authority")', ObjData, function (data) {
+                if (data.Result) {
+                    check = true;
+                }
+            });
+        });
+        return check;
+    }
+    function Transpose() {
+        var check = false;
+        var ObjData = {
+            "output_CardNo": $("#step2_output_CardNumber").text(),
+            "output_ValidateCode": $("#step2_output_SecurityCode").text(),
+            "input_CardNo": $("#step2_input_CardNumber").text(),
+            "input_ValidateCode": $("#step2_input_SecurityCode").text(),
+            "input_CardStatus": $("#step2_input_Status").text(),
+            "balance": $("#step2_output_Balance").text().split(" ")[0],
+            "bonus": $("#step2_output_Bonus").text().split(" ")[0]
+        };
+        ExecuteAjax('@Url.Action("Transpose", "CardAccount")', ObjData, function (data) {
+            if (data.code_id !== 00) {
+                showMessageBox({ title: '提示', body: data.code_description });
+            }
+            else {
+                check = true;
+            }
+        });
+        return check;
+    }
+    function TransposeFrom() {
+        $('.Transpose').modal('toggle');
+        type = "From";
+        $("#TransposeTitle").text("選擇欲轉出點數的點點卡");
+        var CardTransposeFrom = $("#CardTransposeFrom").val();
+        var CardTransposeTo = $("#CardTransposeTo").val();
+
+        if (CardTransposeTo.length > 0) {
+            $("#TransposeArea input[value='" + CardTransposeTo + "']").attr("name", "TransposeCardDisabled").closest("div").addClass("transfer-card-image-disabled");
+            $("#TransposeArea input[value='" + CardTransposeTo + "']").prop("checked", true).prop("disabled", true);
+        }
+        if (CardTransposeFrom.length > 0) {
+            $("#TransposeArea input[value='" + CardTransposeFrom + "']").prop("checked", true);
+        }
+    }
+    function TransposeTo() {
+        $('.Transpose').modal('toggle');
+        type = "To";
+        $("#TransposeTitle").text("選擇欲轉入點數的點點卡");
+        var CardTransposeFrom = $("#CardTransposeFrom").val();
+        var CardTransposeTo = $("#CardTransposeTo").val();
+        if (CardTransposeFrom.length > 0) {
+            $("#TransposeArea input[value='" + CardTransposeFrom + "']").attr("name", "TransposeCardDisabled").closest("div").addClass("transfer-card-image-disabled");
+            $("#TransposeArea input[value='" + CardTransposeFrom + "']").prop("checked", true).prop("disabled", true);
+        }
+        if (CardTransposeTo.length > 0) {
+            $("#TransposeArea input[value='" + CardTransposeTo + "']").prop("checked", true);
+        }
+    }
+    function TransposeCheck() {
+        var radioCurrent = $("#TransposeArea div:not(.transfer-card-image-disabled) input[name=TransposeCard]:checked");
+        var currentArea = radioCurrent.closest("div");
+        var id = radioCurrent.val();
+        if ($.trim(id).length > 0) {
+            if (type == "From") {
+                $("#CardTransposeFrom").val(id);
+                $("#btn_Member_Card_Transfer_Out").attr("src", currentArea.find("img").attr("src"));
+                $("#TransposeFromArea .CardDetail #CardNumber").text(currentArea.find("span#CardNumber").text());
+                $("#TransposeFromArea .CardDetail #Bonus").text(currentArea.find("span#Bonus").text());
+                $("#TransposeFromArea .CardDetail #Balance").text(currentArea.find("span#Balance").text());
+                $("#TransposeFromArea .CardDetail #SecurityCode").text(currentArea.find("span#SecurityCode").text());
+                $("#TransposeFromArea .CardDetail #Status").text(currentArea.find("span#Status").text());
+                $("#TransposeFromArea .CardDetail").show();
+                $("#TransposeFromArea .Not-Card").hide();
+
+            } else {
+                $("#CardTransposeTo").val(id);
+                $("#btn_Member_Card_Transfer_In").attr("src", currentArea.find("img").attr("src"));
+                $("#TransposeToArea .CardDetail #CardNumber").text(currentArea.find("span#CardNumber").text());
+                $("#TransposeToArea .CardDetail #Bonus").text(currentArea.find("span#Bonus").text());
+                $("#TransposeToArea .CardDetail #Balance").text(currentArea.find("span#Balance").text());
+                $("#TransposeToArea .CardDetail #SecurityCode").text(currentArea.find("span#SecurityCode").text());
+                $("#TransposeToArea .CardDetail #Status").text(currentArea.find("span#Status").text());
+                $("#TransposeToArea .CardDetail").show();
+                $("#TransposeToArea .Not-Card").hide();
+            }
+        }
+        $(".transfer-card-image-disabled").removeClass("transfer-card-image-disabled");
+        $("input[name=TransposeCardDisabled]").attr("name", "TransposeCard").removeAttr("disabled");
+        $('.Transpose').modal('toggle');
+        if ($("#CardTransposeFrom").val().length > 0 && $("#CardTransposeTo").val().length > 0) {
+            $("#btnOK").show();
+        }
+    }
+</script>

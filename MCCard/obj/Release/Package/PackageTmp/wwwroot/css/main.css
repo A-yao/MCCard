@@ -1,0 +1,1665 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+body {
+    font-family: 'Noto Sans TC', sans-serif !important;
+    background-color: #eee;
+    overflow-x: hidden;
+}
+
+a:hover {
+    opacity: 0.6 !important;
+    text-decoration: none !important;
+}
+
+.dropdown-menu>li>a {
+    color: #323232;
+    font-size: 1.15rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.16rem;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: 0.5rem 0;
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus {
+    opacity: 0.6;
+    background: transparent;
+}
+
+button:visited {
+    outline: none;
+}
+
+button:active:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+    opacity: 0.6;
+}
+
+
+/*menu bar設定 含字體*/
+
+.navbar-all {
+    margin-bottom: 0;
+    height: 64px;
+}
+
+.navbar-box {
+    padding-left: 48px;
+    background-color: #d02221;
+    color: #fff;
+    height: 64px;
+    z-index: 2000;
+}
+
+a.nav-text,
+span.nav-text {
+    color: #fff !important;
+    margin: 0.5rem 0;
+    font-size: 1.15rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.16rem;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+a.nav-text-yellow {
+    color: #ffee7d !important;
+    margin: 0.5rem 0;
+    font-size: 1.15rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.16rem;
+    font-weight: 100;
+    text-align: center;
+}
+
+.nav-text-none {
+    color: #fff !important;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-top: 22px;
+    font-size: 1.15rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.16rem;
+    font-weight: 100;
+    text-align: center;
+    height: 64px;
+}
+
+.nav-text-dropdown {
+    color: #6a6a6a;
+    text-align: center;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    left: -10px;
+    top: 64px;
+}
+
+.brand-logo {
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    background-image: url("../Image/desktop_img/ic_mlogo.png");
+}
+
+.nav-signup {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    background-image: url('../Image/desktop_img/ic_signup.png');
+    float: left;
+    margin-right: 0.2rem;
+    margin-top: -2px;
+}
+
+.nav-signin {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    background-image: url('../Image/desktop_img/ic_login.png');
+    float: left;
+    margin-right: 0.2rem;
+    margin-top: -2px;
+}
+
+.mwt_border {
+    width: 250px;
+    height: 90px;
+    text-align: center;
+    background: #fff;
+    position: relative;
+    border: solid 1px #333;
+    margin: 30px;
+    padding: 30px;
+}
+
+
+/*箭頭上*/
+
+.mwt_border .arrow_t_int,
+.dropdown-menu .arrow_t_int {
+    width: 0px;
+    height: 0px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, .15) transparent;
+    position: absolute;
+    top: -30px;
+    left: 63px;
+}
+
+
+/*箭頭上-邊框*/
+
+.mwt_border .arrow_t_out,
+.dropdown-menu .arrow_t_out {
+    width: 0px;
+    height: 0px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+    position: absolute;
+    top: -29px;
+    left: 63px;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    background-color: transparent;
+}
+
+.modal-header {
+    margin: 0 30px;
+    padding-bottom: 2px;
+}
+
+.modal-content > .modal-body {
+    padding: 15px 44px;
+}
+
+.modal-title {
+    padding-top: 20px;
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+
+.modal-content {
+    padding-bottom: 20px;
+}
+
+.bs-example-modal-lg .modal-body {
+    max-height: 55vh;
+    overflow: auto;
+    margin: 10px 20px;
+}
+
+.modal .modal-footer {
+    padding: 0px 15px 0px 15px;
+    text-align: center;
+    border-top: none;
+    margin: 0 auto;
+}
+
+
+/*menu收合*/
+
+.mask {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.65;
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    float: left;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+
+.sidenav .closebtn {
+    display: none;
+}
+
+
+/*路麵包屑徑連結 */
+
+.link-box {
+    margin-top: 64px;
+    height: 40px;
+    background-color: #fff;
+    padding-left: 48px;
+    margin-bottom: 0;
+}
+
+.link-text {
+    margin: 0.2rem 0.12rem;
+    color: #323232;
+    font-size: 1.15rem;
+    letter-spacing: 0.16rem;
+    font-weight: 100;
+    text-align: left;
+}
+
+
+/*footer 字型樣式*/
+
+footer .footmenu li {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+footer .nav > li > span {
+    position: relative;
+    display: block;
+    padding: 0px 8px;
+}
+
+footer ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+footer .footmenu li {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.foot-text-box {
+    padding-left: 8%;
+}
+
+.footer-text {
+    color: #6a6a6a;
+    font-size: 1rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    text-align: center;
+    background-color: #e0e0e0;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin: 0;
+}
+
+.footer-link-text {
+    color: #6a6a6a;
+    font-size: 1rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: center;
+    margin: 0 0.6rem;
+}
+
+.footer-link-text:hover {
+    opacity: 0.6;
+    text-decoration: none !important;
+    color: #6a6a6a !important;
+}
+
+.footer-link-img {
+    width: 44px;
+    height: 44px;
+    margin: 0 0.4rem;
+}
+
+
+/*alert 字型樣式*/
+
+.alert-title {
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 300;
+}
+
+.alert-text {
+    color: #8c8c8c;
+    font-size: 1.3rem;
+    line-height: 2.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+}
+
+.mainTitle {
+    color: #8c8c8c;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    text-align: right;
+}
+
+.subTitle {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 300;
+    margin: 24px 0;
+}
+
+.alert-text-bold {
+    font-size: 1.3rem;
+    line-height: 2.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 200;
+}
+
+a.alert-text {
+    text-decoration: underline;
+}
+
+#signInBody {
+    padding: 6px 26px;
+}
+
+#signInBody input {
+    margin: -4px 0;
+}
+
+.modal-header +.modal-body {
+    margin-top: 40px;
+}
+
+.modal-header .close {
+    margin-top: -10px;
+    margin-right: -40px;
+}
+
+
+/*按鈕樣式*/
+
+.main-btn {
+    width: 160px;
+    height: 48px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: rgba(0%, 0%, 0%, 0);
+    font-size: 1.4rem;
+    line-height: 3rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+.main-btn-white {
+    width: 240px;
+    height: 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(100%, 100%, 100%, 0.4);
+    background-color: rgba(0%, 0%, 0%, 0);
+    color: #fff;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+.main-btn:hover,
+.main-btn:focus,
+.main-btn-white:hover,
+.main-btn-white:focus {
+    opacity: 0.6;
+}
+
+
+/*整體網頁內容，字體樣式*/
+
+
+/*首頁、最新消息 標題*/
+
+.main-banner {
+    /*background:url("../desktop_img/pic_main_banner.png") no-repeat fixed center; */
+    /*position:absolute;　
+clip:rect(0px,auto,100vh,0px);*/
+    /* height:100vh;*/
+}
+
+
+/*.main-banner img{
+    margin-top: 54px;
+}*/
+
+.content-title-yellow {
+    color: #ffee7d;
+    font-size: 2.5rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.3rem;
+    font-weight: 300;
+}
+
+.content-title {
+    color: #212121;
+    font-size: 2.2rem;
+    line-height: 3rem;
+    letter-spacing: 0.2rem;
+    font-weight: 300;
+}
+
+
+/*首頁、最新消息 內文*/
+
+.content-text {
+    font-size: 1.3rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+.content-text-white {
+    font-size: 1.3rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+
+/*首頁*/
+
+.sub-banner {
+    position: relative;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.sub-banner .row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.sub-banner .img-banner {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sub-banner .img-banner-sm {
+    width: 100%;
+}
+
+.sub-banner .sub-banner-hightlight {
+    background: #01A2B4;
+}
+
+.sub-banner .sub-banner-hightlight .content-title {
+    color: #D2DB42;
+}
+
+.sub-banner .sub-banner-hightlight .content-text a {
+    color: #FFFFFF;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.sub-banner .sub-banner-hightlight .content-text a.hightlight {
+    color: #D2DB42;
+}
+
+.sub-banner .sub-banner-hightlight .content-text a:hover {
+    text-decoration: underline !important;
+    cursor: pointer;
+}
+
+.coupon-box {
+    background-color: #d02221;
+    padding: 3% 5%;
+}
+
+.coupon-link {
+    text-align: center;
+    margin: 24px 0 16px 0;
+}
+
+
+/*最新消息*/
+
+.nd-box {
+    padding: 0;
+}
+
+.nd-text-box {
+    padding: 8% 8%;
+}
+
+.nd-text-box .content-title {
+    margin-bottom: 16px;
+}
+
+.nd-text-box .content-text {
+    margin-bottom: 24px;
+}
+
+
+/*點點卡福利*/
+
+.couponttext-box {
+    height: 240px;
+    background-color: #fff;
+}
+
+.couponttext-box h1 {
+    margin: 8% auto;
+}
+
+.couponticket-box {
+    background-color: #ededed;
+    padding: 6% 5% 5% 5.2%;
+}
+
+.couponticket-box .col-md-3 {
+    padding: 0 8px;
+}
+
+.couponticket-box img {
+    margin-bottom: 16px;
+}
+
+
+/*點點卡專區*/
+
+.coupon-title {
+    font-size: 2.75rem;
+    line-height: 3.6rem;
+    letter-spacing: 0.5rem;
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 2.5rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.4rem;
+    font-weight: 300;
+}
+
+.card-dollars {
+    font-size: 1.4rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+.card-text {
+    font-size: 1.3rem;
+    line-height: 2.2rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+
+/*常見問題*/
+
+.qa-title {
+    color: #d0d0d0;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    letter-spacing: 0.2rem;
+    font-weight: 300;
+}
+
+.qa-q {
+    color: #8c8c8c;
+    font-size: 1.4rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+}
+
+.qa-text {
+    color: #8c8c8c;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    margin: 16px 24px;
+    /*padding-left: 2.8rem;*/
+}
+
+.qa-box {
+    margin: 48px 10%;
+}
+
+.qa-title-off {
+    color: #d0d0d0;
+    border-bottom: 3px solid #d0d0d0;
+}
+
+.qa-box > ul {
+    margin-bottom: 32px;
+}
+
+.qa-box > ul > li > a {
+    color: #d0d0d0;
+    background-color: transparent;
+}
+
+.qa-box > .nav-pills > li.active {
+    border-bottom: 3px solid rgb(247, 140, 20);
+}
+
+.qa-box > .nav-pills > li.active > a,
+.qa-box > .nav-pills > li.active > a:focus,
+.qa-box > .nav-pills > li.active > a:hover {
+    color: #000;
+    background-color: transparent;
+}
+
+.qa-box > .panel-group .panel {
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid #d0d0d0;
+    border-radius: 0px;
+}
+
+.qna-content-box > .panel-default > .panel-heading {
+    padding: 16px 8px;
+    min-height: 54px;
+    background-image: none;
+    background-color: transparent;
+}
+
+.qna-content-box > .panel-default > .panel-heading > .panel-title > div {
+    width: 98%;
+}
+
+.qna-content-box > .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top: none;
+}
+
+.arrow {
+    display: inline-block;
+    float: right;
+    content: url(../Image/desktop_img/ic_arrow.png);
+    width: 2rem;
+    height: 2rem;
+}
+
+
+/*題目展開換標題變黑，箭頭向下*/
+
+.qna-content-box .active > .qa-q {
+    color: #000;
+}
+
+.arrow.active {
+    display: inline-block;
+    float: right;
+    content: url(../Image/desktop_img/ic_arrow_down.png);
+    width: 2rem;
+    height: 2rem;
+}
+
+
+/*步驟bar*/
+
+.stepwizard {
+    margin-bottom: 48px;
+    display: table;
+    width: 100%;
+    font-size: 1.8rem;
+    line-height: 2.9rem;
+    font-weight: 300;
+    color: #b3b3b3;
+    min-width: 80%;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    /*width: 100%;*/
+    height: 1px;
+    z-order: 0;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 99em;
+    top: 2px;
+    font-size: 1.6rem;
+    font-weight: 100;
+    text-align: center;
+    background-color: #d0d0d0;
+    color: #fff;
+    margin-right: 8px;
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+    height: 54px;
+    border-bottom: 4px solid #d0d0d0;
+}
+
+.stepwizard-step-on {
+    border-bottom: 4px solid rgb(247, 140, 20);
+}
+
+.stepwizard-step-on span {
+    color: #212121;
+}
+
+.stepwizard-step-on .circle {
+    background-color: rgb(247, 140, 20);
+    color: #fff;
+}
+
+
+/*註冊*/
+
+.signup-box {
+    background: url("../Image/desktop_img/desktop/bg_account.png") repeat;
+    padding: 74px 10%;
+}
+
+.signup-box .stepwizard {
+    margin-top: 54px;
+}
+
+.signup-box .checkfont {
+    font-size: 1rem;
+    color: #b3b3b3;
+    font-weight: 200;
+    margin-top: 4px;
+    margin-right: 50px;
+}
+
+.double_checked {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-top: 8px;
+    background: url("../Image/desktop_img/ic_double_checked.png") left top no-repeat;
+}
+
+.setup-content .row {
+    margin: 48px 0;
+    text-align: left;
+}
+
+.form-item-title {
+    text-align: right;
+    /* margin-right: -48px;*/
+}
+
+.setup-content h2 {
+    font-weight: 300;
+}
+
+.setup-content span {
+    font-size: 1.3rem;
+    line-height: 2.6rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    color: #8c8c8c;
+    /* margin-bottom: 24px;*/
+}
+
+.setup-content .form-group h2 {
+    color: rgb(247, 140, 20);
+    font-weight: 300;
+}
+
+.select-l {
+    width: 100%;
+    height: 54px;
+    text-align: left;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    color: #212121;
+    background: #fff;
+    border-radius: 4px;
+    border: solid 1px #d0d0d0;
+}
+
+.select-l:focus {
+    border: solid 1.5px rgb(247, 140, 20);
+    box-shadow: none;
+}
+
+.icondown {
+    float: right;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    background: url("../Image/desktop_img/ic_dropdown.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.btn-group ul,
+.btn-group li,
+.btn-group li a {
+    text-align: center;
+    font-size: 1.3rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    color: #212121;
+}
+
+
+/*社群按鈕*/
+
+.fb-btn {
+    border-radius: 4px;
+    background-color: #3b5998;
+    width: 100%;
+    height: 54px;
+    border-style: none;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 3.4rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: center;
+    padding-right: 24px;
+}
+
+.fbicon {
+    float: left;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+    background: url("../Image/desktop_img/ic_account_fb.png")center no-repeat;
+    margin-left: 8px;
+}
+
+.google-btn {
+    border-radius: 4px;
+    background-color: #d50f25;
+    width: 100%;
+    height: 54px;
+    border-style: none;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 3.4rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: center;
+    padding-right: 24px;
+}
+
+.googleicon {
+    float: left;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+    background: url("../Image/desktop_img/ic_account_google.png")center no-repeat;
+    margin-left: 8px;
+}
+
+.form-group .modal-body {
+    padding: 0;
+    margin: 24px 0;
+}
+
+.google-btn:hover,
+.agoogle-btn:focus,
+.fb-btn:hover,
+.fb-btn:focus {
+    opacity: 0.6;
+}
+
+
+/*radio*/
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label span {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin-right: 8px;
+    vertical-align: middle;
+    background: url("../Image/desktop_img/ic_off.png") left top no-repeat;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label span {
+    background: url("../Image/desktop_img/ic_on.png") top no-repeat;
+}
+
+
+/*checkbox*/
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 36px;
+    height: 30px;
+    vertical-align: middle;
+    background: url("../Image/desktop_img/ic_check.png") left top no-repeat;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background: url("../Image/desktop_img/ic_checked.png") left top no-repeat;
+}
+
+
+/*點點卡帳戶 註冊 字體樣式 按鈕樣式 輸入框樣式*/
+
+.account-form-box {
+    width: 960px;
+    margin: 64px auto;
+}
+
+
+/*點點卡帳戶*/
+
+.account-btn {
+    border-radius: 4px;
+    background-color: rgb(247, 140, 20);
+    width: 100%;
+    height: 54px;
+    border-style: none;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.account-btn-s {
+    border-radius: 4px;
+    background-color: #d0d0d0;
+    /*width: 240px;*/
+    height: 48px;
+    border-style: none;
+    color: #212121;
+    font-size: 1.2rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: center;
+}
+
+.account-btn:hover,
+.account-btn:focus,
+.account-btn-s:hover,
+.account-btn-s:focus {
+    opacity: 0.6;
+}
+
+
+/*點點卡帳戶popup的確認按鈕*/
+
+.alert-btn {
+    border-radius: 4px;
+    background-color: rgb(247, 140, 20);
+    width: 240px;
+    height: 48px;
+    border-style: none;
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: center;
+    margin: 36px 30px;
+}
+
+.alert-btn:hover,
+.alert-btn:focus {
+    opacity: 0.6;
+}
+
+.account-text {
+    color: #8c8c8c;
+    font-size: 1.4rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    text-align: left;
+}
+
+.account-text-s {
+    color: #8c8c8c;
+    font-size: 1.2rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    text-align: left;
+}
+
+.account-text-error {
+    color: #de1503;
+    font-size: 1rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    text-align: left;
+    margin: 2px 0px;
+}
+
+.account-input {
+    /*width: 520px;*/
+    height: 54px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d0d0d0;
+    font-size: 1.3rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.account-input-s {
+    width: 350px;
+    height: 48px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d0d0d0;
+    font-size: 1.3rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.2rem;
+    font-weight: 100;
+    text-align: left;
+    margin-bottom: 12px;
+    float: left;
+}
+
+.account-input:focus,
+.account-input-s:focus {
+    border: solid 1.5px rgb(247, 140, 20);
+    box-shadow: none;
+}
+
+.checkbox-s {
+    padding-left: 8px;
+}
+
+.checkbox .account-text-s {
+    font-weight: 100;
+    padding-left: 0px;
+}
+
+.checkbox .account-text-s a {
+    color: #8c8c8c;
+    font-size: 1.1rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.16rem;
+    text-decoration: underline;
+    margin: 0 4px;
+}
+
+.radio-group {
+    line-height: 2.8rem;
+}
+
+.setup-content .radio-group .radio-inline {
+    padding-left: 10px;
+}
+
+.radio-inline input[type="radio"] + span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    background: url(../Image/desktop_img/ic_off.png) top no-repeat;
+    background-size: 100% 100%;
+    top: 4px;
+    position: relative;
+}
+
+.radio-inline input[type="radio"]:checked + span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    background: url(../Image/desktop_img/ic_on.png) top no-repeat;
+    background-size: 100% 100%;
+    top: 4px;
+    position: relative;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.s-img-margin-left {
+    margin-left: 16px;
+}
+
+.underline-text {
+    color: #8c8c8c;
+    font-size: 1rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 100;
+    text-decoration: underline;
+    margin: 2px 0px;
+}
+
+
+/*卡片記名*/
+
+.cardsign {
+    text-align: center;
+}
+
+.cardsign-text {
+    color: #8c8c8c;
+    font-size: 1.5rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 200;
+    text-align: left;
+}
+
+.cardsign-text .pull-left {
+    text-align: right;
+}
+
+.cardsign-text div {
+    padding-bottom: 24px;
+}
+
+.form-item-success .form-horizontal {
+    margin-top: 48px;
+}
+
+
+/*卡片掛失、取消記名*/
+
+.acc-title {
+    color: #212121;
+    font-size: 1.6rem;
+    line-height: 2.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 200;
+    text-align: center;
+}
+
+.acc-form-box {
+    margin: 8px auto;
+    text-align: left;
+    border: 1px solid #d0d0d0;
+    background: #fff;
+    padding: 24px 10px 20px 16px;
+    border-radius: 4px;
+}
+
+.tw_articleTitle {
+    padding: 4px 6px 4px 8px;
+    height: 280px;
+    color: #212121;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-weight: 200;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.card-radio input[type="radio"] + span {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+    background: url(../Image/desktop_img/ic_unselect.png) top no-repeat;
+    background-size: 100% 100%;
+    top: 4px;
+    position: relative;
+}
+
+.card-radio input[type="radio"]:checked + span {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    margin-right: 12px;
+    background: url(../Image/desktop_img/ic_select.png) top no-repeat;
+    background-size: 100% 100%;
+    top: 4px;
+    position: relative;
+}
+
+.modal-body .alert-text {
+    margin-bottom: 12px;
+}
+
+.card-popup {
+    text-align: center;
+}
+
+.card-group {
+    margin-bottom: 32px;
+}
+
+
+/*卡片轉置*/
+
+.transfer-box {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.transfer-img-top img {
+    padding: 42% 30%;
+}
+
+.transfer-box .card-payments {
+    margin: 0 -20px;
+}
+
+
+/*卡片消費記錄*/
+
+.user-card {
+    width: 80%;
+    margin: 24px auto;
+}
+
+.card-payments {
+    /*width: 100%;*/
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    line-height: 3.2rem;
+    font-weight: 300;
+    color: #8c8c8c;
+}
+
+.cardinfo-title {
+    width: 24%;
+    float: left;
+    text-align: right;
+    padding-right: 16px;
+}
+
+.cardinfo-text {
+    width: 76%;
+    float: right;
+    text-align: left;
+}
+
+.card-payments-btn {
+    color: #fff;
+    background-color: #d0d0d0;
+    border: none;
+    border-radius: 4px;
+    height: 48px;
+    width: 100%;
+    margin: 16px auto;
+}
+
+.card-payments-btn:focus {
+    background-color: rgb(247, 140, 20);
+}
+
+
+/*消費明細表格*/
+
+.rwd-table {
+    width: 100%;
+    margin: 12px auto;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.rwd-table tr:nth-of-type(2n) {
+    /*background: #eee;*/
+}
+
+.rwd-table th,
+.rwd-table td {
+    margin: 0.5em 1em;
+}
+
+.rwd-table th {
+    display: none;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.rwd-table td {
+    padding-left: 5%;
+}
+
+.rwd-table td {
+    display: block;
+}
+
+.rwd-table td:before {
+    content: attr(data-th) " : ";
+    font-weight: 100;
+    width: 6.5em;
+    display: inline-block;
+}
+
+.rwd-table th,
+.rwd-table td {
+    text-align: left;
+}
+
+.rwd-table th,
+.rwd-table td:before {
+    color: #212121;
+    font-weight: 100;
+}
+
+
+/*字型設定*/
+
+@media only screen {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 1919px) and (min-width: 1024px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 1365px) and (min-width: 1024px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+
+/*menu*/
+
+
+/*如果螢幕寬度為 1024px (含) 以上，就套用這些 css 設定*/
+
+@media (min-width: 1024px) {
+    .menu-icon {
+        display: none !important;
+    }
+    .MobileView {
+        display: none !important;
+    }
+    .DesktopView {
+        display: block;
+    }
+    .dropdown-menu .divider {
+        margin: 9px;
+    }
+}
+
+
+/*如果螢幕寬度為 1023px (含) 以下，就套用這些 css 設定*/
+
+@media (max-width: 1023px) {
+    /*首頁*/
+    .coupon-box {
+        padding: 3% 8% 5% 6%;
+    }
+    /*步驟*/
+    .circle {
+        width: 38px;
+        height: 38px;
+        border-radius: 99em;
+        top: 2px;
+        font-size: 1.6rem;
+        font-weight: 100;
+        text-align: center;
+        background-color: #d0d0d0;
+        color: #fff;
+        margin-right: 8px;
+    }
+    /*註冊步驟三*/
+    .setup-content .row {
+        text-align: center;
+    }
+    .form-item-title {
+        text-align: center;
+    }
+    /*點點卡帳戶*/
+    .account-form-box {
+        width: 80%;
+        margin: 64px auto;
+    }
+    .account-input {
+        width: 100%;
+    }
+    .account-input-s {
+        width: 60%;
+    }
+    .account-btn {
+        width: 100%;
+    }
+    .account-text {
+        text-align: left!important;
+    }
+    .google-btn,
+    .fb-btn {
+        line-height: 3.8rem;
+    }
+    .transfer-img-top img {
+        padding: 10% 40%;
+    }
+    .MobileView {
+        display: block;
+    }
+    .DesktopView {
+        display: none !important;
+    }
+    .stepwizard-step:not(.stepwizard-step-in) {
+        display: none !important;
+    }
+    .MobileView.Logo {
+        position: absolute;
+        bottom: 20px;
+        display: block;
+    }
+    .MobileView.Logo > a {
+        display: inline-block;
+        margin-left: 25px;
+    }
+    .navbar-brand {
+        float: none;
+    }
+    .brand-logo {
+        margin: auto !important;
+        display: block !important;
+    }
+    nav.navbar > div.navbar-box > div.navbar-header {
+        width: 100%;
+        margin: 0px;
+    }
+    .navbar-box {
+        padding: 0px;
+    }
+    a.nav-text,
+    span.nav-text,
+    a.nav-text-yellow {
+        text-align: left;
+        margin-left: 50px;
+    }
+    .sidenav {
+        height: 100%;
+        width: 448px;
+        margin-left: -448px;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        background-color: #de1503;
+        overflow-x: hidden;
+        /*transition: 0.5s;*/
+        padding-top: 20px;
+        max-width: 80%;
+    }
+    .sidenav a,
+    .sidenav span {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+    .sidenav a:hover,
+    .offcanvas a:focus {
+        color: #f1f1f1;
+    }
+    .sidenav .closebtn {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 10px;
+        font-size: 36px;
+        margin-left: 50px;
+        color: #FFF;
+        z-index: 100;
+    }
+    .nav > li > span {
+        padding: 10px 15px;
+    }
+    .nav > li > span > hr {
+        margin: 0px;
+    }
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+        .sidenav a,
+        .sidenav span {
+            font-size: 18px;
+        }
+    }
+    @media (min-width: 768px) {
+        .navbar-nav > li {
+            float: left;
+            width: 448px;
+        }
+    }
+}
+
+@media (max-width:1230px) and (min-width:1024px) {
+    a.nav-text,
+    span.nav-text {
+        padding: 16px 6px !important;
+    }
+}
+
+@media screen and (max-width:1366px) and (min-width:1231px) {
+    a.nav-text,
+    span.nav-text {
+        padding: 16px 10px !important;
+    }
+}
+
+@media screen and (min-width:1367px) {
+    a.nav-text,
+    span.nav-text {
+        padding: 16px 18px !important;
+    }
+}
+
+span.nav-text {
+    display: block;
+    line-height: 20px;
+}
+
+
+/*消費明細表格在最小寬度以上，直列清單轉換為橫式表格*/
+
+@media (min-width: 480px) {
+    .rwd-table td:before {
+        display: none;
+    }
+    .rwd-table th,
+    .rwd-table td {
+        display: table-cell;
+        padding: 0.25em 0.5em;
+    }
+    .rwd-table th:first-child,
+    .rwd-table td:first-child {
+        padding-left: 0;
+    }
+    .rwd-table th:last-child,
+    .rwd-table td:last-child {
+        padding-right: 0;
+    }
+    .rwd-table th,
+    .rwd-table td {
+        padding: 1em !important;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-width: 767px) {
+    /*針對橫向 css*去撰寫*/
+    .NotLandscape {
+        display: none;
+    }
+    .Landscape {
+        display: block;
+    }
+}
+
+@media screen and (orientation: landscape) and (min-width: 768px) {
+    /*針對橫向 css*去撰寫*/
+    .NotLandscape {
+        display: block;
+    }
+    .Landscape {
+        display: none;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    /*針對縱向 css去撰寫*/
+    .NotLandscape {
+        display: block;
+    }
+    .Landscape {
+        display: none;
+    }
+}

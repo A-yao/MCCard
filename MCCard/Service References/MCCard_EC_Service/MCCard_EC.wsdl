@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="validateCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validateCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="validateCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="queryCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryBonus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryBonusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="queryBonusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryTxn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryTxnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="queryTxnResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lost">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lostResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lostResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="balance_transfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="balance_transferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="balance_transferResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verify_wifi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jsondata" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="verify_wifiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="verify_wifiResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="validateCardSoapIn">
+    <wsdl:part name="parameters" element="tns:validateCard" />
+  </wsdl:message>
+  <wsdl:message name="validateCardSoapOut">
+    <wsdl:part name="parameters" element="tns:validateCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryCardSoapIn">
+    <wsdl:part name="parameters" element="tns:queryCard" />
+  </wsdl:message>
+  <wsdl:message name="queryCardSoapOut">
+    <wsdl:part name="parameters" element="tns:queryCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryBonusSoapIn">
+    <wsdl:part name="parameters" element="tns:queryBonus" />
+  </wsdl:message>
+  <wsdl:message name="queryBonusSoapOut">
+    <wsdl:part name="parameters" element="tns:queryBonusResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryTxnSoapIn">
+    <wsdl:part name="parameters" element="tns:queryTxn" />
+  </wsdl:message>
+  <wsdl:message name="queryTxnSoapOut">
+    <wsdl:part name="parameters" element="tns:queryTxnResponse" />
+  </wsdl:message>
+  <wsdl:message name="lostSoapIn">
+    <wsdl:part name="parameters" element="tns:lost" />
+  </wsdl:message>
+  <wsdl:message name="lostSoapOut">
+    <wsdl:part name="parameters" element="tns:lostResponse" />
+  </wsdl:message>
+  <wsdl:message name="balance_transferSoapIn">
+    <wsdl:part name="parameters" element="tns:balance_transfer" />
+  </wsdl:message>
+  <wsdl:message name="balance_transferSoapOut">
+    <wsdl:part name="parameters" element="tns:balance_transferResponse" />
+  </wsdl:message>
+  <wsdl:message name="verify_wifiSoapIn">
+    <wsdl:part name="parameters" element="tns:verify_wifi" />
+  </wsdl:message>
+  <wsdl:message name="verify_wifiSoapOut">
+    <wsdl:part name="parameters" element="tns:verify_wifiResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MCCard_ECSoap">
+    <wsdl:operation name="validateCard">
+      <wsdl:input message="tns:validateCardSoapIn" />
+      <wsdl:output message="tns:validateCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="queryCard">
+      <wsdl:input message="tns:queryCardSoapIn" />
+      <wsdl:output message="tns:queryCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="queryBonus">
+      <wsdl:input message="tns:queryBonusSoapIn" />
+      <wsdl:output message="tns:queryBonusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="queryTxn">
+      <wsdl:input message="tns:queryTxnSoapIn" />
+      <wsdl:output message="tns:queryTxnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lost">
+      <wsdl:input message="tns:lostSoapIn" />
+      <wsdl:output message="tns:lostSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="balance_transfer">
+      <wsdl:input message="tns:balance_transferSoapIn" />
+      <wsdl:output message="tns:balance_transferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="verify_wifi">
+      <wsdl:input message="tns:verify_wifiSoapIn" />
+      <wsdl:output message="tns:verify_wifiSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MCCard_ECSoap" type="tns:MCCard_ECSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateCard">
+      <soap:operation soapAction="http://tempuri.org/validateCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCard">
+      <soap:operation soapAction="http://tempuri.org/queryCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryBonus">
+      <soap:operation soapAction="http://tempuri.org/queryBonus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryTxn">
+      <soap:operation soapAction="http://tempuri.org/queryTxn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lost">
+      <soap:operation soapAction="http://tempuri.org/lost" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="balance_transfer">
+      <soap:operation soapAction="http://tempuri.org/balance_transfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verify_wifi">
+      <soap:operation soapAction="http://tempuri.org/verify_wifi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MCCard_ECSoap12" type="tns:MCCard_ECSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="validateCard">
+      <soap12:operation soapAction="http://tempuri.org/validateCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryCard">
+      <soap12:operation soapAction="http://tempuri.org/queryCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryBonus">
+      <soap12:operation soapAction="http://tempuri.org/queryBonus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryTxn">
+      <soap12:operation soapAction="http://tempuri.org/queryTxn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lost">
+      <soap12:operation soapAction="http://tempuri.org/lost" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="balance_transfer">
+      <soap12:operation soapAction="http://tempuri.org/balance_transfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verify_wifi">
+      <soap12:operation soapAction="http://tempuri.org/verify_wifi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MCCard_EC">
+    <wsdl:port name="MCCard_ECSoap" binding="tns:MCCard_ECSoap">
+      <soap:address location="http://210.63.32.124/MCCard_API/MCCard_EC.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MCCard_ECSoap12" binding="tns:MCCard_ECSoap12">
+      <soap12:address location="http://210.63.32.124/MCCard_API/MCCard_EC.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

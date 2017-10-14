@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{46B0EC2A-1D75-41C5-9461-42EF1ED172C1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MCCard</RootNamespace>
+    <AssemblyName>MCCard</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DBLib, Version=1.0.16.11091, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\DBLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Log, Version=1.0.16.12301, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MultiOAuth.Core">
+      <HintPath>dll\MultiOAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="XBitmap, Version=1.0.16.9121, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\XBitmap.dll</HintPath>
+    </Reference>
+    <Reference Include="XMail, Version=1.0.14.7281, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\XMail.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Class\Exception\GenerateKeyExtensions.cs" />
+    <Compile Include="Class\Exception\StringFormatException.cs" />
+    <Compile Include="Class\Exception\UtilityExtensions.cs" />
+    <Compile Include="Class\RandomPassword.cs" />
+    <Compile Include="Class\SqlCommand.cs" />
+    <Compile Include="Class\Utility.cs" />
+    <Compile Include="Class\XmlHelper.cs" />
+    <Compile Include="Common\Captcha.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\CommonFun.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\AuthorityController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CardIntroductionController.cs" />
+    <Compile Include="Controllers\CommonProblemController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LatestNewsController.cs" />
+    <Compile Include="Controllers\MCCardAPPController.cs" />
+    <Compile Include="Controllers\CardAccountController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\SignUpController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Service References\MCCard_EC_Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\DBLib.dll" />
+    <Content Include="dll\Log.dll" />
+    <Content Include="dll\MultiOAuth.Core.dll" />
+    <Content Include="dll\Newtonsoft.Json.dll" />
+    <Content Include="dll\XBitmap.dll" />
+    <Content Include="dll\XMail.dll" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\PublishProfiles\mweb.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\MCCard_EC_Service\MCCard_EC.disco" />
+    <Content Include="wwwroot\contents\MailTemplate.txt" />
+    <Content Include="wwwroot\css\main.css" />
+    <Content Include="wwwroot\css\MyCardExpenseRecords.css" />
+    <Content Include="wwwroot\Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814111174.jpg" />
+    <Content Include="wwwroot\Image\Banner\105A2D80418141171066.jpg" />
+    <Content Include="wwwroot\Image\Banner\105A2D80418141171066.png" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814119700.jpg" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814119700.png" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814448950.jpg" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814560934.jpg" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814560934.png" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814780726.jpg" />
+    <Content Include="wwwroot\Image\Banner\105A2D8041814780726.png" />
+    <Content Include="wwwroot\Image\Banner\105AC5F060313896208.png" />
+    <Content Include="wwwroot\Image\Banner\105AC5F060314222446.png" />
+    <Content Include="wwwroot\Image\Banner\105AC5F060314340683.png" />
+    <Content Include="wwwroot\Image\Banner\105AC5F060314443617.png" />
+    <Content Include="wwwroot\Image\Banner\105AC5F060314897380.png" />
+    <Content Include="wwwroot\Image\Banner\CardDetailDemo.png" />
+    <Content Include="wwwroot\Image\Banner\CardIntroductionBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\CardIntroductionBanner.png" />
+    <Content Include="wwwroot\Image\Banner\CardIntroductionMobileBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\CardIntroductionSubBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\CardListBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\CardListBanner.png" />
+    <Content Include="wwwroot\Image\Banner\CardListMobileBanner.png" />
+    <Content Include="wwwroot\Image\Banner\CardListSubBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\CardListSubBanner.png" />
+    <Content Include="wwwroot\Image\Banner\CardListSubMobileBanner.png" />
+    <Content Include="wwwroot\Image\Banner\CommonProblemBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\CommonProblemBanner.png" />
+    <Content Include="wwwroot\Image\Banner\CommonProblemMobileBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\EB00001.png" />
+    <Content Include="wwwroot\Image\Banner\ESB0001.png" />
+    <Content Include="wwwroot\Image\Banner\ESB0002.png" />
+    <Content Include="wwwroot\Image\Banner\HB4AC5F122705000545.png" />
+    <Content Include="wwwroot\Image\Banner\HSB5AC5F020217000162.png" />
+    <Content Include="wwwroot\Image\Banner\HSB5AC5F020218000180.png" />
+    <Content Include="wwwroot\Image\Banner\HSB5AC5F020218000439.png" />
+    <Content Include="wwwroot\Image\Banner\HSB5AC5F020218000606.png" />
+    <Content Include="wwwroot\Image\Banner\LatestNewsBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\LatestNewsBanner.png" />
+    <Content Include="wwwroot\Image\Banner\LatestNewsMobileBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MCCardAppBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\MCCardAppBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MCCardAppMobileBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner1.jpg" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner1.png" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner2.jpg" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner2.png" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner3.jpg" />
+    <Content Include="wwwroot\Image\Banner\MCCardAPPNewsSubBanner3.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardCancelBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\MyCardCancelBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardExpenseRecords.jpg" />
+    <Content Include="wwwroot\Image\Banner\MyCardExpenseRecordsBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardLoseBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\MyCardLoseBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardRegisterBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\MyCardRegisterBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardTransposeBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\MyCardTransposeBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardUserProfileBanner.png" />
+    <Content Include="wwwroot\Image\Banner\MyCardUserProfileMobileBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\UserProfileBanner.jpg" />
+    <Content Include="wwwroot\Image\Banner\UserProfileBanner.png" />
+    <Content Include="wwwroot\Image\Card\105248D040110337510.png" />
+    <Content Include="wwwroot\Image\Card\105248D040110558795.jpg" />
+    <Content Include="wwwroot\Image\Card\105248D120216116613.png" />
+    <Content Include="wwwroot\Image\Card\card.png" />
+    <Content Include="wwwroot\Image\Card\CD00002.png" />
+    <Content Include="wwwroot\Image\Card\CD4248D122912000750.jpg" />
+    <Content Include="wwwroot\Image\Card\CD4248D122912000750.png" />
+    <Content Include="wwwroot\Image\desktop_img\bg_account.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_arrow.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_arrow_w.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_FB_login.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_FB_login_connect.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_google_connect.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_google_login.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_home_00.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_home_01.png" />
+    <Content Include="wwwroot\Image\desktop_img\btn_news_more.png" />
+    <Content Include="wwwroot\Image\desktop_img\captcha.aspx" />
+    <Content Include="wwwroot\Image\desktop_img\card_red.png" />
+    <Content Include="wwwroot\Image\desktop_img\card_yellow.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon01.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon02.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon03.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon04.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon05.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon06.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon07.png" />
+    <Content Include="wwwroot\Image\desktop_img\coupon08.png" />
+    <Content Include="wwwroot\Image\desktop_img\home_coupon01.png" />
+    <Content Include="wwwroot\Image\desktop_img\home_coupon02.png" />
+    <Content Include="wwwroot\Image\desktop_img\home_coupon03.png" />
+    <Content Include="wwwroot\Image\desktop_img\home_coupon04.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_account_fb.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_account_google.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_arrow.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_arrow_down.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_check.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_checked.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_close.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_done.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_double_checked.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_dropdown.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_error.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_fb.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_ig.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_link.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_login.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_menu_hover.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_mlogo.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_off.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_on.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_reload.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_select.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_signup.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_transfer.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_unselect.png" />
+    <Content Include="wwwroot\Image\desktop_img\ic_youtube.png" />
+    <Content Include="wwwroot\Image\desktop_img\img_or.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_account_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card01.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card02.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card03.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card04.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card05.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card_2nd_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card_2nd_banner_1.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card_3nd_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_card_main_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_coupon_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_main_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_news_2nd_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_news_3nd_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_news_4nd_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_news_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_news_banner_color.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_news_main_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_qa_banner.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_t01.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_t02.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_t03.png" />
+    <Content Include="wwwroot\Image\desktop_img\pic_t04.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000153.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000183.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000204.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000296.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000743.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000813.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315000920.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\EXN591C2020315001012.png" />
+    <Content Include="wwwroot\Image\ExhibitorsNews\icon.png" />
+    <Content Include="wwwroot\Image\ICON\CardCancelStep2Icon.jpg" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon.jpg" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon1.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon2.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon3.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon4.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon5.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon6.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon7.png" />
+    <Content Include="wwwroot\Image\ICON\CardIntroductionIcon8.png" />
+    <Content Include="wwwroot\Image\ICON\CardLoseStep3Icon.jpg" />
+    <Content Include="wwwroot\Image\ICON\MCCardAPPItemICON1.png" />
+    <Content Include="wwwroot\Image\ICON\MCCardAPPItemICON11.png" />
+    <Content Include="wwwroot\Image\ICON\MCCardAPPItemICON2.png" />
+    <Content Include="wwwroot\Image\ICON\MCCardAPPItemICON21.png" />
+    <Content Include="wwwroot\Image\ICON\MCCardAPPItemICON3.png" />
+    <Content Include="wwwroot\Image\ICON\MCCardAPPItemICON31.png" />
+    <Content Include="wwwroot\Image\Loading.svg" />
+    <Content Include="wwwroot\Image\mailbox\btn_01.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_02.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_03.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_04.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_05.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_06.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_07.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_08.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_bottom.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_left.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_right.png" />
+    <Content Include="wwwroot\Image\mailbox\btn_top.png" />
+    <Content Include="wwwroot\Image\mailbox\email_01.png" />
+    <Content Include="wwwroot\Image\mailbox\email_02.png" />
+    <Content Include="wwwroot\Image\mailbox\email_03.png" />
+    <Content Include="wwwroot\Image\mailbox\email_04.png" />
+    <Content Include="wwwroot\Image\mailbox\email_05.png" />
+    <Content Include="wwwroot\Image\mailbox\email_06.png" />
+    <Content Include="wwwroot\Image\mailbox\email_07.png" />
+    <Content Include="wwwroot\Image\mailbox\email_08.png" />
+    <Content Include="wwwroot\Image\mailbox\email_bottom.png" />
+    <Content Include="wwwroot\Image\mailbox\email_left.png" />
+    <Content Include="wwwroot\Image\mailbox\email_right.png" />
+    <Content Include="wwwroot\Image\mailbox\email_top.png" />
+    <Content Include="wwwroot\Image\mobile_img\btn_FB_login.png" />
+    <Content Include="wwwroot\Image\mobile_img\btn_FB_login_connect.png" />
+    <Content Include="wwwroot\Image\mobile_img\btn_google_connect.png" />
+    <Content Include="wwwroot\Image\mobile_img\btn_google_login.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_fb.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_ig.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_line.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_login.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_main_dot_gray.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_main_dot_red.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_menu.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_mlogo.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_signup.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_transfer_down.png" />
+    <Content Include="wwwroot\Image\mobile_img\ic_youtube.png" />
+    <Content Include="wwwroot\Image\mobile_img\landscape.png" />
+    <Content Include="wwwroot\Image\mobile_img\menu.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_2nd_banner.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_3rd_banner.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_account_banner_m.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_card_2nd_banner_m.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_card_2nd_banner_m_1.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_card_main_banner_m.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_coupon_banner_m.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_main_banner.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_news_banner_color_m1.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_news_banner_color_m2.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_news_banner_color_m3.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_news_banner_m.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_news_main_banner_m.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_qa_banner_m.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\pic_t01.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_t02.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_t03.png" />
+    <Content Include="wwwroot\Image\mobile_img\pic_t04.png" />
+    <Content Include="wwwroot\Image\mobile_img\Question\10555E5030313120886.png" />
+    <Content Include="wwwroot\Image\mobile_img\Question\10555E5071218341802.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\Question\10555E5072615562711.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\Question\10555E5072923118791.jpg" />
+    <Content Include="wwwroot\Image\mobile_img\Question\10555E5102113897942.jpg" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap-table.css" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap-theme.css" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap-theme.min.css" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap.css" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap.min.css" />
+    <Content Include="wwwroot\lib\boostrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="wwwroot\lib\boostrap\js\bootstrap-table.js" />
+    <Content Include="wwwroot\lib\boostrap\js\bootstrap.js" />
+    <Content Include="wwwroot\lib\boostrap\js\bootstrap.min.js" />
+    <Content Include="wwwroot\lib\boostrap\js\npm.js" />
+    <Content Include="wwwroot\lib\jquery\jquery-1.11.3.js" />
+    <Content Include="wwwroot\lib\jquery\jquery-3.1.1.js" />
+    <Content Include="Views\LatestNews\Index.cshtml" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap-theme.css.map" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap.css.map" />
+    <Content Include="wwwroot\lib\boostrap\css\bootstrap.min.css.map" />
+    <Content Include="wwwroot\lib\boostrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="wwwroot\lib\boostrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="wwwroot\lib\boostrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="wwwroot\lib\boostrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\CardIntroduction\Rebate.cshtml" />
+    <Content Include="Views\CommonProblem\Index.cshtml" />
+    <Content Include="Views\MCCardAPP\Index.cshtml" />
+    <Content Include="Views\CardIntroduction\CardList.cshtml" />
+    <Content Include="Views\CardAccount\MyCardRegister.cshtml" />
+    <Content Include="Views\CardAccount\MyCardLose.cshtml" />
+    <Content Include="Views\CardAccount\MyCardCancel.cshtml" />
+    <Content Include="Views\CardAccount\MyCardExpenseRecords.cshtml" />
+    <Content Include="Views\CardAccount\MyCardTranspose.cshtml" />
+    <Content Include="Views\Member\UserProfile.cshtml" />
+    <Content Include="wwwroot\lib\jquery\jquery.blockUI.js" />
+    <Content Include="wwwroot\Scripts\moment.js" />
+    <Content Include="wwwroot\Scripts\picturefill.js" />
+    <Content Include="wwwroot\Scripts\Site.js" />
+    <Content Include="wwwroot\lib\boostrap\config.json" />
+    <Content Include="Views\SignUp\Index.cshtml" />
+    <Content Include="wwwroot\Scripts\utility-jquery.js" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="wwwroot\contents\zipcode3.csv" />
+    <None Include="Service References\MCCard_EC_Service\MCCard_EC.wsdl" />
+    <Content Include="Service References\MCCard_EC_Service\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\CardIntroduction\CardDetail.cshtml" />
+    <Content Include="Views\CardIntroduction\RebateBasic.cshtml" />
+    <Content Include="Views\Shared\EmptyView.cshtml" />
+    <Content Include="wwwroot\lib\boostrap\js\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <None Include="wwwroot\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="wwwroot\Scripts\jquery.validate.js" />
+    <Content Include="wwwroot\Scripts\jquery.validate.min.js" />
+    <Content Include="wwwroot\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="wwwroot\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="wwwroot\Scripts\modernizr-2.6.2.js" />
+    <Content Include="wwwroot\Scripts\respond.js" />
+    <Content Include="wwwroot\Scripts\respond.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="wwwroot\Fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="wwwroot\Fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="wwwroot\Fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://210.63.32.124/MCCard_API/MCCard_EC.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Service References\MCCard_EC_Service\</RelPath>
+      <UpdateFromURL>http://210.63.32.124/MCCard_API/MCCard_EC.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MCCard_MCCard_EC_Service_MCCard_EC</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6642</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6642/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 封裝。請啟用 NuGet 封裝還原，以下載該封裝。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

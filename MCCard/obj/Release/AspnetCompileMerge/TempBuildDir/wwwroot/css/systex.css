@@ -1,0 +1,36 @@
+﻿/*#region style 菜單 連結圖示 */
+.pointer {
+    cursor: pointer;
+}
+
+.imgCaptcha {
+    width:90px; 
+    height:45px; 
+    vertical-align: initial;
+}
+
+/*menu dropdown時的底色*/
+.dropdown-toggle {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+/*#endregion */
+
+
+/*#region style signup-box*/
+.signup-box .checkfont_error {
+    font-size: 1rem;
+    color: #de1503;
+    font-weight: 200;
+    margin-top: 4px;
+    margin-right: 50px;
+}
+
+.signup-box .checkfont_pass {
+    font-size: 1rem;
+    color: #2d7a0c;
+    font-weight: 200;
+    margin-top: 4px;
+    margin-right: 50px;
+}
+/*#endregion*/

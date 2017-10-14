@@ -1,0 +1,1010 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.PageTitle</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    @Scripts.Render("~/bundles/JS")
+    @Styles.Render("~/bundles/CSS")
+    @RenderSection("scripts", required: false)
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="~/wwwroot/lib/jquery/jquery.blockUI.js"></script>
+    
+    <meta name="google-signin-client_id" content="265125986207-3krml9su9c495errc44f0259hc5j0qqt.apps.googleusercontent.com">
+</head>
+<body id="content_body">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-all NotLandscape">
+        <div class="container-fluid navbar-box">
+            <div class="navbar-header">
+                <img class="menu-icon" src="~/wwwroot/Image/mobile_img/menu.png" style="width:30px;margin-top:12px;cursor:pointer" onclick="openNav()">
+                <a class="navbar-brand brand-logo" href="~/Home"></a>
+            </div>
+            <div class="nav-bar sidenav" id="mySidenav">
+                <ul class="nav navbar-nav navbar-right">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <li><a id="btn_Menu_Home" href="~/Home" class="nav-text">首頁</a></li>
+                    <li><a id="btn_Menu_News" href="~/LatestNews" class="nav-text">最新消息</a></li>
+                    <li class="dropdown">
+                        <a id="li_CardIntroduction" href="" class="dropdown-toggle nav-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">點點卡</a>
+                        <ul class="dropdown-menu">
+                            <li class="arrow_t_int DesktopView"></li>
+                            <li class="arrow_t_out DesktopView"></li>
+                            <li><a id="btn_Menu_Card_List" class="nav-text-dropdown" href="~/CardIntroduction/CardList">點點卡介紹</a></li>
+                            @*<li role="separator" class="divider"></li>*@
+                            <hr class="meun_hr" />
+                            <li><a id="btn_Menu_Card_Gift" class="nav-text-dropdown" href="~/CardIntroduction/Rebate">點點卡回饋</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="li_CardAccount" href="" class="dropdown-toggle nav-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">點點卡帳戶</a>
+                        <ul class="dropdown-menu">
+                            <li class="arrow_t_int DesktopView"></li>
+                            <li class="arrow_t_out DesktopView"></li>
+                            <li><a id="btn_Menu_Member_Card_Register" class="nav-text-dropdown" href="~/CardAccount/MyCardRegister">點點卡記名</a></li>
+                            <hr class="meun_hr" />
+                            <li><a id="btn_Menu_Member_Card_Transfer" class="nav-text-dropdown" href="~/CardAccount/MyCardTranspose">轉出餘額點數</a></li>
+                            <hr class="meun_hr" />
+                            <li><a id="btn_Menu_Member_Card_Remove" class="nav-text-dropdown" href="~/CardAccount/MyCardCancel">取消記名</a></li>
+                            <hr class="meun_hr" />
+                            <li><a id="btn_Menu_Member_Card_Lose" class="nav-text-dropdown" href="~/CardAccount/MyCardLose">申請掛失</a></li>
+                            <hr class="meun_hr" />
+                            <li><a id="btn_Menu_Member_Transaction_Detail" class="nav-text-dropdown" href="~/CardAccount/MyCardExpenseRecords">交易記錄</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="btn_Menu_APP_Intro" href="~/MCCardAPP" class="nav-text">麥當勞報報APP</a></li>
+                    <li><a id="btn_Menu_FAQ" href="~/CommonProblem" class="nav-text">常見問題</a></li>
+                    <li class="nav-text-none DesktopView">|</li>
+                    <li id="Divider_horizontal" style="max-width: 280px; " class="MobileView">
+                        <span class="nav-text">
+                            <hr>
+                        </span>
+                    </li>
+                    @*改由後端控制*@
+                    @Html.Action("LoginInfo", "Authority")
+                    @*<li id="liLogin" style="">
+                        <a id="btn_Menu_Member_Register" style="display: inline-block" class="nav-text-yellow" href="~/SignUp">
+                            <img class="nav-signup">新用戶註冊
+                        </a>
+                        <a id="btn_Menu_Member_Login" href="#" class="nav-text-yellow" style="display: inline-block; margin-left: 0px;">
+                            <img class="nav-signin">報報APP會員登入
+                        </a>
+                    </li>
+                    <li id="liuserInfo" class="dropdown" style="display:none">
+
+                    </li>*@
+                    <li class="MobileView Logo">
+                        <a style="margin-left: 40px;" target="_blank" href="@ViewBag.IGLink"><img src="~/wwwroot/Image/mobile_img/ic_ig.png" class="img-responsive"></a>
+                        <a style="margin-left: -25px;" target="_blank" href="@ViewBag.FBLink"><img src="~/wwwroot/Image/mobile_img/ic_fb.png" class="img-responsive"></a>
+                        <a style="margin-left: -25px;" target="_blank" href="@ViewBag.YouTubeLink"><img src="~/wwwroot/Image/mobile_img/ic_youtube.png" class="img-responsive"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="NotLandscape">
+        @RenderBody()
+    </main>
+    <!-- footer -->
+    <footer style="text-align:center;" class="NotLandscape container-fluid footer-text">
+        <!-- 桌機版 -->
+        <div class="row hidden-xs hidden-sm">
+            <span class="col-lg-12">建議瀏覽器為 Google Chrome、Firefox、 Safari，或 IE11（含）以上版本，並搭配 1366x768 以上的螢幕解析度，以享受最佳使用體驗。</span>
+            <!-- footnav -->
+            <div class="footmenu text-center" style="text-align: center;">
+                <div class="module ">
+                    <ul class="nav menu" style="margin-top: 0;">
+                        <li class="default"><span>@ViewBag.copyright</span></li>
+                        <li class=""><span>|</span></li>
+                        <li class=""><span data-toggle="modal" data-target=".TermsOfUse" style="cursor:pointer">使用條款</span></li>
+                        <li class=""><span>|</span></li>
+                        <li class=""><span data-toggle="modal" data-target=".Privacy" style="cursor:pointer">隱私權保護聲明</span></li>
+                        <li class=""><span>|</span></li>
+                        <li class="">
+                            <span>
+                                <a target="_blank" href="@ViewBag.IGLink" style="text-decoration:none;">
+                                    <img class="footer-link-img" src="~/wwwroot/Image/desktop_img/ic_ig.png" alt="">
+                                </a>
+                                <a target="_blank" href="@ViewBag.FBLink" style="text-decoration:none;">
+                                    <img class="footer-link-img" src="~/wwwroot/Image/desktop_img/ic_fb.png" alt="">
+                                </a>
+                                <a target="_blank" href="@ViewBag.YouTubeLink" style="text-decoration:none;">
+                                    <img class="footer-link-img" src="~/wwwroot/Image/desktop_img/ic_youtube.png" alt="">
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 手機版 -->
+        <div class="row visible-xs visible-sm foot-text-box">
+            <span class="col-lg-12">@ViewBag.copyright</span>
+            <!-- footnav -->
+            <div class="footmenu text-center">
+                <div class="module">
+                    <ul class="nav menu" style="margin-top: 0;">
+                        <li class=""><span data-toggle="modal" data-target=".TermsOfUse" style="cursor:pointer">使用條款</span></li>
+                        <li class=""><span>|</span></li>
+                        <li class=""><span data-toggle="modal" data-target=".Privacy" style="cursor:pointer">隱私權保護聲明</span></li>
+                        <li class="DesktopView"><span>|</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 手機翻轉橫向 -->
+    <div class="Landscape" style="display:none;">
+        <img src="~/wwwroot/Image/mobile_img/landscape.png" class="img-responsive"/>
+    </div>
+    <div id="mask" class="modal-backdrop in" style="display:none;z-index:1000;">
+    </div>
+
+    <!-- 登入 -->
+    <div class="modal Login" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document"  id="Login_modal_dialog">
+            <div class="modal-content" id="LoginArea">
+                @Html.Partial("~//Views/Home/Login.cshtml")                
+            </div>
+        </div>
+    </div>
+
+    @*<div class="modal Login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog" role="document" id="Login_modal_dialog">
+            <div class="modal-content" id="LoginArea">
+                    @Html.Partial("~//Views/Home/Login.cshtml")
+            </div>
+        </div>
+    </div>*@
+
+    <!--忘記密碼-->
+    <div class="modal linkMyPassword" tabindex="-1" role="dialog" aria-labelledby="linkMyPasswordArea">
+        <div class="modal-dialog modal-md" role="document">
+            <div id="linkMyPasswordArea" class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span>
+                    </button>
+                    <h3 class="modal-title">立即重新設定密碼</h3>
+                </div>
+                <div class="modal-body">
+                    <span class="alert-text">請輸入您註冊的手機號碼(帳號)、以利我們寄送電子信箱給您重設密碼</span>
+                </div>
+                <div class="modal-body">
+                    <input type="text" maxlength="10" id="txtUIDForgotPassword" class="form-control account-input" placeholder="請輸入手機號碼(帳號)">
+                </div>
+                <div class="modal-body">
+                    <div id="promptForgotPassword" class="checkfont"></div>
+                </div>
+                <div class="modal-footer" style="padding:0 44px;">
+                    <button type="button" class="account-btn" id="btn_Member_Password_Rest">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 使用條款 -->
+    <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+        <div class="modal bs-example-modal-lg TermsOfUse" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" id="TermsOfUseArea" style="background:#ffffff">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button>
+                        <h3 class="modal-title">使用條款</h3>
+                    </div>
+                    <div id="body" class="modal-body fixed_modal_padding">
+                        <p class="mainTitle">
+                            2016麥當勞<span lang="EN-US">®</span>報報 最後更新日期：2016年11月
+                        </p>
+                        <p class="subTitle">
+                            麥當勞報報APP使用條款
+                        </p>
+                        <p class="alert-title ">
+                            1. 認知與接受條款
+                        </p>
+                        <p class="alert-text ">
+                            台灣麥當勞餐廳股份有限公司（以下簡稱「麥當勞」）依據此使用條款提供台灣麥當勞報報APP服務(以下簡稱「麥當勞報報APP」或「本應用程式」)。當您完成麥當勞電子會員(以下簡稱「電子會員」)註冊手續，並開始使用麥當勞報報APP時，即表示您已閱讀、瞭解並同意接受此使用條款之所有內容。而條款是您與麥當勞之間具有約束力的協議，適用於本應用程式的使用，如您不同意條款，請立即移除本應用程式。
+                        </p>
+                        <p class="alert-title ">
+                            2. 資格
+                        </p>
+                        <p class="alert-text ">
+                            本應用程式僅供二十歲（含）以上的個人使用。如您的年齡未滿二十歲時，您應與（或透過）家長或監護人共同仔細閱讀這些條款，藉此確保您及貴家長或監護人理解各條款，方得註冊為電子會員並使用麥當勞報報APP。
+                        </p>
+                        <p class="alert-title ">
+                            3. 電子會員註冊義務
+                        </p>
+                        <p class="alert-text ">
+                            為了能使用麥當勞報報APP並獲得麥當勞提供之優惠券或歡樂貼，您同意以下事項：
+                        </p>
+                        <p class="alert-text ">
+                            3.1 註冊成為電子會員時，提供您本人正確、最新的資料，且無利用偽造或變造之資料作為重複註冊登錄等情事。
+                        </p>
+                        <p class="alert-text ">
+                            3.2 為確認電子會員身分，必要時麥當勞得請電子會員提供身分證件。
+                        </p>
+                        <p class="alert-text ">
+                            3.3 麥當勞保留因任何理由拒絕或終止任何顧客註冊的權利。
+                        </p>
+                        <p class="alert-text ">
+                            3.4 電子會員如違反此使用條款之相關規範，而麥當勞判定電子會員資格失效時，相關電子會員優惠及累積優惠券或歡樂貼也同時失效，事後不再追溯補發。
+                        </p>
+                        <p class="alert-title ">
+                            4. 個人資料保護
+                        </p>
+                        <p class="alert-text ">
+                            4.1 關於您所登錄或留存之個人資料及其他特定資料（例如優惠券兌換資料），依麥當勞「隱私權保護聲明」受到保護與規範。
+                        </p>
+                        <p class="alert-text ">
+                            4.2 資料分享
+                        </p>
+                        <p class="alert-text ">您同意麥當勞透過定期的收集，而保存及使用有關您的裝置、系統及應用軟體和其外部軟體的技術數據，以便提供有關應用程式的軟體更新及支援。麥當勞會將之用於改進應用程式的目的上。所有於應用程式的帳戶或透過任何其他方式而與麥當勞分享的資料將根據麥當勞的「隱私權保護聲明」使用。</p>
+                        <p class="alert-title ">
+                            5. 行動應用程式條款
+                        </p>
+                        <p class="alert-text ">
+                            5.1 此等條款補充及包含的條款與細項有（a）若麥當勞報報APP通過蘋果公司（”Apple, Inc.”）的系統，蘋果公司的條款與細項 （儲存於
+                        </p>
+                        <p class="alert-text ">&nbsp;www.apple.com/legal/itunes/us/terms.html#service）</p>
+                        <p class="alert-text ">
+                            ，包括但不限於其中制定的授權應用程式終端使用者授權合約（ “Licensed Application End User License Agreement”，以下簡稱“蘋果條款”）；（b）若麥當勞報報APP通過谷歌公司（”Google Inc.”）的系統以及谷歌市場（”Google Play”）服務條款（儲存於 http://play.google.com/about/play-terms.html，以下簡稱“谷歌條款”）。如任一蘋果條款、谷歌條款與麥當勞報報APP使用條款衝突，應以使用條款為準（僅至其對本應用程式適用範圍內）。
+                        </p>
+                        <p class="alert-text ">
+                            5.2 如任何第三人宣稱本應用程式或您擁有和使用本應用程式侵犯該第三人的智慧財產權，麥當勞將為針對任何此類智慧財產權侵犯索賠事宜進行調查、抗辯、解決和履行義務承擔全部責任，與蘋果公司、谷歌公司無關。
+                        </p>
+                        <p class="alert-text ">
+                            5.3 您應確保您的行動裝置符合所有可存取及使用應用程式所需的技術規格。麥當勞報報APP有可能會不定時推出特定功能或服務的更新，在安裝最新版本並接受新的應用程式之條款和條件前，您可能無法正常開啓或使用麥當勞報報APP的特定功能、特色或服務。
+                        </p>
+                        <p class="alert-title ">
+                            6. 用戶許可
+                        </p>
+                        <p class="alert-text ">
+                            6.1. 根據此等條款，麥當勞同意給予用戶使用本應用程式的許可，該許可只可個人使用、具有非專屬性、不可轉讓、有限期、且可以撤銷，僅限私人及/或非商業用途，可在遵照本條款（下稱“用戶許可”）下，與蘋果條款或谷歌條款允許範圍內，在用戶擁有或控制的蘋果 iPhone、iPad 或 iPod Touch 或者安卓（Android）設備中使用。
+                        </p>
+                        <p class="alert-text ">
+                            6.2. 禁止一切以任何非雙方約定的其他方式，使用本應用程式的行為，包括但不限於（a）對本應用程式或文字、圖片、音樂、條碼、視頻、資料、超連結、顯示內容和與本應用程式關聯的內容（下稱“內容”）進行轉售、轉讓、租借、修改或發行; （b）對本應用程式進行反編譯、逆向工程、反匯編，或授權任何第三方對應用程式進行反編譯、逆向工程、反匯編;（c）複製應用程式;或（d）以任何形式分銷或重新發行、上載、公開發布或傳送本應用程式。除非本應用程式的更新內容、補充或替換內容另行附帶條款（此情況下適用另行附帶的條款），否則使用條款和用戶許可仍同樣適用於雙方。
+                        </p>
+                        <p class="alert-text ">
+                            6.3 本應用程式只供合法使用，並受智慧財產權產權及有關公約保護。改裝或因任何其他目的使用應用程式將侵犯智慧財產權。本應用程式只發出使用授權而非予以出售。任何及所有應用程式的權益專屬於麥當勞及或其授權發出人所擁有並予以保留。您不可作出任何行動以減損、限制或干預麥當勞及或其授權發出人的權利。您需承擔任何有關於下載、安裝、存取或使用應用程式的費用，且此等費用因應您行動裝置的服務供應商而不同。
+                        </p>
+                        <p class="alert-title ">
+                            7. 可接受的用途
+                        </p>
+                        <p class="alert-text ">
+                            7.1. 由本應用程式的用戶使用，而且與本應用程式有關的一切傳輸內容和用戶資訊均在約定功能的限制範圍內。用戶同意使用本應用程式和任何內容必須遵守本條款。任何情況下不得以下列手段使用本應用程式：（a）騷擾、辱駡、糾纏、威脅、誹謗或以其他方式侵犯其他任何一方，或者侵犯其他任何一方權利（包括但不限於宣傳權利或其他所有權）；（b）非法、詐騙或迷惑手段；（c）利用未得到麥當勞認可的科技途徑或其他方法瀏覽本應用程式、麥當勞網站或內容；（d）利用或開啟任何自動化系統（包括但不限於“robots”（搜索機器人嚮導）、“spiders”（網路蜘蛛）或“offline readers”（離線閱讀））瀏覽本應用程式、麥當勞網站或內容；（e）企圖引入病毒或其他中斷、破壞或限制任何電腦軟體或硬體或者遠端通訊設備功能的電腦代碼、檔案或程式；（f）企圖非法瀏覽麥當勞電腦網路或用戶帳戶；（g）慫恿會構成刑事犯罪行為或引起民事責任的行為；（h）企圖損壞、禁用、超負荷載入或損害麥當勞伺服器或網路；或者（i）未能遵守適用的第三者使用的條款（如蘋果條款或谷歌條款，下稱“可接受的用途”）。
+                        </p>
+                        <p class="alert-text ">
+                            7.2 麥當勞保留這些權利：麥當勞可經單方面斟酌，終止任何用戶許可、終止任何用戶繼續加入或者刪除內容，或者如果麥當勞有理由相信內容或本應用程式的用途出現、或可能出現違反這些可接受的用途條款，則可針對此類內容或本應用程式的用途堅持要求法律行動，但是即使麥當勞無法或未立即採取此類行動，也不代表麥當勞放棄強制執行這些條款的權利。
+                        </p>
+                        <p class="alert-title ">
+                            8. 無擔保
+                        </p>
+                        <p class="alert-text ">
+                            8.1. 應用程序可能存在技術上的誤差或編輯上的錯誤。麥當勞可隨時進行修改或改進。應用程式及其中的任何材料均以「如原狀」形式提供，且於適用法律授權的最大程度內，不包含任何類型的明示或暗示的擔保。麥當勞免除所有保證及適銷性、不侵權及特定目的的適合性之擔保。麥當勞並不擔保應用程式所包含之功能不受干擾或免於出錯，且不擔保缺陷會獲得修正，或應用程式或提供應用程式的服務器不存在病毒或其他有害部分。麥當勞並不就應用程式的使用或其結果的準確性、可靠性或其他方面作出擔保或陳述。麥當勞免除其他及所有由任何第三方就有關或關於您使用應用程式而作出的行動、遺漏及行為的責任。您(而非麥當勞)應承擔所有所需的服務、修理或修正的全部費用。在適用法律不容許的範圍內，上述責任豁免將不適用。您需就您使用應用程式及其他相關網站負上全部責任。您對本應用程式不滿的唯一補救措施為停止使用應用程式及其內容。此有限度的補救措施構成雙方協議的一部分。
+                        </p>
+                        <p class="alert-text ">
+                            8.2. 本應用程式可能包含其他可供下載的材料以及網站外部連結。麥當勞不能控制亦不對此等可供下載的材料以及網站外部連結的內容負責。您明白麥當勞不會亦不能保證任何可於本網站下載的任何類型的檔案或軟件不存在感染或病毒、蠕蟲或木馬病毒或其他可導致病毒的編碼或其他破壞性材料。
+                        </p>
+                        <p class="alert-title ">
+                            9. 無責任
+                        </p>
+                        <p class="alert-text ">
+                            麥當勞及其關聯公司及其代理商將不就任何因使用或不能使用本應用程式(包括但不限於運作上的故障、錯誤、遺漏、干擾、缺憾、傳送操作的延誤、電腦病毒或連線失敗所引起的損害或傷害予以負責。麥當勞及其關聯公司及其代理商將不就任何因使用或不能使用應用程式(即使麥當勞及其關聯公司及其代理商有所疏忽，及/或獲麥當勞授權的代表已告知有關損害的可能性)而引起的損害或傷害，包括但不限於特別或連帶的損害予以負責。在法律不容許限制或豁免責任的範圍內，上述的限制或豁免將不適用。麥當勞需向您的損失、損害及申索原因 (合約、侵權行為 (包括但不限於疏忽)或其他)所負責的總金額為(i)您就使用應用程式所支付的金額; 或(ii)如應用程式為免費則100美元 (以較低者為準)。
+                        </p>
+                        <p class="alert-title ">
+                            10. 商標
+                        </p>
+                        <p class="alert-text ">
+                            本應用程式內所用的商標、服務標識、圖形和標誌（有TM或 ® 的全部麥當勞標識均為麥當勞公司及其關聯公司的商標）乃由麥當勞及其關聯公司所擁有或授權使用。在未徵得麥當勞或適用的商標持有者事前書面批准，不允許複製、模仿或使用麥當勞商標的整體或部分。本應用程式及內容均受版權、商標、專利、國際條約、法律以及其他專有權利的保護，並且僅在麥當勞或內容所有者批准時，允許帶有保護數位化資訊安全的元件。
+                        </p>
+                        <p class="alert-title ">
+                            11. 變更與終止協議
+                        </p>
+                        <p class="alert-text ">
+                            麥當勞保留在任何時候通過其單方斟酌以在麥當勞網站公佈修改內容的方式更改，或修改這些條款或與本應用程式的使用相關的麥當勞其他任何政策的權利。如果在公佈這些變更內容或修改內容後繼續使用本應用程式，則表示使用者已接受這些變更內容或修改內容。
+                        </p>
+                        <p class="alert-text ">
+                            麥當勞或您都可以隨時終止本協議。您可透過移除應用程式終止本協議。麥當勞可就其自行判斷因您違反任何本協議的條款和條件而立即終止本協議，而不作另行通知。
+                        </p>
+                        <p class="alert-title ">
+                            12. 準據法及管轄權
+                        </p>
+                        <p class="alert-text ">
+                            此等條款和條件以台灣法律為準據法，無需考慮法律衝突規則。若此等條款和條件的任何部分為不合法、無效或不可執行，該部分將視為從本協議分割，且不影響其他條款的有效性及可執行性。用戶不可撤回地同意台灣法院對因使用本應用程式或這些條款造成的或與之相關的任何法律行動目的具有專屬管轄權。
+                        </p>
+                        <p class="alert-title ">
+                            13. 麥當勞聯絡方式
+                        </p>
+                        <p class="alert-text ">
+                            如果顧客對本應用程式相關的任何問題或意見，請至麥當勞報報APP中的側選單“用戶小幫手”，並點擊“聯絡我們”以發送電子郵件至顧客服務中心。
+                        </p>
+                        <br>
+                        <br>
+                        <p class="subTitle">
+                            優惠券與歡樂貼使用條款及規則
+                        </p>
+                        <p class="alert-title ">
+                            1. 獲取資格
+                        </p>
+                        <p class="alert-text ">
+                            您必須成為麥當勞電子會員，方可獲得麥當勞報報APP所贈送之優惠券或歡樂貼。
+                        </p>
+                        <p class="alert-title ">
+                            2. 如何參與
+                        </p>
+                        <p class="alert-text ">
+                            2.1 如何獲得麥當勞報報APP之行動軟體應用程式
+                        </p>
+                        <p class="alert-text ">
+                            2016年5月31日早上08:00後，即可從App Store或Google Play下載麥當勞報報APP之行動軟體應用程式並安裝至您的智慧型手機上。該行動軟體應用程式完全免費。但行動電話服務供應商有可能就該下載向您收取數據用量的收費。
+                        </p>
+                        <p class="alert-text ">
+                            2.2 如何獲得麥當勞報報APP贈送之優惠券或歡樂貼
+                        </p>
+                        <p class="alert-text ">
+                            a. 您在成功下載應用程式後，需要先進行電子會員註冊並完成登入，爾後啟動麥當勞報報APP中的天氣提醒功能，以領取優惠券或歡樂貼。
+                        </p>
+                        <p class="alert-text ">
+                            b. 註冊方式：透過真實手機號碼於應用程式設立帳號。手機號碼驗證完成後即無法更改。每個手機號碼限註冊一次。註冊完成後，可進行Facebook或Google+社群帳號連結，以利未來加速登入作業。
+                        </p>
+                        <p class="alert-text ">
+                            2.3 使用方式：
+                        </p>
+                        <p class="alert-text ">
+                            a. 以帳號密碼登入或以Facebook或Google+社群帳號連結登入。
+                        </p>
+                        <p class="alert-text ">
+                            b. 「設定天氣提醒」，天氣提醒功能可以選擇指定某一個台灣地區城市(含金門、馬祖、澎湖)，並可根據您自己的需求設定星期及每日提醒時間。
+                        </p>
+                        <p class="alert-text ">
+                            c. 指定的「天氣提醒」時間一到，中央系統 (「系統」)會主動發出通知提示，當天氣提醒頁面出現時，您只要按下「點我拿驚喜」，應用程式將會即時連接系統接收優惠券或歡樂貼。您必須連接網路數據服務以連接系統及接收優惠券或歡樂貼。
+                        </p>
+                        <p class="alert-text ">
+                            d. 當您獲得優惠券或歡樂貼時，程式將會自動顯示優惠券或歡樂貼詳情。您在登入狀態下，可隨時於「驚喜收藏」查看目前優惠券或歡樂貼詳情。
+                        </p>
+                        <p class="alert-text ">
+                            2.4 請注意：
+                        </p>
+                        <p class="alert-text ">
+                            a. 登入電子會員帳戶且有網路數據服務的情況下，只有每日(截至23:59)第一個出現的天氣提醒可連接系統接收優惠券或歡樂貼。任何之後於同一天內出現之天氣提醒將不會獲得優惠券或歡樂貼。
+                        </p>
+                        <p class="alert-text ">
+                            b. 只有正版的麥當勞報報APP優惠券或歡樂貼為有效並可換得優惠內容。任何優惠券或歡樂貼不供銷售，麥當勞對以販售方式取得的任何優惠券或歡樂貼之真實性一概不作出擔保。
+                        </p>
+                        <p class="alert-text ">
+                            c. 麥當勞報報APP只適用於大部份智慧型手機，能否完全正常使用麥當勞報報APP亦取決於手機型號及電子會員身處的環境連線狀態。
+                        </p>
+                        <p class="alert-text ">
+                            d. 優惠券與歡樂貼的分發，由麥當勞於中央系統設定隨機發送。
+                        </p>
+                        <p class="alert-title ">
+                            3. 優惠券或歡樂貼介紹
+                        </p>
+                        <p class="alert-text ">
+                            兌換優惠券或歡樂貼前，請特別注意以下細節：
+                        </p>
+                        <p class="alert-text ">
+                            3.1優惠券：
+                        </p>
+                        <p class="alert-text ">
+                            a. 每張優惠券均在麥當勞報報APP上註明兌換期限，逾期作廢。須在優惠券所示的有效期限前(含截止當日)，於台灣麥當勞餐廳(不包含歡樂送)點餐時向麥當勞員工出示麥當勞報報APP優惠券，並在麥當勞員工確認後按下“兌換優惠”鍵以兌換麥當勞餐點。如您於點餐前提前按下或未能在麥當勞員工確認便按下“兌換優惠”鍵，優惠券有可能失效而麥當勞員工將有權拒絕為您兌換。
+                        </p>
+                        <p class="alert-text ">
+                            b. 每張麥當勞報報APP優惠券限兌換一次，且僅可於該優惠券所示之餐點的供應時段內兌換，每次限兌換一份優惠券指定餐點，恕不得更換品項或加價升級，並不得與其他任何優惠合併使用。
+                        </p>
+                        <p class="alert-text ">
+                            c. 優惠券的兌換餐點受供應數量限制，請依使用說明至台灣麥當勞餐廳兌換。如任何台灣麥當勞餐廳，無論任何原因，無法提供優惠券所示的餐點，則該餐廳有權以相等或更高售價的一個或多個產品替換任何優惠券所示餐點(或餐點的任何部分)。
+                        </p>
+                        <p class="alert-text ">
+                            3.2 歡樂貼
+                        </p>
+                        <p class="alert-text ">
+                            a. 每集滿6張歡樂貼，可兌換一張麥當勞報報APP優惠券。該優惠券使用限制說明如3.1所規範。
+                        </p>
+                        <p class="alert-text ">
+                            b. 每月份所累積之歡樂貼將於次月月底失效。如未能於歡樂貼的有效期限前(含截止當日)兌換麥當勞報報APP優惠券，該月所累積之歡樂貼將作廢。
+                        </p>
+                        <p class="alert-title ">
+                            4. 適用於所有優惠券或歡樂貼的條件
+                        </p>
+                        <p class="alert-text ">
+                            優惠券或歡樂貼不可兌換現金或其他替代品(除非註明)，麥當勞報報APP優惠券或歡樂貼不得分割、出售或轉售。活動主辦機構、任何優惠券兌換通路給予優惠券所示之內容時，以兌換者持有之優惠券為準，概無任何責任詢問提交優惠券的人士是否有權領取該優惠券所示之內容，亦不論該人士是否為最先獲得該優惠券的人士(在不影響麥當勞追究違反規則人的權利的情況下)。麥當勞將保留權利從系統中刪除所有尚未兌換的優惠券。所有優惠券或歡樂貼的描述及介紹僅用作說明，並非最終決定。任何優惠券中所示價格為麥當勞依據優惠券所提供的內容之一般建議零售價(如為非餐點獎品時)或餐點優惠(根據平均優惠計算)所作出的最佳估計；並不表示優惠券在無人兌換時，麥當勞將會給予任何獎勵或賠償。任何未兌領的優惠券或歡樂貼仍歸麥當勞財產所有，麥當勞有權酌情使用或處置該優惠券或歡樂貼，費用由麥當勞自行承擔。
+                        </p>
+                        <p class="alert-text ">
+                            優惠券或歡樂貼兌換後，電子會員須對個人自身及兌換物之安全負責。於法律允許的最大範圍內，麥當勞概不對任何因兌換之餐點、內容或優惠券所遭受的個人損害或損失承擔責任。
+                        </p>
+                        <p class="alert-title ">
+                            5.責任
+                        </p>
+                        <p class="alert-text ">
+                            在適用法律允許的最大範圍內(但無例外)，麥當勞及其代理商就以下各項概不承擔任何責任：(i)優惠券或歡樂貼介紹或說明的準確性及其他，(ii)任何優惠券或歡樂貼兌換/領取或其他通訊的中斷、滅失、截取或阻礙、遲收或損壞，(iii)有關優惠券的任何聲明、保證、條件或擔保(除法規包含而麥當勞不可排除的保證或條件)
+                        </p>
+                        <p class="alert-text ">
+                            任何人士使用任何不當的設備或技巧取得優惠券或歡樂貼，即視同違反本條款及規則，將被取消電子會員資格，該人士的所有可能獲得優惠券或歡樂貼的資格將作廢，且在沒有被通知的情況下，可能會被防止獲得優惠券或歡樂貼。
+                        </p>
+                        <p class="alert-text ">
+                            機械複製、不完整的、偽造的、軟體產生的、第三方或其他自動化或機械式使用麥當勞報報APP及/或接收優惠券或歡樂貼，全部或部分，將不被接受。
+                        </p>
+                        <p class="alert-title ">
+                            6. 麥當勞的權利
+                        </p>
+                        <p class="alert-text ">
+                            麥當勞保留可隨時全權酌情且於無須告知任何理由或發出任何通知的情況下，以其認為合適的有關方式更改修改或修訂本規則條款之權利。麥當勞(i)於有關人士可能已喪失資格的情況下，可能延長任何時限或豁免任何規則(麥當勞無須於日後任何時候就該參與者或任何其他人士進一步放寬規則限制)(ii)規則的陳述、優惠券、歡樂貼或任何宣傳材料中出現有關此麥當勞報報APP的錯誤及遺漏，不需承擔任何責任(包括但不限於銷售點宣傳品、電視、平面或網路等各類型態廣告)(iii)於出現其控制範圍外的突發情況時，可能隨時終止或暫停活動(iv) 得以相等或更高售價的一個或多個產品替換任何優惠券所示餐點(或餐點的任何部分)。麥當勞就行使或解釋有關該等規則的任何權利或裁量權保留一切最終決定權。
+                        </p>
+                        <p class="alert-text ">
+                            如果出現有關優惠券或歡樂貼兌換的資格或其他任何爭議，麥當勞保留此資格及相關事宜的最終決定權。在有需要的情況下，麥當勞餐廳經理及員工保留查閱顧客身份證的權利。
+                        </p>
+                        <p class="alert-text ">
+                            於法律允許的最大範圍內，麥當勞概不對任何因使用麥當勞報報APP或/及所獲優惠券或歡樂貼遭受的個人損害或損失承擔責任(由麥當勞的疏忽或欺騙引致除外)。麥當勞有權於電子會員註冊後聯絡電子會員，包括但不僅限於以手機簡訊或電子郵件方式。
+                        </p>
+                        <p class="alert-title ">
+                            7. 不可抗力/技術錯誤
+                        </p>
+                        <p class="alert-text ">
+                            如果麥當勞因本文所預計會超出其控制範圍的任何事件而無法繼續提供麥當勞報報APP服務，包括但不限於意外損害、火災、洪災、自然或人為或公共衛生疫情、地震、爆炸、勞動爭議或罷工、公敵行為、或設備故障、暴動或內亂、恐怖主義威脅或行動、戰爭(宣戰或未宣戰)或任何地方政府法律、或法規、任何法院或司法管轄區法令、或其他不在麥當勞合理控制範圍內的原因(均稱為「不可抗力」事件或情況)，需受相關的政府批准的規範限制，麥當勞有權修改、暫停、延長或終止麥當勞報報APP服務。
+                        </p>
+                        <p class="alert-text ">
+                            根據任何適用的政府批准，麥當勞亦可保留權利，於無須事先通知的情況下，隨時全面或部分終止麥當勞報報APP服務，或以任何方式修改、暫停或延長優惠券或歡樂貼兌換時間，或如果其全權酌情認為優惠券或其他錯誤會損壞或嚴重破壞麥當勞報報APP服務的正常進行、公正及/或可行性，則麥當勞可將優惠券或歡樂貼視為作廢或無效。
+                        </p>
+                        <p class="alert-title ">
+                            8. 宣傳免責
+                        </p>
+                        <p class="alert-text ">
+                            兌換優惠券者同意，麥當勞、其母公司、分公司、關係企業、子公司及代理人，以及其任何繼受人、受讓人及促銷活動合作夥伴有權(但無責任)在無需作出補償的情況下，使用兌換優惠券者個人資料，以及兌換優惠券者為廣告、市場推廣、宣傳及推廣目的而就麥當勞報報APP的其他推廣活動在任何及所有媒體(現時已知或隨後計劃)作出或參與作出的任何與麥當勞相關的永久及廣泛聲明，而且兌換優惠券者免除麥當勞，因該等使用而產生的任何責任，包括但不限於就侵犯隱私、觸犯本人的肖像權及名譽權(包括侮辱及誹謗)而提出的所有爭議。
+                        </p>
+                        <p class="alert-title ">
+                            9. 一般情況
+                        </p>
+                        <p class="alert-text ">
+                            儘管有關麥當勞報報APP任何廣告或宣傳資料(包括但不限於通知、兌換表及申領表)的所有說明、規則及條件構成本規則的一部分，但如果發生衝突，本規則將會取代所有上述說明、規則及條件。上文所界定的詞彙應與上述其他說明、規則及條件具有相同涵義(如文意許可)。除非本文指明，本麥當勞報報APP提供之優惠券不得與任何其他優惠合併使用。兌換優惠券者同意，麥當勞可就該麥當勞報報APP及日後其他任何以麥當勞報報APP為主題的宣傳(包括廣告)，公佈兌換優惠券者個人資料與兌換優惠券者與麥當勞相關之任何聲明或全部詳情。如果麥當勞根據其於任何特定時間持有的證據確定該電子會員違反本規則，或未能通過麥當勞驗證、徵信調查(包括但不限於電子會員註冊時提供的資料)，麥當勞則可在不作出任何補償的情況下，全權酌情取消該電子會員的兌換優惠券權利。而該電子會員的任何參與、申請及要求應不予理會且失效。
+                        </p>
+                        <p class="alert-text ">
+                            本規則的副本(包括最新版本包含已生效的更動)可於麥當勞報報APP中之設定下載或列印取得。
+                        </p>
+                        <p class="alert-text ">
+                            本電子會員瞭解及同意(i)麥當勞保留全部優惠券或歡樂貼的所有權，以及保留該等優惠券或歡樂貼及任何時段全部宣傳的商標及其他智慧財產權的所有權或控制權(「有關財產」)；(ii)麥當勞向您授予僅可根據有關規則適當使用本麥當勞報報APP而使用該財產的許可；(iii)任何銷售、提呈出售、或與任何優惠券或歡樂貼有關的其他交易，以及就任何目的使用任何麥當勞報報APP廣告或當中特徵或您違反有關規則的任何行為一概不被視為正當使用麥當勞報報APP；(iv)將該財產用作任何未被允許的用途或不遵守該許可的任何條文，否則該許可將自動終止(無需任何通知)，並構成對麥當勞智慧財產權不可補救的侵犯，麥當勞有權根據適用法律要求給予權利及賠償，及(v)該許可終止或到期後，麥當勞從系統中刪除所有優惠券或歡樂貼，保證概不會試圖再次兌換且不會將有關財產用作任何其他用途。
+                        </p>
+                        <p class="alert-text ">
+                            使用麥當勞報報APP或兌換任何優惠券或歡樂貼，即表示電子會員及/或其父母/合法監護人在法律允許的最大範圍內免除或同意免除麥當勞的責任，並使其免於支付任何及全部費用、免於遭受任何種類的傷害、損失或損害，而該等費用、傷害、損失或損害可全部或部份、直接或間接歸因於電子會員使用麥當勞報報APP，或接收、使用或濫用可能獲得的任何優惠券而起。本規則須受中華民國(台灣)法律的規範，並須據此解釋。本規則(在相關範圍內)所賦予的權利為麥當勞的利益。
+                        </p>
+                        <p class="alert-text ">
+                            除非本規則另有指明，否則所有年齡限制須以電子會員註冊時提供的實際年齡為準。
+                        </p>
+                        <p class="alert-text ">
+                            任何誤印/誤發的優惠券或歡樂貼(由麥當勞酌情決定)須作廢。
+                        </p>
+                        <p class="alert-text ">
+                            本規則的任何條文不會影響電子會員的法定權利。除非本規則另有指明，否則麥當勞可全權酌情謝絕任何通訊往來。
+                        </p>
+                        <p class="alert-text ">
+                            您陳述及保證:
+                        </p>
+                        <p class="alert-text ">
+                            ‧您不是及將不是身處於任何美國政府實施貿易禁運的國家，或美國政府列為「支持恐怖份子」的國家；及
+                        </p>
+                        <p class="alert-text ">
+                            ‧您不是美國政府列為禁止或限制名單上的人士。
+                        </p>
+                        <br>
+                        <p class="alert-text ">
+                            © 2016 年麥當勞版權所有。
+                        </p>
+                        <p class="alert-text _1">
+                            麥當勞餐廳股份有限公司，台北市林森南路一號3樓。
+                        </p>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn_Member_Register_Condition" class="alert-btn" onclick="$('.TermsOfUse').modal('toggle'); return false;">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 隱私權政策 -->
+    <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+        <!-- 隱私權 -->
+        <div class="modal bs-example-modal-lg Privacy" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content" id="PrivacyArea" style="background:#ffffff">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button>
+                        <h3 class="modal-title">隱私權保護聲明</h3>
+                    </div>
+                    <div class="modal-body fixed_modal_padding">
+                        <div id="body">
+                            <p class="mainTitle">
+                                最後更新日期：2016年11月
+                            </p>
+                            <p class="subTitle">
+                                台灣麥當勞餐廳股份有限公司(以下簡稱「麥當勞」)相當重視您在網路上的隱私權。所以請您閱讀下列內容瞭解本公司如何處理使用您的個人資料，以及我們保障您隱私權的各種措施。
+                            </p>
+                            <p class="alert-title">
+                                一、隱私權保護聲明適用範圍
+                                <br>
+                            </p>
+                            <p class="alert-text">
+                                隱私權保護聲明內容，包括本公司如何處理應用程式使用者使用本公司應用程式（下稱本程式）服務、參加本程式活動等時所蒐集到的身份識別資料，也包括本公司如何處理在商業夥伴與本公司合作時分享的任何身份識別資料。隱私權保護聲明不適用於本公司以外的公司，也不適用於非本公司所僱用或管理的人員。
+                            </p>
+                            <p class="alert-title">
+                                二、資料之蒐集
+                                <br>
+                            </p>
+                            <p class="alert-text">
+                                麥當勞所蒐集的資料與使用方式
+                            </p>
+                            <p class="alert-text">
+                                您所填寫並上傳的資料願意由麥當勞所使用，包括但不限於例如：姓名、地址、電子郵件信箱等項目，其使用方式將包括例如：利用資料來了解您對某麥當勞產品或網站的意見與看法，或是參加由麥當勞所舉辦的網路活動或抽獎活動等等。此資料的蒐集目的係為確認在本公司應用程式上取得資訊的使用者身份及提供各項服務之用，其範圍如下：
+                            </p>
+                            <br>
+                            <p class="alert-text">
+                                本公司在您使用本程式服務、瀏覽本程式網頁、加入電子會員、參加宣傳活動或贈獎遊戲、訂閱電子報、訂購本公司產品/服務或使用其他網站服務時，將會請您提供您的個人相關資料，包括但不限於姓名、行動電話門號、行動電話SIM卡號碼、電子郵件地址…等。本公司會保留您所提供的上述資料，也會保留您上網瀏覽或查詢時，在系統上產生的相關記錄，包括IP位址、使用時間、瀏覽器、瀏覽及點選紀錄等。
+                            </p>
+                            <p class="alert-text">
+                                個資告知事項
+                            </p>
+                            <p class="alert-text">
+                                為確保您的權益，請詳閱以下個人資料保護法告知事項：
+                            </p>
+                            <p class="alert-text">
+                                一、非公務機關名稱：台灣麥當勞餐廳股份有限公司。
+                            </p>
+                            <p class="alert-text">
+                                1、蒐集之目的：040/行銷、063/非公務機關依法定義務所進行個人資料之蒐集處理及利用、067/信用卡、現金卡、轉帳卡或電子票證業務、069/契約、類似契約或其他法律關係事務、072/政令宣導、081/個人資料之合法交易業務、085/旅外國人急難救助、090/消費者、客戶管理與服務、104/帳務管理及債權交易業務、129/會計與相關服務、135/資(通)訊服務、136/資(通)訊與資料庫管理、137/資通安全與管理、148/網路購物及其他電子商務服務、152/廣告或商業行為管理、153/影視、音樂與媒體管理、154/徵信、157/調查、統計與研究分析、181/其他經營合於營業登記項目或組織章程所定之業務、182/其他諮詢與顧問服務及其他依主管機關公告之特定目的。
+                            </p>
+                            <p class="alert-text">
+                                2、個人資料之類別：依主管機關公告之個人資料類別（包括但不限於載於各項申請文件之您、代理人及法定代理人之個人資料等）。
+                            </p>
+                            <p class="alert-text">
+                                3、個人資料利用之期間、地區、對象及方式：
+                                <br> （一）期間：台灣麥當勞餐廳股份有限公司營運期間內。
+                                <br> （二）地區：中華民國境內、境外（含國際傳輸）。
+                                <br> （三）對象：台灣麥當勞餐廳股份有限公司、受台灣麥當勞餐廳股份有限公司委託或與台灣麥當勞餐廳股份有限公司有合作或業務往來之台灣麥當勞餐廳股份有限公司關係企業及合作廠商。
+                                <br> （四）方式：符合法令規定範圍之利用。
+                            </p>
+                            <p class="alert-text">
+                                4、您得行使個人資料保護法第三條規定之請求查詢、製給複製本、補充或更正等權利，其行使方式及收費方式依法令及台灣麥當勞餐廳股份有限公司相關規定。
+                            </p>
+                            <p class="alert-text">
+                                5、您得自由選擇提供資料（但依法令規定者不在此限），若不提供將影響服務申辦或其完整性。
+                            </p>
+                            <p class="alert-title">
+                                三、資料之保護
+                                <br>
+                            </p>
+                            <p class="alert-text">
+                                本公司會將您的個人資料完整儲存於我們的資料儲存系統中，並以嚴密的保護措施防止未經授權人員之接觸。本公司的人員均接受過完整之資訊保密教育，充分瞭解用戶資料之保密為基本責任，如有違反保密義務者，將受相關法律及公司內部規定之處分。為了保護您個人資料之完整及安全，保存您個人資料之資料處理系統均已受妥善的維護，並符合相關主管機關嚴格之要求，以保障您的個人資料不會被不當取得或破壞。如因業務需要有必要委託第三者提供服務時，本公司亦會嚴格要求其遵守保密義務，並且採取必要檢查程式以確定其將確實遵守。
+                            </p>
+                            <p class="alert-title">
+                                四、資料之使用
+                            </p>
+                            <p class="alert-text">
+                                為了提供您更多服務或優惠，如需要求您將個人資料提供予本公司之優良商業夥伴或合作廠商時，我們會在活動時提供充分說明，您可以自由選擇是否接受這項特定服務或優惠。如您同意接受該項特定服務或優惠，有關隱私權之保護，由您與本公司之商業夥伴或合作廠商另行約定之。本公司對於您個人資料之使用，僅在蒐集之特定目的及相關法令規定之範圍內為之。除非經由您的同意或其他法令之特別規定，本網站絕不會將您的個人資料揭露於第三人或使用於蒐集目的以外之其他用途。
+                            </p>
+                            <p class="alert-text">
+                                台灣麥當勞餐廳股份有限公司可能會就您的個人資料投寄促銷活動的相關資訊給您，如果您不想個人資料用作促銷用途，請以書面或電郵告知。
+                            </p>
+                            <p class="alert-title">
+                                五、個人資料可以被分享之範圍
+                            </p>
+                            <p class="alert-text">
+                                在遵守相同的隱私權保護協定規範下，麥當勞允許其集團中的企業使用您的個人資料，包括麥當勞加盟店與其子公司。在您同意的情況下，麥當勞會偶爾發送行銷相關訊息予您，包括如折價券、新產品介紹及問券等等。如果您選擇不願意收到相關訊息，麥當勞便不會發送。
+                            </p>
+                            <p class="alert-text">
+                                某些麥當勞的配合廠商，在進行如完成訂購程序，協助行銷活動推廣，提供網站技術服務等等工作項目時，會接觸到麥當勞所蒐集的您資料，但其所使用的範圍都將只會以麥當勞所指定的業務範圍為準。
+                            </p>
+                            <p class="alert-text">
+                                麥當勞不會出售，轉讓，或洩漏任何您相關資訊與任何麥當勞企業集團以外的其他單位。在您的事先同意之下，麥當勞會偶爾傳送由麥當勞商業夥伴的產品或服務訊息給您，麥當勞會在事前先徵詢您的同意是否願意收到任何有關麥當勞商業夥伴的行銷訊息，如果您選擇願意，麥當勞會發送其商業夥伴的行銷訊息給您，但是不會將您的資料提供給其商業夥伴。
+                            </p>
+                            <p class="alert-text">
+                                在下列情況之下，麥當勞保留其使用或提供您資料的權利，包括在法律的規範與要求下，在維護麥當勞網站的完整與合法性的情況下，在回應您本人的要求下，在配合法律調查與公共安全的情況下等等。
+                            </p>
+                            <p class="alert-title">
+                                六、連結網頁之使用
+                            </p>
+                            <p class="alert-text">
+                                本程式的網頁可能提供其他程式/網站的網路連結，您也可經由本程式所提供的連結，點選進入其他程式/網站。但本網站並不保護您於該連結網站中的隱私權。
+                            </p>
+                            <p class="alert-title">
+                                七、連接至個人資料與個人資料之修正
+                            </p>
+                            <p class="alert-text">
+                                關於您所提供給我們的任何資料，您有絕對的主控權。無論任何時間，當您發現個人資料須修改時，經過身分確認無誤後，您可透過本程式提供之服務管道進行修改、更正以確保自身權益。
+                            </p>
+                            <p class="alert-text">
+                                如果您想要了解您之前所留下的資料，或是要求停止使用您的資料或將資料刪除，請您同樣利用本程式提供之服務管道與我們聯絡。
+                            </p>
+                            <p class="alert-title">
+                                八、線上追蹤
+                            </p>
+                            <p class="alert-text">
+                                本公司以及代表我們的某些服務供應商會使用追蹤技術收集與您在本公司的網站和應用程式中的活動有關的資料。此類追蹤數據可用於多種目的，例如
+                                <br> •提供有用的功能，簡化您再次訪問本公司的網站或使用本公司的應用程式時的體驗；
+                                <br> •根據您的喜好、使用模式以及地理位置提供相關內容；
+                                <br> •監控並評估對本公司網站和應用程式的使用與運轉；
+                                <br> •分析本公司的網站與協力廠商網站的流量；
+                            </p>
+                            <p class="alert-text">
+                                本公司可以將追蹤數據和您的註冊帳戶連接起來，在這種情況下，追蹤數據將被視為個人資料。
+                            </p>
+                            <p class="alert-title">
+                                九、隱私權保護聲明之修正
+                            </p>
+                            <p class="alert-text">
+                                在必要的前提之下，麥當勞將隨著時間修改本隱私權保護聲明。我們建議您定期至本程式查看最新的條款規定。未來任何條款的更新，我們將不主動提醒您有關條款的更新，亦將不會回溯應用在之前所發生的情形，同時不會改變我們對於之前所蒐集的資訊之處理方式。
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btn_Member_Register_Privacy" class="alert-btn" onclick="$('.Privacy').modal('toggle'); return false;">確定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* 錯誤訊息 *@
+    <div class="modal PopupMessage in" tabindex="-1" role="dialog" aria-labelledby="PopupMessageArea" style="display: none;">
+        <div class="modal-dialog modal-md" role="document">
+            <div id="PopupMessageArea" class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="/wwwroot/Image/desktop_img/ic_close.png"></span></button> <h3 class="modal-title" id="PopupMessageTitle"></h3>
+                </div>
+                <div class="modal-body">
+                    <span class="alert-text" id="PopupMessageBody"></span>
+                </div>
+                <div class="modal-footer" style="padding:0 44px;">
+                    <button type="button" class="alert-btn" onclick="$('.PopupMessage').modal('hide');">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* 點點卡帳戶強制登入訊息 *@
+    <div class="modal ForcedLogin in" tabindex="-1" role="dialog" aria-labelledby="ErrorMessageArea" style="display: none;">
+        <div class="modal-dialog modal-md" role="document">
+            <div id="ErrorMessageArea" class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="ForcedLoginTitle">提示訊息</h3>
+                </div>
+                <div class="modal-body">
+                    <span class="alert-text" id="ForcedLoginBody">此功能需登入後才能使用</span>
+                </div>
+                <div class="modal-footer" style="padding:0 44px;">
+                    <button type="button" class="alert-btn" onclick="$('.ForcedLogin').modal('hide'); window.location.href = '/Home/#Login';">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        //取得當前網址改變其Menu樣式
+        if (location.href.indexOf("Home") > 0) {
+            $('#btn_Menu_Home').css('opacity', 0.6);
+        }
+        else if (location.href.indexOf("LatestNews") > 0) {
+            $('#btn_Menu_News').css('opacity', 0.6);
+        }
+        else if (location.href.indexOf("CardIntroduction") > 0) {
+            $('#li_CardIntroduction').css('opacity', 0.6);
+        }
+        else if (location.href.indexOf("CardAccount") > 0) {
+            $('#li_CardAccount').css('opacity', 0.6);
+        }
+        else if (location.href.indexOf("MCCardAPP") > 0) {
+            $('#btn_Menu_APP_Intro').css('opacity', 0.6);
+        }
+        else if (location.href.indexOf("CommonProblem") > 0) {
+            $('#btn_Menu_FAQ').css('opacity', 0.6);
+        }
+        else if (location.href.indexOf("Member") > 0) {
+            $('#btn_Menu_Member').css('opacity', 0.6);
+        }
+
+        //Check Session 改由後端控制
+        @*ExecuteAjax('@Url.Action("CheckLoginStatus", "Authority")', null, function (data) {
+            if (data.Result) {
+                ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+
+                    $('#liuserInfo').html('<a id="btn_Menu_Member" href="" class="dropdown-toggle nav-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'
+                    + 'Hi ' + data.Result.LastName + data.Result.FirstName + '</a>'
+                    + '<ul class="dropdown-menu" style="margin-left: auto;"><li class="arrow_t_int DesktopView"></li><li class="arrow_t_out DesktopView"></li>'
+                    + '<li><a id="btn_Menu_Member_Data_Maintain" class="nav-text-dropdown" href="/Member/UserProfile">修改個人資料</a></li>'
+                    + '<hr class="meun_hr" />'
+                    + '<li><a onclick="Logout();return false" class="nav-text-dropdown" >登出</a></li></ul>');
+
+                    $('#liuserInfo').show();
+                    $('#liLogin').hide();
+                })
+            }
+            else {
+                $('#liuserInfo').hide();
+                $('#liLogin').show();
+            }
+        })*@
+
+        //For Menu
+        $(window).resize(function () { Transform_Menu(); }); Transform_Menu()
+        $("#mask").on('click', function (e, delta) {
+            closeNav();
+        });
+        $("#mask").on('mousewheel', function (e, delta) {
+            e.preventDefault();
+        });
+
+        //忘記密碼與登入視窗切換
+        $("#linkMyPassword").click(function () {
+            $('.Login').modal('toggle');
+        });
+
+
+        $("#btn_Menu_Member_Login").click(function () {
+            $('.Login').modal('toggle');
+        });
+        //需登入時彈出登入視窗
+        if (window.location.hash === '#Login') {
+            $('.Login').modal('toggle');
+        }
+
+
+
+
+        if (isIE() == false) {
+            $('.modal').on('shown.bs.modal', function () {
+                //$('#content_body').css('overflow-y', 'hidden');
+                $('#content_body').css('padding-right', '1.2em');
+                $('.navbar').css('padding-right', '1.2em');
+            });
+            $('.modal').on('hidden.bs.modal', function () {
+                //$('#content_body').css('overflow-y', 'scroll');
+                $('#content_body').css('padding-right', 0);
+                $('.navbar').css('padding-right', 0);
+            });
+        }
+        //Alert視窗關閉後Login scroll bar恢復
+        $('.PopupMessage').on('hidden.bs.modal', function () {
+            if ($('.Login').css('display') == 'block') {
+                $('#content_body').css('overflow-y', 'hidden')
+                $('.Login').css('overflow-y', 'auto')
+            }
+        });
+
+        //忘記密碼
+        $("#btn_Member_Password_Rest").on("click", function () {
+            var check = $('#txtUIDForgotPassword').val().length == 10;
+            if (!check) {
+                showMessageBox({ title: '提醒', body: '手機號碼(帳號)須為10碼, 請再次檢查' });
+                return false;
+            }
+            ConfirmBeforeSend();
+        });
+        $("#btn_Member_Password_Rest_Cancel").click(function () {
+            $('.linkMyPassword').modal('toggle');
+        });
+    });
+    function isIE() {
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+        {
+            //alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+            return true;
+        }
+        else  // If another browser, return 0
+        {
+            return false;
+        }
+
+        return false;
+    }
+    //For Menu
+    function Transform_Menu() {
+        if (window.innerWidth >= 1024) {
+            $('#Divider_vertical').show();
+            $('#Divider_horizontal').hide();
+            $('#Community').hide();
+            $('#btn_Menu_Member_Register').html('<div class="nav-signup"></div>新用戶註冊');
+            $('#btn_Menu_Member_Login').html('<div class="nav-signin"></div>報報APP會員登入');
+            closeNav();
+        }
+        else {
+            $('#Divider_vertical').hide();
+            $('#Divider_horizontal').show();
+            $('#Community').show();
+            $('#btn_Menu_Member_Register').html('<div class="nav-signup"></div>註冊');
+            $('#btn_Menu_Member_Login').html('<div class="nav-signin"></div>登入');
+        }
+    }
+
+    //登出
+    function Logout() {
+        ExecuteAjax('@Url.Action("Logout", "Authority")', null, function (data) {
+            if (data.Result) {
+                window.location.href = '/Home';
+                $('#liuserInfo').hide();
+                $('#liLogin').show();
+            }
+        })
+    }
+
+    //開啟側MENU
+    function openNav() {
+        document.getElementById("mask").style.display = "block";
+        $("#mySidenav").animate({
+            marginLeft: "0px",
+        }, 500, function () {
+        });
+        //$('#content_body').css('overflow-y', 'hidden');
+    }
+
+    //關閉側MENU
+    function closeNav() {
+        $("#mySidenav").animate({
+            marginLeft: "-448px",
+        }, 500, function () {
+            document.getElementById("mask").style.display = "none";
+        });
+        //$('#content_body').css('overflow-y', 'visible');
+        $("main").css("max-height", "100%");
+    }
+
+    //寄送密碼
+    function ConfirmBeforeSend() {
+        var result_CheckUser;
+        var data_CheckUser = {
+            "uid": $('#txtUIDForgotPassword').val()
+        };
+        ExecuteAjax('@Url.Action("CheckUser","Authority" )', data_CheckUser, function (data) {
+            result_CheckUser = data.Result;
+        });
+
+        if (result_CheckUser == '1') {
+            showMessageBox({ title: '帳號驗證中', body: '您的帳號目前正處於Email驗證中<br>是否遺失驗證Email?' }); return false;
+        }
+        else if (result_CheckUser == '-1') {
+            showMessageBox({ title: '提醒', body: '查詢不到您輸入的帳號 是否還沒加入會員?' });
+            return false;
+
+        }
+        else if (result_CheckUser == '99') {
+            showMessageBox({ title: '提醒', body: '您的帳號目前停用中' });
+            return false;
+        }
+        else if (result_CheckUser == '0') {
+            var data_CheckUser = {
+                "uid": $('#txtUIDForgotPassword').val()
+            };
+            ExecuteAjax('@Url.Action("ForgetPW", "Authority" )', data_CheckUser, function (data) {
+                $('.linkMyPassword').modal('toggle');
+                if (data.Result) {
+                    showMessageBox({ title: '寄送成功', body: '請查看您註冊的電子信箱並留意垃圾信件匣，點選信件內網址，開始重設密碼。' });
+                }
+                else {
+                    showMessageBox({ title: '寄送失敗', body: '很抱歉，此手機號碼尚未註冊，請重新輸入。' });
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    // Load the FB SDK asynchronously
+     (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+    window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '510346042686255',
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+    // Load the Google SDK asynchronously
+    (function () {
+        gapi.load('auth2', function () {
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            auth2 = gapi.auth2.init({
+                client_id: '265125986207-3krml9su9c495errc44f0259hc5j0qqt.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin',
+                // Request scopes in addition to 'profile' and 'email'
+                //scope: 'additional_scope'
+            });
+        });
+    })();
+</script>
+
+@* 橫向功能 *@
+<script>
+    (function () {
+        var supportsOrientation = (typeof window.orientation == 'number' && typeof window.onorientationchange == 'object');
+        var HTMLNode = document.body.parentNode;
+
+        var CheckIsMobile = function () {
+            var isMobile = false; //initiate as false
+            // device detection
+            if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
+                || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) isMobile = true;
+            return isMobile;
+        }
+
+        var updateOrientation = function () {
+            if (CheckIsMobile()) {
+                if (supportsOrientation) {
+                    var orientation = window.orientation;
+                    switch (orientation) {
+                        case 90: case -90:
+                            orientation = 'landscape';
+                            break;
+                        default:
+                            orientation = 'portrait';
+                    }
+                    // set the class on the HTML element (i.e. )
+                    HTMLNode.setAttribute('class', orientation);
+                }
+                else {
+                    // landscape when width is biggest, otherwise portrait
+                    var orientation = (window.innerWidth > window.innerHeight) ? 'landscape' : 'portrait';
+                    // set the class on the HTML element (i.e. )
+                    HTMLNode.setAttribute('class', orientation);
+                }
+            }
+            else {
+                HTMLNode.setAttribute('class', 'PC');
+            }
+
+            changeView();
+        }
+
+        var changeView = function () {
+            if ($(HTMLNode).hasClass("landscape")) {
+                $('.NotLandscape').css('display', 'none');
+                $('.Landscape').css('display', 'block');
+            }
+            else {
+                $('.Landscape').css('display', 'none');
+                $('.NotLandscape').css('display', 'block');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            updateOrientation();
+        }, true);
+
+        window.addEventListener('orientationchange', function () {
+            updateOrientation();
+        }, true);
+
+        window.addEventListener('resize', function () {
+            updateOrientation();
+        }, true);
+    })();
+</script>
+
+@* GA *@
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-74833693-3', 'auto');
+    ga('send', 'pageview');
+
+</script>

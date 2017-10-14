@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "CardDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li><a class="link-text" href="~/CardIntroduction/Rebate">點點卡</a></li>
+    <li><a class="link-text" href="~/CardIntroduction/CardList">點點卡介紹</a></li>
+    <li class="link-text ">點點卡說明</li>
+</ol>
+
+<!-- main -->
+<div class="container-fluid">
+    <div class="row">
+        <div>         
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+            </picture>
+        </div>
+    </div>
+</div>
+<div class="row carddetail-box" style="background-color: #fff;">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+        <img class="img-responsive  center-block" src="@ViewBag.CardImg" />
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 card-info">
+        <div class="card-title ">@ViewBag.CardTitle</div>
+        <div class="card-dollars">$@ViewBag.CardPrice</div>
+        <div class="card-text">@ViewBag.CardDescription</div>
+    </div>
+</div> 

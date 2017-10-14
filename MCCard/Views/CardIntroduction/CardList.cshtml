@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MCCard.Controllers.CardStyleModel>
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">點點卡</li>
+    <li class="link-text ">點點卡介紹</li>
+</ol>
+<!-- main -->
+<div class="container-fluid" style="text-align: center;">
+    <div class="row">
+        <div>
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+            </picture>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.SubBannerImg" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.SubBannerMobileImg" alt="" class="img-responsive">
+            </picture>
+        </div>
+    </div>
+    <div class="row" id="CardList" style="display:none;max-width: 1024px;display: inline-block;">
+        <div class="col-md-12 col-lg-12 CardListHead-title">
+            <span class="coupon-title">最新點點卡</span>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="CardItems">
+                <a href="/CardIntroduction/CardDetail/@item.UID">
+                    <img class="img-responsive  center-block" src="@item.IconPath" />
+                    <span class="card-title  center-block" style="text-align:center;">@item.Subject</span>
+                    <span class="card-dollars center-block" style="text-align:center;">@item.Pricing</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var myDate = new Date();
+        myDate.setFullYear(@ViewBag.CardListOpenYear,@ViewBag.CardListOpenMonth -1,@ViewBag.CardListOpenDay);
+        var today = new Date();
+
+        if (today >= myDate) {
+            $("#CardList").show();
+        }
+        else{$("#CardList").hide();}
+        if (@Model.Count ==1) {
+            $(".CardItems").addClass('col-md-6 col-lg-12');
+        }
+        else if (@Model.Count ==2) {
+            $(".CardItems").addClass('col-md-6 col-lg-6');
+        }
+        else if (@Model.Count ==3) {
+            $(".CardItems").addClass('col-md-6 col-lg-4');
+        }
+        else if (@Model.Count >=4) {
+            $(".CardItems").addClass('col-md-6 col-lg-3');
+        }
+    })
+</script>

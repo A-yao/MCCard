@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MCCard.Controllers.QualityAssuranceAllModel>
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text ">常見問題</li>
+</ol>
+
+<!-- 常見問題 -->
+<div class="container-fluid" style="background:white;">
+    <div class="row">
+        <div>
+            <picture>
+                <!-- 當解析度大於等於1024px像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.Img" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024px像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.MobileImg" alt="" class="img-responsive">
+            </picture>
+        </div>
+    </div>
+
+    <div class="row qa-box" style="min-height:600px">
+
+        <ul class="nav  nav-pills nav-justified">
+            @foreach (var item in Model)
+            {
+                <li role="presentation" class="qa-title-off qa-title">
+                    <a id="btn_FAQ_Card_@item.Title" data-toggle="tab" href="#@item.Seq">@item.Title</a>
+                </li>
+            }
+        </ul>
+
+        <div class="tab-content  qna-content-box">
+            @foreach (var item in Model)
+            {
+                <div id="@item.Seq" class="tab-pane qna-content-box fade panel-group in" role="tablist" aria-multiselectable="true">
+                    @foreach (var qa in item.Question)
+                    {
+                        if (item.UID == qa.TypeID)
+                        {
+                            <div class="panel panel-default" role="tab">
+                                <div class="panel-heading " role="tab">
+                                    <div class="panel-title qa-q" role="button" data-toggle="collapse"  data-parent="#@item.Seq" href="#@item.Seq-@qa.Seq" aria-expanded="true" aria-controls="@item.Seq-@qa.Seq">
+                                            @qa.Question
+                                    </div>
+                                </div>
+
+                                <div id="@item.Seq-@qa.Seq" class="panel-collapse collapse  qa-text" role="tabpanel" aria-labelledby="heading1">
+                                    <div class="panel-body">
+                                        @qa.Answer
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".qa-box ul li").eq(0).addClass("active");
+        $(".qa-box > div.tab-content > div.panel-group").eq(0).addClass("active");
+        $(".panel-title").click(function () {
+            if ($(this).parent().hasClass("active")) {
+                $(".panel-group .active").removeClass("active");
+            } else {
+                $(".panel-group .active").removeClass("active");
+                $(this).parent().addClass("active").children().children("label").addClass("active");
+            }
+        });
+    })
+</script>

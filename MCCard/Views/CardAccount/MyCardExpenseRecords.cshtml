@@ -1,0 +1,237 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<MCCard.Controllers.CardModel>
+<link href="~/wwwroot/css/MyCardExpenseRecords.css" rel="stylesheet" />
+
+<style>
+    .radio-inline {
+        padding-left: 0px;
+    }
+</style>
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">點點卡帳戶</li>
+    <li class="link-text">交易紀錄</li>
+</ol>
+<!-- main-banner -->
+<div class="main-banner">
+    <picture>
+        <!-- 當解析度大於等於1024像素時，載入此圖-->
+        <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+        <!-- 當解析度低於1024像素時，載入此圖-->
+        <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+    </picture>
+</div>
+<div class="container-fluid account-form-box" style="margin-top: 30px; min-height:460px;">
+    <div class="form-group form-item-base" id="noLogin" style="display:none">
+        <div class="acc-title">您尚未登入，請先登入帳號</div>
+    </div>
+    <div id="IsLogin" style="display:none">        
+        @if (Model.Count == 0)
+        {
+            <div class="form-group form-item-base">
+                <div class="acc-title" id="lblTitle">您尚未記名卡片</div>
+            </div>
+        }
+        @if (Model.Count >= 1)
+        {
+            <div>
+                <div class="row" style="text-align:center">
+                    @foreach (var item in Model)
+                    {
+                        <div class="form-group card-group CardItems">
+                            <div class="radio-group radio-inline account-text card-radio">
+                                <label>
+                                    <img src="@item.CardImg" class="img-responsive" alt="Responsive image">
+                                </label>
+                                <div class="card-payments">
+                                    <span class="cardinfo-title">卡號</span>
+                                    <span class="cardinfo-text" id="CardID">@item.CardID</span>
+                                </div>
+                                <div class="card-payments">
+                                    <span class="cardinfo-title">餘額</span>
+                                    <span class="cardinfo-text" id="CardBalance">@item.Balance 元</span>
+                                </div>
+                                <div class="card-payments">
+                                    <span class="cardinfo-title">點數</span>
+                                    <span class="cardinfo-text" id="CardPoint">@item.Points 點</span>
+                                </div>
+                                <div style="padding: 0px 12px;">
+                                    <button type="button" class="card-payments-btn" id="payments-@item.ID" onclick="CardRecordGet('@item.CardID')">交易紀錄</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @* 查詢結果 *@
+                <div style="margin-top: 25px; padding: 0 12px;">
+                    <table id="ExpenseRecordsTable" class="table table-rwd" style="display:none; background:#ffffff"></table>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+<script src="~/wwwroot/Scripts/moment.js"></script>
+<script src="~/wwwroot/lib/boostrap/js/bootstrap-table.js"></script>
+<script>
+    var PageSize = @ViewBag.PageSize;
+    $(document).ready(function () {
+        //驗證登入
+        ExecuteAjax('@Url.Action("CheckLoginStatus", "Authority")', null, function (data) {
+            if (!data.Result) {
+                $('.ForcedLogin').modal('show');
+                $('#noLogin').show();
+                $('#IsLogin').hide();
+            }
+            else {
+                $('#noLogin').hide();
+                $('#IsLogin').show();
+            }
+        });
+
+        //變更呈現方式
+        if (@Model.Count == 1) {
+            $(".CardItems").addClass('col-xs-12 col-sm-12 col-md-6 col-lg-12');
+        }
+        else if (@Model.Count == 2) {
+            $(".CardItems").addClass('col-xs-12 col-sm-12 col-md-6 col-lg-6');
+        }
+        else if (@Model.Count >= 3) {
+            $(".CardItems").addClass('col-xs-12 col-sm-12 col-md-6 col-lg-4');
+        }
+
+
+
+        //For Menu
+        $(window).resize(function () { Transform_Table(); }); Transform_Table()
+    });
+
+    function CardRecordGet(cardID) {
+        var $table = $('#ExpenseRecordsTable');
+        $table.hide();
+        var ObjData = {
+            "CardNumber": cardID
+        };
+        $.blockUI({
+            message: "<img class='img-loading' src='/wwwroot/Image/Loading.svg' /> ",
+            css: {
+                top: ($(window).height() - 200) / 2 + 'px',
+                left: ($(window).width() - 200) / 2 + 'px',
+                width: '200px'
+            }
+        });
+
+        $.ajax({
+            url: '@Url.Action("ExpenseRecordsRead", "CardAccount")',
+            data: ObjData != null ? JSON.stringify(ObjData) : null,
+            type: 'POST',
+            dataType: "json",
+            async: true,
+            contentType: 'application/json; charset=utf-8',
+            complete: function () {
+                $.unblockUI();
+            },
+            success: function (data) {
+                var text_align = "center";
+                var three_words ="0";
+                var two_words="0";
+                if (data != null) {
+                    if (window.innerWidth < 737) {
+                        text_align = "left";
+                        three_words = "15";
+                        two_words = "30";
+                    }
+
+                    $table.bootstrapTable("destroy");
+                    $table.show();
+                    $table.bootstrapTable({
+                        data: data,
+                        class : 'table table-rwd',
+                        columns: [{
+                            field: 'TransactionDate',
+                            title: '交易日期',
+                            align: text_align,
+                            titleTooltip:'交易日期',
+                            formatter: function (value, row, index) {
+                                var date = moment(value,'YYYYMMDDHHmmss').format('YYYY-MM-DD HH:mm:ss')
+                                return '<div title="交易日期">'+ date +'</div>';
+                            }
+                        }, {
+                            field: 'Stores',
+                            title: '門市',
+                            align: text_align,
+                            formatter: function (value, row, index) {
+                                return '<div title="門市" style="padding-left:'+two_words+'px;">'+value+'</div>';
+                            }
+                            //}, {
+                            //    field: 'ConsumptionCategory',
+                            //    title: '消費別',
+                            //    formatter: function (value, row, index) {
+                            //        return '<div title="消費別">'+value+'</div>';
+                            //    }
+                        }, {
+                            field: 'TradeName',
+                            title: '交易別',
+                            align: text_align,
+                            formatter: function (value, row, index) {
+                                return '<div title="交易別" style="padding-left:'+three_words+'px;">'+value+'</div>';
+                            }
+                        }, {
+                            field: 'Balance',
+                            title: '金額',
+                            align: text_align,
+                            formatter: function (value, row, index) {
+                                if (value == '0') {
+                                    value = '$0'
+                                }
+                                return '<div title="金額" style="padding-left:'+two_words+'px;">'+value+'元</div>';
+                            }
+                        }, {
+                            field: 'Points',
+                            title: '點數',
+                            align: text_align,
+                            formatter: function (value, row, index) {
+                                return '<div title="點數" style="padding-left:'+two_words+'px;">'+value+'點</div>';
+                            }
+                        }],
+                        cache: false,
+                        pagination: false,
+                        //顯示的筆數
+                        pageSize: 20,
+                        //pageList: [5, 10],
+                        //paginationPreText:"上一頁",
+                        //paginationNextText:"下一頁",
+                        formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                            return '每頁顯示&nbsp&nbsp'
+                        },
+                        formatRecordsPerPage: function (totalRows) {
+                            return totalRows+'&nbsp&nbsp筆';
+                        }
+                    });
+                }
+
+            },
+            failure: function (errMsg) {
+            },
+            error: function (errMsg) {
+            }
+        });
+
+    }
+
+    function Transform_Table() {
+        if (window.innerWidth >= 737) {
+            $("#ExpenseRecordsTable th").css("text-align","center")
+            $("#ExpenseRecordsTable td").css("text-align","center")
+        }
+        else {
+            $("#ExpenseRecordsTable td").css("text-align","left")
+        }
+    }
+
+</script>

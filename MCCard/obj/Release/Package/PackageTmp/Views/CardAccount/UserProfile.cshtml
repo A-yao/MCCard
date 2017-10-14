@@ -1,0 +1,223 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="#">首頁</a></li>
+    <li><a class="link-text" href="#">點點卡帳戶</a></li>
+    <li class="link-text ">修改個人資料</li>
+</ol>
+<!-- main-banner -->
+<div class="main-banner">
+    <img src="~/wwwroot/Image/desktop_img/pic_account_banner.png" alt="" class="img-responsive">
+</div>
+    <!-- 修改個人資料 -->
+<div class="container account-form-box">
+    <div class="row">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3 account-text">手機號碼(帳號)</label>
+                <label class="control-label col-sm-3 account-text text-left">0912345678</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for="pwd">密碼</label>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <input maxlength="12" type="password" required="required" class="form-control account-input" id="pwd" placeholder="6-12位英數組合密碼">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="pwd-check">確認密碼</label>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input maxlength="12" type="password" required="required" class="form-control account-input" id="pwd-check" placeholder="請再次輸入密碼">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                    <!-- <div class="checkfont">密碼錯誤</div> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for="">* 姓名</label>
+                <div class="col-xs-6 col-sm-6 col-md-3">
+                    <input maxlength=" " type="text" required="required" class="form-control account-input" id=" " placeholder="請輸入您的姓氏">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-3">
+                    <input maxlength=" " type="text" required="required" class="form-control account-input" id=" " placeholder="請輸入您的名字">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                    <!-- <div id="promptUserName" class="checkfont">請填寫真實姓名以利日後活動中獎通知密碼錯誤</div> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label  col-sm-3 col-md-3 col-lg-3 account-text" for=" ">* 性別</label>
+                <div class="col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcSex1" value="1" name="rcSex" checked><span></span>男
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcSex0" value="0" name="rcSex"><span></span>女
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcSex2" value="2" name="rcSex"><span></span>其他
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label  col-sm-3 account-text">* 生日</label>
+                <label class="control-label  col-sm-3 account-text text-left">1980年03月23日</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for=" txtEmail">* Email</label>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input maxlength=" " type="email" required=" " class="form-control account-input" id="txtEmail" placeholder="請輸入您的email">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="promptSex" class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for="">* 居住地區</label>
+                <div class="btn-group dropdown col-xs-4 col-sm-4 col-md-2">
+                    <button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="縣市">
+                        台北市
+                        <label class="icondown"></label>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">台北市</a></li>
+                        <li><a href="#">新北市</a></li>
+                        <li>
+                            <a href="#">
+                                基隆市
+                            </a>
+                        </li>
+                    </ul>
+                    <asp:dropdownlist id="ddlCity" cssclass="form-control placeholder" autopostback="true" onselectedindexchanged="ddlAddress_SelectedIndexChanged">
+                    </asp:dropdownlist>
+                </div>
+                <div class="btn-group dropdown col-xs-4 col-sm-4 col-md-2">
+                    <button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="鄉鎮市區">
+                        區域
+                        <label class="icondown"></label>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">大同區</a></li>
+                        <li><a href="#">士林區</a></li>
+                        <li>
+                            <a href="#">
+                                北投區
+                            </a>
+                        </li>
+                    </ul>
+                    <asp:dropdownlist id="ddlTownship" cssclass="form-control placeholder" autopostback="true" onselectedindexchanged="ddlTownship_SelectedIndexChanged">
+                    </asp:dropdownlist>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-2">
+                    <input maxlength="5" type=" " required="required" class="form-control dropdown-toggle account-input" iid="txtZipcode" placeholder="郵遞區號">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div iid="promptCity" class="checkfont">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="">地址</label>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input id="txtAddress" class="form-control account-input" placeholder="請輸入您的詳細通訊地址">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" id="promptAddress">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for=" ">婚姻狀態</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcMaritalStatus0" value="0" name="rcMaritalStatus" checked><span></span>未婚
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcMaritalStatus1" value="1" name="rcMaritalStatus"><span></span>已婚
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcMaritalStatus2" value="2" name="rcMaritalStatus"><span></span>其他
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <!-- <div class="checkfont">密碼錯誤</div> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for=" ">有無小孩</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcChildren0" value="0" name="rcChildren" checked><span></span>無
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcChildren1" value="1" name="rcChildren"><span></span>有
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="promptSex" class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for="">最幼小孩年次</label>
+                <div class="btn-group dropdown col-xs-12 col-sm-12 col-md-6">
+                    <button class="form-control select-l " type="button" data-toggle="dropdown" placeholder="縣市">
+                        台北市
+                        <label class="icondown"></label>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">台北市</a></li>
+                        <li><a href="#">新北市</a></li>
+                        <li><a href="#">基隆市</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-xs-12 col-sm-12 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9">
+                    <div class="checkbox checkbox-s">
+                        <input type="checkbox" id="c1-2" name="check" />
+                        <label class="check-frame account-text-s" for="c1-2"><span></span>我願意接收麥當勞最新資訊</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <button type="button" id="" class="account-btn" style="width:100%">確認修改</button>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 account-text">
+                    <span>連結Facebook或Google+社群帳號，未來登入更方便！</span>
+                    <div class="modal-body">
+                        <button type="button" name="imgFacebook_Login" id="imgFacebook_Login" class="fb-btn">
+                            以 Facebook 帳戶登入
+                            <label class="fbicon"></label>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <button type="button" name="imgFacebook_Login" id="imgFacebook_Login" class="google-btn">
+                            以 Google+ 帳戶登入
+                            <label class="googleicon"></label>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

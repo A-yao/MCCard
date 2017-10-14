@@ -1,0 +1,132 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MCCard.Controllers.HomeModel
+
+<!-- 首頁 -->
+<div class="home-crop">
+    <picture onclick="window.open('@ViewBag.BannerUrl')" style="cursor:pointer">
+        <!-- 當解析度大於等於1024像素時，載入此圖-->
+        <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+        <!-- 當解析度低於1024像素時，載入此圖-->
+        <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+    </picture>
+</div>
+<div class="container-fluid">
+    <div class="sub-banner">
+        <div class="row">
+            <div class="col-md-6 nd-box">
+                <div class="visible-sm visible-xs">
+                    <img class="img-responsive img-banner-sm" src="@ViewBag.SubBannerMobileImg1" />
+                </div>
+            </div>
+            <div class="col-md-6 nd-text-box sub-banner-hightlight">
+                <div class="sub-banner-row-content">
+                    <div class="content-title">
+                        最新訊息
+                    </div>
+                    <div class="content-text">
+                        @foreach (var item in Model.News)
+                        {
+                            <p><a id="btn_Home_NewsLink_@item.Title" href="@item.Url" target="_blank">@item.Title</a></p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-push-6 nd-box">
+                <div class="visible-xs visible-sm">
+                    <img class="img-responsive img-banner-sm" src="@ViewBag.SubBannerMobileImg2">
+                </div>
+            </div>
+            <div class="col-md-6 col-md-pull-6 nd-text-box">
+                <div class="sub-banner-row-content ">
+                    <div class="content-title visible-md visible-lg">
+                        @ViewBag.Title
+                    </div>
+                    <div class="content-text visible-md visible-lg">
+                        @ViewBag.Description
+                    </div>
+                    <div class="content-title visible-xs visible-sm">
+                        @ViewBag.TitleMobile
+                    </div>
+                    <div class="content-text visible-xs visible-sm">
+                        @ViewBag.DescriptionMobile
+                    </div>
+                    <div>
+                        <a type="button" id="btn_Home_APPLink" class="main-btn" href="~/MCCardAPP">
+                            完整介紹
+                            <img src="~/wwwroot/Image/desktop_img/btn_arrow.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="img-responsive img-banner visible-md visible-lg"
+             src="@ViewBag.SubBannerImg">
+    </div>    <!-- 桌機版優惠區塊 -->
+    <div class="row hidden-xs hidden-sm coupon-box">
+        @foreach (var item in Model.DesktopImg)
+        {
+            <div class="col-md-3">
+                <img class="img-responsive" src="@item" />
+            </div>
+        }
+        <div class="col-md-12 coupon-link">
+            <a type="button" id="btn_Home_CardGiftLink" class="main-btn-white" href="~/CardIntroduction/Rebate">
+                更多兌換優惠<img src="~/wwwroot/Image/desktop_img/btn_arrow_w.png" />
+            </a>
+        </div>
+    </div>
+    <!-- 手機版優惠區塊 -->
+    <div class="row visible-xs visible-sm coupon-box">
+        @foreach (var item in Model.MobileImg)
+        {
+            <div class="col-xs-6 col-sm-6">
+                <img class="img-responsive" src="@item" />
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        subBannnerResize();
+    });
+    window.addEventListener('resize', function (event) {
+        subBannnerResize();
+    });
+    //斜線圖高度計算
+    function subBannnerResize() {
+        var screen = {
+            height: window.innerHeight,
+            width: window.innerWidth
+        };
+
+        if (screen.width < 1024) return;
+
+        var rowContents = document.getElementsByClassName('sub-banner-row-content');
+
+        var subBannerContentHeight = rowContents[0].offsetHeight > rowContents[1].offsetHeight ? rowContents[0].offsetHeight : rowContents[1].offsetHeight;
+
+        rowContents[0].style.height = subBannerContentHeight + "px";
+        rowContents[1].style.height = subBannerContentHeight + "px";
+
+        var subBannerItem = document.getElementsByClassName('nd-text-box');
+
+        var subBannerRowHeight = screen.width * 1320 / 1920 / 2;
+        var heightPadding = (subBannerRowHeight - subBannerContentHeight) / 2;
+        var leftPaddingItem1 = screen.width * 168 / 1920;
+        var leftPaddingItem2 = screen.width * 128 / 1920;
+
+        for (var i = 0; i < subBannerItem.length; i++) {
+            subBannerItem[i].style.paddingTop = heightPadding + "px";
+            subBannerItem[i].style.paddingBottom = heightPadding + "px";
+        }
+
+        subBannerItem[0].style.paddingLeft = leftPaddingItem1 + "px";
+        subBannerItem[1].style.paddingLeft = leftPaddingItem2 + "px";
+    }
+</script>

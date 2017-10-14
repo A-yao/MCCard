@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text ">麥當勞報報APP</li>
+</ol>
+
+<!-- 麥當勞報報APP -->
+<div class="container-fluid" style="background:white;">
+    <div class="row">
+        <div class="crop">
+            <a href="http://campaign.mcdonalds.com.tw/linkref/20160425/8/" target="_blank">
+                <picture>
+                    <!-- 當解析度大於等於1024像素時，載入此圖-->
+                    <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+                    <!-- 當解析度低於1024像素時，載入此圖-->
+                    <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+                </picture>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <img class="img-responsive hidden-xs hidden-sm center-block" src="@ViewBag.NewsBanner">
+        </div>
+    </div>
+    <!-- 手機版輪播圖 -->
+    <div id="carousel-example-generic" class="visible-xs visible-sm carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="@ViewBag.NewsBannerMobile1" alt="" class="img-responsive center-block">
+            </div>
+            <div class="item">
+                <img src="@ViewBag.NewsBannerMobile2" alt="" class="img-responsive center-block">
+            </div>
+            <div class="item">
+                <img src="@ViewBag.NewsBannerMobile3" alt="" class="img-responsive center-block">
+            </div>
+        </div>
+    </div> 
+</div> 

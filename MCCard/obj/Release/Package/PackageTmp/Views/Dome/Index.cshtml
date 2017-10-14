@@ -1,0 +1,955 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>tab</h2>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#member">電子會員登入/註冊</a></li>
+    <li><a data-toggle="tab" href="#weather">天氣提醒設定</a></li>
+    <li><a data-toggle="tab" href="#Offer">優惠券/歡樂貼使用</a></li>
+    <li><a data-toggle="tab" href="#card">點點卡</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="member" class="tab-pane fade in active panel-group">
+        <div class="panel">
+            <div class="panel-heading panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410777301">Q1.成為電子會員有什麼好處?</a>
+            </div>
+            <div id="collapse_105B783041410777301" class="panel-collapse collapse ">
+                <div class="panel-body">
+                    完成註冊並登入電子會員，只要天天設定天氣提醒，就能每天收到獨享優惠券或歡樂貼！還能享有麥當勞不定期新訊通知或會員專屬活動。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410231394">Q2.註冊時，一直顯示這個手機號碼已被使用，怎麼辦?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410231394" class="panel-collapse collapse">
+                <div class="panel-body">
+                    請先確認是否曾有親友使用您的手機號碼註冊過。若確認未曾註冊過，請撥打客服專線0800-211-321，將由客服人員為您服務。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061910893335">Q3.為什麼我無法用FB／Google+註冊?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783061910893335" class="panel-collapse collapse">
+                <div class="panel-body">
+                    麥當勞報報APP需使用手機號碼進行註冊，但您可在註冊後連結FB／Google+帳號，下次登入更方便快速。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410888664">Q4.忘記密碼怎麼辦?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410888664" class="panel-collapse collapse">
+                <div class="panel-body">
+                    (1)請於會員登入頁面點選【忘記密碼】並輸入您的註冊帳號(即手機號碼)與生日。<br>
+                    (2-1) 系統將優先寄送【忘記密碼通知信】至您註冊時填寫的電子信箱。<br>
+                    (2-2) 若您註冊時未填寫電子信箱，系統將寄送簡訊至您註冊時填寫的手機號碼。<br>
+                    (3) 請按照指示完成密碼變更即可。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410665825">Q5.一直收不到【忘記密碼通知信】怎麼辦?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410665825" class="panel-collapse collapse">
+                <div class="panel-body">
+                    若您一直無法收到，建議查看是否掉入垃圾信件匣中。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410337174">Q6.手機帳號一直無法驗證怎麼辦?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410337174" class="panel-collapse collapse">
+                <div class="panel-body">
+                    請確認您的手機門號可以正常收發簡訊，且未設定拒收簡訊。請注意每次點擊【寄送驗證碼】需間隔三分鐘以上，且每支手機號碼的每日可發送認證簡訊有次數限制。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410451245">Q7.為什麼生日註冊後即無法修改?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410451245" class="panel-collapse collapse">
+                <div class="panel-body">
+                    因生日欄位將作為電子會員忘記密碼時的驗證資料，故無法進行變更。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410228517">Q8.為什麼手機號碼註冊後即無法更改?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410228517" class="panel-collapse collapse">
+                <div class="panel-body">
+                    因每位電子會員是以手機號碼作為帳號，為確保您的使用權益，手機號碼不得轉讓或重覆註冊。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410334384">Q9.為什麼我無法用FB及Google+登入?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410334384" class="panel-collapse collapse">
+                <div class="panel-body">
+                    如想使用FB/Google+帳號登入，需先使用手機號碼完成註冊後，再連結FB/Google+帳號，未來即可使用FB/Google+快速登入。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061315675747">Q10.為什麼我已完成註冊，但還是無法連結FB?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783061315675747" class="panel-collapse collapse">
+                <div class="panel-body">
+                    請先確認您已安裝FB應用程式最新版本，才能順利使用。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783100509114424">Q11.一個人最多可以註冊幾個電子會員帳號?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783100509114424" class="panel-collapse collapse">
+                <div class="panel-body">
+                    麥當勞報報APP電子會員以手機號碼作為帳號，如您有一個以上的手機號碼，您可以申請一個以上之帳號。
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="weather" class="tab-pane fade panel-groug">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410110250">Q1.如何設定或修改天氣提醒時間?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410110250" class="panel-collapse collapse">
+                <div class="panel-body">
+                    (1)點選【首頁】左下方的【設定天氣】<br>
+                    (2)選擇天氣提醒的「城市」，如：台北市<br>
+                    (3)選擇天氣提醒的「時間」，如：上午8:30<br>
+                    (4)選擇天氣提醒的「星期」，如：週一、週四
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410453117">Q2.天氣提醒可以一天有不同時間嗎? (如:星期一上午8:30與下午2:30)</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410453117" class="panel-collapse collapse">
+                <div class="panel-body">
+                    天氣提醒一天只可設定一個時間。如您同一天有不同時間天氣提醒需求，請於當天第一次天氣提醒響起後，重新設定當天的下一次提醒時間。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410225124">Q3.一定要登入電子會員才能設定天氣提醒嗎?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410225124" class="panel-collapse collapse">
+                <div class="panel-body">
+                    您需於登入狀態下，才能領取每日發送的優惠券或歡樂貼。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B7830414103321115">Q4.目前麥當勞報報APP天氣資料來源為何?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B7830414103321115" class="panel-collapse collapse">
+                <div class="panel-body">
+                    (1) 提供機關: 中央氣象局。<br>
+                    (2) 此開放資料依政府資料開放授權條款 (Open Government Data License) 進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。政府資料開放授權條款：http://data.gov.tw/license /<br>
+                    (3) APP天氣資料之更新係與中央氣象局資料同步, 惟因資料傳輸過程, 或有時間差, 實屬正常。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410786367">Q5.為什麼天氣提醒沒有發出聲響?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410786367" class="panel-collapse collapse">
+                <div class="panel-body">
+                    (1) iOS系統：如果您將手機調至靜音或勿擾模式，或是未將APP保持完全開啟運行狀態，iOS系統會限制天氣提醒提示聲無法發出聲響。<br>
+                    (2) Android系統：如果您的手機設定為節電或震動模式可能會造成麥當勞報報APP無法正常運作。請在設置天氣提醒後避免使用節電或震動模式。<br>
+                    (3)  根據不同的操作系統，部分型號手機的天氣提醒提示聲有可能在靜音模式下無法發出聲響。<br>
+                    (4) 請注意，麥當勞報報APP的設計已配合雙系統規格設計，但在某些手機上運行時，APP的功能可能略有不同。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410339987">Q6.天氣提醒聲響起時如何停止?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410339987" class="panel-collapse collapse">
+                <div class="panel-body">
+                    (1)天氣提醒聲響起時，請點擊手機螢幕上的「點我拿驚喜」後提醒聲即可停止並領取每日的驚喜優惠。<br>
+                    (2)Android用戶天氣提醒鈴響2分鐘後即會自行停止。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410111432">Q7.天氣提醒提示聲可以改嗎?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410111432" class="panel-collapse collapse">
+                <div class="panel-body">
+                    很抱歉，目前天氣提醒提示聲是基於使用者體感特別設計的唯一音效。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410453312">Q8.為什麼我同一天設定了好幾次天氣提醒，卻只收到一次優惠券或歡樂貼?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783041410453312" class="panel-collapse collapse">
+                <div class="panel-body">
+                    麥當勞報報APP所提供的優惠券或歡樂貼，將於每天第一次的天氣提醒出現時提供，如果您在當天已經獲得優惠券或歡樂貼，第二次後的天氣提醒提示出現時，即不會再提供。下一次的優惠券或歡樂貼將會在隔日 (00:01過後) 才會出現。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B7830414101121065">Q9.為什麼天氣提醒有出現，但沒有看到優惠券或歡樂貼？</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B7830414101121065" class="panel-collapse collapse">
+                <div class="panel-body">
+                    請確認您已保持登入狀態，當每天第一次天氣提醒出現時，才會出現優惠券或歡樂貼。如沒登入會員，天氣提醒響起時，也無法收到優惠券或歡樂貼。
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061315120495">Q10.為什麼我有設定天氣提醒但沒有出現?</a>
+                </div>
+
+            </div>
+            <div id="collapse_105B783061315120495" class="panel-collapse collapse">
+                <div class="panel-body">
+                    請確認您有開啓【設定天氣】中的【提醒通知】並登入麥當勞報報APP，且沒有將手機關靜音或勿擾模式，以確保天氣提醒鈴響與顯示。
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Offer" class="tab-pane fade">
+        <h3>Offer</h3>
+        <p>Some content in menu 2.</p>
+    </div>
+    <div id="card" class="tab-pane fade">
+        <h3>card</h3>
+        <p>Some content in menu 2.</p>
+    </div>
+</div>
+<div style="display:none;">
+    <div class="row">
+        <div class="common-problem-tab-base">
+            <div id="divTab" class="common-problem-tab-body">
+                <a id="10546100414102271109_CommonProblem_Link" href="#" class="btn-McDonald" onclick="tab('10546100414102271109_CommonProblem')" style="width:25%; text-align: center;">電子會員登入/註冊</a>
+                <a id="1054610041410112466_CommonProblem_Link" href="#" class="btn-McDonald-Cancel" onclick="tab('1054610041410112466_CommonProblem')" style="width:25%; text-align: center;">天氣提醒設定</a>
+                <a id="1054610041410784805_CommonProblem_Link" href="#" class="btn-McDonald-Cancel" onclick="tab('1054610041410784805_CommonProblem')" style="width:25%; text-align: center;">優惠券/歡樂貼使用</a>
+                <a id="1064610032118225196_CommonProblem_Link" href="#" class="btn-McDonald-Cancel" onclick="tab('1064610032118225196_CommonProblem')" style="width:25%; text-align: center;">點點卡</a>
+            </div>
+        </div>
+    </div>
+    <div id="divCommonProblem" class="row problembox">
+        <div class="common-problem-base" id="10546100414102271109_CommonProblem" style="display: block;">
+            <div class="common-problem-body">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion_10546100414102271109">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410777301">Q1.成為電子會員有什麼好處?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410777301" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    完成註冊並登入電子會員，只要天天設定天氣提醒，就能每天收到獨享優惠券或歡樂貼！還能享有麥當勞不定期新訊通知或會員專屬活動。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410231394">Q2.註冊時，一直顯示這個手機號碼已被使用，怎麼辦?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410231394" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    請先確認是否曾有親友使用您的手機號碼註冊過。若確認未曾註冊過，請撥打客服專線0800-211-321，將由客服人員為您服務。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061910893335">Q3.為什麼我無法用FB／Google+註冊?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783061910893335" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    麥當勞報報APP需使用手機號碼進行註冊，但您可在註冊後連結FB／Google+帳號，下次登入更方便快速。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410888664">Q4.忘記密碼怎麼辦?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410888664" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1)請於會員登入頁面點選【忘記密碼】並輸入您的註冊帳號(即手機號碼)與生日。<br>
+                                    (2-1) 系統將優先寄送【忘記密碼通知信】至您註冊時填寫的電子信箱。<br>
+                                    (2-2) 若您註冊時未填寫電子信箱，系統將寄送簡訊至您註冊時填寫的手機號碼。<br>
+                                    (3) 請按照指示完成密碼變更即可。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410665825">Q5.一直收不到【忘記密碼通知信】怎麼辦?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410665825" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    若您一直無法收到，建議查看是否掉入垃圾信件匣中。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410337174">Q6.手機帳號一直無法驗證怎麼辦?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410337174" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    請確認您的手機門號可以正常收發簡訊，且未設定拒收簡訊。請注意每次點擊【寄送驗證碼】需間隔三分鐘以上，且每支手機號碼的每日可發送認證簡訊有次數限制。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410451245">Q7.為什麼生日註冊後即無法修改?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410451245" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    因生日欄位將作為電子會員忘記密碼時的驗證資料，故無法進行變更。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410228517">Q8.為什麼手機號碼註冊後即無法更改?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410228517" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    因每位電子會員是以手機號碼作為帳號，為確保您的使用權益，手機號碼不得轉讓或重覆註冊。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410334384">Q9.為什麼我無法用FB及Google+登入?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410334384" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    如想使用FB/Google+帳號登入，需先使用手機號碼完成註冊後，再連結FB/Google+帳號，未來即可使用FB/Google+快速登入。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061315675747">Q10.為什麼我已完成註冊，但還是無法連結FB?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783061315675747" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    請先確認您已安裝FB應用程式最新版本，才能順利使用。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783100509114424">Q11.一個人最多可以註冊幾個電子會員帳號?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783100509114424" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    麥當勞報報APP電子會員以手機號碼作為帳號，如您有一個以上的手機號碼，您可以申請一個以上之帳號。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="common-problem-base" id="1054610041410112466_CommonProblem" style="display: none;">
+            <div class="common-problem-body">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion_1054610041410112466">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410110250">Q1.如何設定或修改天氣提醒時間?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410110250" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1)點選【首頁】左下方的【設定天氣】<br>
+                                    (2)選擇天氣提醒的「城市」，如：台北市<br>
+                                    (3)選擇天氣提醒的「時間」，如：上午8:30<br>
+                                    (4)選擇天氣提醒的「星期」，如：週一、週四
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410453117">Q2.天氣提醒可以一天有不同時間嗎? (如:星期一上午8:30與下午2:30)</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410453117" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    天氣提醒一天只可設定一個時間。如您同一天有不同時間天氣提醒需求，請於當天第一次天氣提醒響起後，重新設定當天的下一次提醒時間。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410225124">Q3.一定要登入電子會員才能設定天氣提醒嗎?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410225124" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    您需於登入狀態下，才能領取每日發送的優惠券或歡樂貼。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B7830414103321115">Q4.目前麥當勞報報APP天氣資料來源為何?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B7830414103321115" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1) 提供機關: 中央氣象局。<br>
+                                    (2) 此開放資料依政府資料開放授權條款 (Open Government Data License) 進行公眾釋出，使用者於遵守本條款各項規定之前提下，得利用之。政府資料開放授權條款：http://data.gov.tw/license /<br>
+                                    (3) APP天氣資料之更新係與中央氣象局資料同步, 惟因資料傳輸過程, 或有時間差, 實屬正常。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410786367">Q5.為什麼天氣提醒沒有發出聲響?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410786367" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1) iOS系統：如果您將手機調至靜音或勿擾模式，或是未將APP保持完全開啟運行狀態，iOS系統會限制天氣提醒提示聲無法發出聲響。<br>
+                                    (2) Android系統：如果您的手機設定為節電或震動模式可能會造成麥當勞報報APP無法正常運作。請在設置天氣提醒後避免使用節電或震動模式。<br>
+                                    (3)  根據不同的操作系統，部分型號手機的天氣提醒提示聲有可能在靜音模式下無法發出聲響。<br>
+                                    (4) 請注意，麥當勞報報APP的設計已配合雙系統規格設計，但在某些手機上運行時，APP的功能可能略有不同。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410339987">Q6.天氣提醒聲響起時如何停止?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410339987" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1)天氣提醒聲響起時，請點擊手機螢幕上的「點我拿驚喜」後提醒聲即可停止並領取每日的驚喜優惠。<br>
+                                    (2)Android用戶天氣提醒鈴響2分鐘後即會自行停止。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410111432">Q7.天氣提醒提示聲可以改嗎?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410111432" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    很抱歉，目前天氣提醒提示聲是基於使用者體感特別設計的唯一音效。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410453312">Q8.為什麼我同一天設定了好幾次天氣提醒，卻只收到一次優惠券或歡樂貼?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410453312" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    麥當勞報報APP所提供的優惠券或歡樂貼，將於每天第一次的天氣提醒出現時提供，如果您在當天已經獲得優惠券或歡樂貼，第二次後的天氣提醒提示出現時，即不會再提供。下一次的優惠券或歡樂貼將會在隔日 (00:01過後) 才會出現。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B7830414101121065">Q9.為什麼天氣提醒有出現，但沒有看到優惠券或歡樂貼？</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B7830414101121065" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    請確認您已保持登入狀態，當每天第一次天氣提醒出現時，才會出現優惠券或歡樂貼。如沒登入會員，天氣提醒響起時，也無法收到優惠券或歡樂貼。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061315120495">Q10.為什麼我有設定天氣提醒但沒有出現?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783061315120495" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    請確認您有開啓【設定天氣】中的【提醒通知】並登入麥當勞報報APP，且沒有將手機關靜音或勿擾模式，以確保天氣提醒鈴響與顯示。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="common-problem-base" id="1054610041410784805_CommonProblem" style="display: none;">
+            <div class="common-problem-body">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion_1054610041410784805">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410556932">Q1.我的優惠券或歡樂貼，會儲存在那裡?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410556932" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    您每日領取的優惠券或歡樂貼，將儲存於【驚喜收藏】。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410116549">Q2.要怎麼兌換餐點優惠券呢?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410116549" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1) 請在抵達麥當勞/得來速，打開您欲兌換之優惠券<br>
+                                    (2) 請在結帳服務人員面前按下【兌換優惠】，再按下【立即兌換】後，將會出現兩分鐘倒數計時器。<br>
+                                    (3) 在此同時服務人員將開始為您準備餐點，當兩分鐘的倒數計時完畢，該優惠券的狀態將轉換為已兌換。<br>
+                                    *請注意，本優惠券不適用於歡樂送服務。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410450977">Q3.為什麼我沒收到優惠券或歡樂貼?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410450977" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1) 提醒您需在手機上網且連線良好狀態下設定天氣提醒，並在天氣提醒鈴聲響起時，按下【點我拿驚喜】以獲得當日的優惠券或歡樂貼。<br>
+                                    (2) 若您沒有看到優惠券或歡樂貼顯示，請先至【驚喜收藏】查看。<br>
+                                    (3) 若【驚喜收藏】中仍未存入當日的優惠券或歡樂貼，請您點選【用戶小幫手】中的【聯絡我們】填寫相關問題，以便客服中心為您查詢。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783061910893906">Q4.歡樂貼怎麼使用?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783061910893906" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    集滿6張歡樂貼，即可兌換一張由系統隨機發送的麥當勞優惠券。當月發放的歡樂貼，將保留至次月月底，如未兌換，將於次月月底的隔日被刪除。例如：6/1獲得的歡樂貼，將於7/31到期，如未兌換，將於8/1被刪除。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410672469">Q5.為什麼我連續好幾天都拿到歡樂貼，沒有優惠券?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410672469" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    所有優惠券或歡樂貼皆由系統隨機分發，請繼續每天設定天氣提醒領取不同的驚喜優惠。歡樂貼集滿6張，可自行選擇兌換的時間點並兌換優惠券乙張。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B7830414107861023">Q6.為什麼我連續好幾天都拿到同一種優惠券，你們只有一種優惠券嗎?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B7830414107861023" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    麥當勞報報APP不定期會提供不同種類的優惠券，所有優惠券或歡樂貼皆由系統隨機分發，請繼續每天設定天氣提醒領取不同的驚喜優惠。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410113503">Q7.現在【驚喜收藏】是有優惠券或歡樂貼，可是我看不到驚喜上的圖片或兌換鍵，不能進行兌換怎麼辦?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410113503" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    (1) 請確保您的手機上網並連線良好。<br>
+                                    (2) 請完全退出之後，重新打開APP。<br>
+                                    (3) 請再查看一下【驚喜收藏】内是否有驚喜。<br>
+                                    (4) 如果您的驚喜圖片仍然空白或不完整，請點擊圖片重新載入並以全屏幕觀看。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410453744">Q8.我的【驚喜收藏】中的內容是否會被自動清除?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410453744" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    會。爲使您的【驚喜收藏】釋出更多儲存空間，系統將會自動清除過期的優惠券或歡樂貼：<br>
+                                    (1) 所有已截止(過期)或已兌換的優惠券：將於7天後自動清除。<br>
+                                    (2) 當月發放的歡樂貼：將保留至隔月月底，如未兌換，將於次月月底的隔日被刪除。例如：6/1獲得的歡樂貼，將於7/31到期，如未兌換，將於8/1被清除。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410451154">Q9.我的【驚喜收藏】的內容在我登出APP後是否會被刪除?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410451154" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    不會。您的【驚喜收藏】內仍有效之優惠券或歡樂貼，均會在您下次使用同一電子會員帳號登入時顯示。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410450783">Q10.如果刪除了此APP，重新下載後再次登入，我的【驚喜收藏】的內容是否也會同時被刪除？</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410450783" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    不會。您的【驚喜收藏】內仍有效之優惠券或歡樂貼，均會在您下次使用同一電子會員帳號登入時顯示，但請注意因該應用程式被刪除，當重新安裝完成登入後，必須重新設定天氣提醒，以利每日持續收到優惠券或歡樂貼。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_105B783041410342494">Q11.為什麼我看不到完整的優惠券兌換期限與剩餘時間?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_105B783041410342494" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    建議可將您的手機字型大小設定顯示調成「適中」或「小」，待設定完成後，重新進入麥當勞報報APP，即可完整看到優惠券的兌換期限與剩餘時間。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="common-problem-base" id="1064610032118225196_CommonProblem" style="display: none;">
+            <div class="common-problem-body">
+                <div class="col-lg-12">
+                    <div class="panel-group" id="accordion_1064610032118225196">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B783032118334591">Q1.點點卡是什麼?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B783032118334591" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    「麥當勞點點卡」為台灣麥當勞餐廳股份有限公司發行之儲值積點卡，您可使用點點卡於餐廳購買餐點，減少攜帶現金及找零困擾。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B783032308333927">Q2.點點卡如何使用?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B783032308333927" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    點點卡以商品及空卡方式出售。本商品售出後，需先使用現金完成儲值，始得進行交易。點點卡單筆儲值最低金額為NT$100元，單張點點卡儲值後餘額最高上限為NT$10,000元(單筆儲值以百元為單位)。使用點點卡於儲值時開立儲值證明，至麥當勞以點點卡支付消費金額時，方開立當次消費金額發票。本卡之儲值金額無使用期限，所儲值金額已存於玉山銀行信託專戶，專款專用，信託期間自儲值日起算一年，信託期間屆滿後，即由本公司自信託專戶領回等值款項，但卡片持有人仍得向本公司請求履行相關義務。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B7830323082291022">Q3.點點卡保管及使用注意事項</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B7830323082291022" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    由於點點卡為線圈晶片規格，應避免曝露於高溫、彎折、磨損或裁切破壞，請勿將點點卡置於衣褲後口袋、背包等，以避免不小心的壓迫，造成卡片出現裂痕致線圈損毀而無法感應讀取。使用時，請勿與多張感應式晶片卡片(如悠遊卡、信用卡或金融卡)同時觸碰感應區，以避免造成無法感應判斷或扣款等異常狀況；勿將點點卡放置金屬製品附近，避免影響感應讀取之狀況。點點卡在未記名前，視同無記名儲值積點卡，若不慎遺失、遭竊、詐取、毀損、滅失或遭第三人佔有等情事，儲值金額視同現金遺失，恕無法提供金額與點數賠償或掛失止付，請務必妥善保管。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B783032308333471">Q4.點點卡如何使用麥當勞報報 APP 之相關服務？</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B783032308333471" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    您可登入/註冊麥當勞報報APP，進入點點卡→點點卡帳戶→點點卡記名，輸入點點卡上顯示之卡號及驗證碼完成記名作業，記名完成後即可管理您的點點卡帳戶，進行交易紀錄查詢、移轉餘額點數等服務，若已記名之點點卡不慎遺失，亦可立即進行掛失作業，惟申請掛失之卡片無法復卡使用。&lt;貼心提醒&gt;：已記名之點點卡，其在消費使用上不限本人持卡消費使用，請持卡人妥善保管。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B7830323092281087">Q5.點點卡點數回饋與使用方式?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B7830323092281087" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    當您使用點點卡支付消費金額時，單筆消費金額每滿NT$10元可獲贈1點(NT$20元可獲贈2點…以此類推，不足10元之金額恕不贈送點數)，點點卡消費獲贈之點數會在當筆消費時間24小時後由系統派送至點點卡帳戶中，所獲贈的點數可至麥當勞餐廳兌換所公告之指定商品。指定兌換商品項目將不定期更換，提供多元的兌換選擇。使用點數兌換商品時，僅開立兌換證明。點數之有效期限至後年的3月31日。例如：2017年度消費累計所贈送之點點卡點數，使用有效期限至2019年3月31日止，以此類推。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B783032309343824">Q6.若點點卡遺失可如何申請掛失?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B783032309343824" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    點點卡在消費使用上屬於無記名儲值積點卡，您必須將點點卡記名於您的點點卡帳戶中，方能依照系統權益條款進行掛失申請。掛失步驟 : 登入麥當勞報報APP→進入點點卡→點點卡帳戶→更多選項→申請掛失，將快速且便利完成掛失作業。一旦掛失成功，該卡將無法消費使用，且無法進行復卡。點點卡申請掛失成功後，該卡的剩餘金額及點數會為您保留。您可立即至點點卡帳戶→更多選項→轉出餘額點數，將掛失卡中的全部剩餘金額及點數移轉至您帳戶下記名之其它麥當勞點點卡繼續消費。<br>
+                                    &lt;貼心提醒&gt;：(1)若您沒有其他已記名的卡片(只有掛失的那一張點點卡)，您需先自行至麥當勞購買新的點點卡，並於您的帳戶中完成記名才可以進行移轉 (2)餘額及點數將全額移轉至單一指定卡片，無法選擇移轉部份金額及點數。為保障您的權益，掛失卡片及移轉餘額點數需由持卡人自行作業，將無法透過客服中心處理。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B783032309450447">Q7.若點點卡損壞要如何處理？</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B783032309450447" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    本卡可重複多次儲值使用，點點卡售出經拆封或使用後恕不辦理退換卡。如有非人為因素損壞導致無法使用時，購買5日內憑購買發票至原餐廳進行換卡。請注意，點點卡圖樣採限量發行，若該卡面庫存用罄，將以其他現有卡面替代，恕無法指定卡面，台灣麥當勞餐廳股份有限公司保有換發卡片款式之選擇權利。
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_106B783032309896918">Q8.若不想再使用點點卡, 要如何申請點點卡中的儲值金退費?</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse_106B783032309896918" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    點點卡儲值金無使用期限，若您因個人因素欲退點點卡內的儲值金(恕不接受部份餘額或餘額扣除相關費用後為負值退費)，請撥打客服專線0800-211-321或至麥當勞報報APP「聯絡我們」專區，將由客服人員為您解說相關作業及服務。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Enter email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password:</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label><input type="checkbox"> Remember me</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title" id="mySmallModalLabel">Small modal</h4> </div>
+            <div class="modal-body"> ... </div>
+        </div>
+    </div>
+</div>
+
+<!-- Small modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title" id="mySmallModalLabel">Small modal</h4> </div>
+            <div class="modal-body"> ... </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    //$(document).ready(function () { if ($('#10546100414102271109_CommonProblem_Link')) $('#10546100414102271109_CommonProblem_Link').click(); });
+    //]]>
+</script>

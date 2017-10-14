@@ -1,0 +1,226 @@
+﻿
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span>
+    </button>
+    <h3 class="modal-title">點點卡報報APP會員登入</h3>
+</div>
+<div id="signInBody" class="modal-body">
+    @*<div>*@
+    <div>
+        <div class="modal-body">
+            <input name="txtUID" type="text" maxlength="10" id="txtUID" class="form-control account-input" placeholder="帳號 / 請輸入手機號碼">
+        </div>
+        <div class="modal-body">
+            <input name="txtPassword" type="password" maxlength="12" id="txtPassword" class="form-control account-input" placeholder="6-12位英數組合密碼">
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <input name="txtAuthCode" type="text" maxlength="5" id="txtAuthCode" class="form-control account-input" placeholder="請輸入圖形認證碼" style="width:100%;">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="pull-left">
+                        <img id="loginCaptcha" class="imgCaptcha" @*style="width:50%"*@ />
+                        <input type="image" id="btnCaptchaReload" style="margin-left: 10px; vertical-align: top; margin-top: 5px;" src="~/wwwroot/Image/desktop_img/ic_reload.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body" style="height: 75px;">
+            <input type="button" value="登入" id="btn_Memerb_Login" class="btn-block btn-McDonald account-btn" />
+        </div>
+        <div class="modal-body alert-text" style="z-index:200;">
+            <div style="float: left; text-align: left; width: 55%;">
+                <a id="linkRegister" href="~/SignUp" class="alert-text">新用戶註冊</a>
+            </div>
+            <div style="float: left; text-align: right; width: 45%;">
+                <a id="linkMyPassword" data-toggle="modal" data-target=".linkMyPassword" class="pointer alert-text">忘記密碼</a>
+            </div>
+        </div>
+        @*</div>*@
+    </div>
+    <div>
+        <div class="modal-body">
+            <img class="imgor" style="width: 100%;" src="~/wwwroot/Image/desktop_img/img_or.png">
+        </div>
+    </div>
+    <div>
+        <div class="modal-body">
+            @*<img id="btn_Memerb_Login_FB" style="width: 100%;min-height:40px;max-height:60px; cursor: pointer;" src="~/wwwroot/Image/desktop_img/ic_account_fb.png" onclick="FB_SSO()">*@
+            <div class="div_Social div_Social_FB" onclick="FB_SSO()">
+                <label style="cursor: pointer;">以Facebook帳戶登入</label>
+            </div>
+        </div>
+        <div class="modal-body">
+            @*<img id="btn_Memerb_Login_Google" style="width: 100%;min-height:40px;max-height:60px; cursor: pointer;" src="/wwwroot/Image/desktop_img/btn_google_login.png">*@
+            <div class="div_Social div_Social_G" id="btn_Memerb_Login_Google">
+                <label style="cursor: pointer;">以Google+ 帳戶登入</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //Google
+        gapi.load('auth2', function () {
+            var e = document.getElementById('btn_Memerb_Login_Google');
+            gapi.auth2.init().attachClickHandler(e, {},
+                function (googleUser) {
+                    CommunityLogin("Google", googleUser.getBasicProfile().getId());
+                }, function (error) {
+                    //alert(JSON.stringify(error, undefined, 2));
+                });
+        });
+
+        GetCaptchaImage();
+        $("#btn_Memerb_Login").on("click", function () {
+            if (!checkInput({
+                control: $('#txtUID'),
+                minLength: 10,
+                maxLength: 10,
+                isNum: true
+            })) {
+                showMessageBox({ title: '提示', body: '帳號必須為10位數' });
+                return false;
+            }
+
+            if (!checkInput({
+                control: $('#txtPassword'),
+                minLength: 6,
+                maxLength: 12,
+                isEng: true,
+                isNum: true,
+                isCH: true,
+                isMask: allMask
+            })) {
+                showMessageBox({ title: '提示', body: '密碼必須為6~12位數' });
+                return false;
+            }
+
+            if (!checkInput({
+                control: $('#txtAuthCode'),
+                minLength: 5,
+                maxLength: 5,
+                isEng: true,
+                isNum: true
+            })) {
+                showMessageBox({ title: '提示', body: '驗證碼必須為5位數' });
+                return false;
+            }
+
+            if (!checkAuthCode()) {
+                return false;
+            }
+
+            checkUserLogin();
+        });
+    });
+
+    function checkAuthCode() {
+        var check = false;
+        var ObjData = {
+            "captcha": $('#txtAuthCode').val()
+        };
+
+        ExecuteAjax('@Url.Action("CheckCaptchaLogin", "Authority")', ObjData, function (data) {
+            if (data.Result === true) {
+                check = true
+            }
+            else {
+                showMessageBox({ title: '圖形驗證碼錯誤', body: '請輸入正確的圖形驗證碼' });
+            }
+        })
+        return check;
+    }
+
+    //登入
+    function checkUserLogin() {
+        var ObjData = {
+            "uid": $('#txtUID').val(),
+            "pwd": $('#txtPassword').val()
+        };
+
+        ExecuteAjax('@Url.Action("Login", "Authority")', ObjData, function (data) {
+            if (data.Result === true) {
+                ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+                    //$('#liuserInfo').html('<a onclick="Logout()" href="" class="nav-text">Hi ' + data.Result.LastName + data.Result.FirstName + ' 登出</a> ');
+                    $('#liuserInfo').html('<a id="btn_Menu_Member" href="" class="dropdown-toggle nav-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'
+                    + 'Hi ' + data.Result.LastName + data.Result.FirstName + '</a>'
+                    + '<ul class="dropdown-menu" style="margin-left: auto;"><li class="arrow_t_int DesktopView"></li><li class="arrow_t_out DesktopView"></li>'
+                    + '<li><a id="btn_Menu_Member_Data_Maintain" class="nav-text-dropdown" href="/Member/UserProfile">修改個人資料</a></li>'
+                    + '<li role="separator" class="divider"></li>'
+                    + '<li><a onclick="Logout(); return false" href="" class="nav-text-dropdown" >登出</a></li></ul>');
+
+                    $('#liuserInfo').show();
+                    $('#liLogin').hide();
+                    $('.Login').modal('toggle');
+                    //location.reload();
+                    var url = window.location.toString();
+                    window.location = url.replace(/#Login/, '');
+                });
+            }
+            else {
+                showMessageBox({ title: '提示', body: '帳號或密碼錯誤' });
+            }
+        });
+    }
+
+    //FB登入
+    function FB_SSO() {
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                FB.api('/me', { fields: 'id' }, function (response) {
+                    CommunityLogin("FaceBook", response.id);
+                });
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                FB.login();
+                console.log('not authorized')
+            } else if (response.status === 'unknown') {
+                FB.login(function (response) {
+                    if (response.status === 'connected') {
+                        CommunityLogin("FaceBook", response.authResponse.userID);
+                    }
+                });
+            }
+        });
+    }
+    function CommunityLogin(community, id) {
+        var PostData = {
+            community: community,
+            id: id
+        }
+        ExecuteAjax('@Url.Action("CommunityLogin", "Authority")', PostData, function (data) {
+            if (data.Result === true) {
+                ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+                    //$('#liuserInfo').html('<a onclick="Logout()" href="" class="nav-text">Hi ' + data.Result.LastName + data.Result.FirstName + ' 登出</a> ');
+                    $('#liuserInfo').html('<a id="btn_Menu_Member" href="" class="dropdown-toggle nav-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'
+                    + 'Hi ' + data.Result.LastName + data.Result.FirstName + '</a>'
+                    + '<ul class="dropdown-menu" style="margin-left: auto;"><li class="arrow_t_int DesktopView"></li><li class="arrow_t_out DesktopView"></li>'
+                    + '<li><a id="btn_Menu_Member_Data_Maintain" class="nav-text-dropdown" href="/Member/UserProfile">修改個人資料</a></li>'
+                    + '<li role="separator" class="divider"></li>'
+                    + '<li><a onclick="Logout(); return false" href="" class="nav-text-dropdown" >登出</a></li></ul>');
+
+                    $('#liuserInfo').show();
+                    $('#liLogin').hide();
+                    $('.Login').modal('toggle');
+                    //location.reload();
+                    var url = window.location.toString();
+                    window.location = url.replace(/#Login/, '');
+                });
+            }
+            else {
+                showMessageBox({ title: '提示', body: data.Message });
+            }
+        });
+    }
+
+    //圖形驗證碼
+    $("#btnCaptchaReload").click(function () { document.getElementById('loginCaptcha').src = '/Authority/GetImageLogin?r=' + (new Date()).getTime(); return false; });
+    function GetCaptchaImage() {
+        var getImgID = document.getElementById("loginCaptcha");
+        getImgID.src = "/Authority/GetImageLogin";
+    }
+</script>

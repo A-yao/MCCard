@@ -1,0 +1,853 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="signup-box">
+    <div class="stepwizard">
+        <div class="row stepwizard-row setup-panel">
+            <div class="col-sm-4 col-md-4 col-lg-4 stepwizard-step stepwizard-step-on">
+                <span href="#step-1" type="button" class="stepbar-on"><label class="circle">1</label> <span class="Tab-View">設定帳號</span></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 stepwizard-step">
+                <span href="#step-2" type="button" class="stepbar-off" disabled="disabled"><label class="circle">2</label><span class="Tab-View">填寫會員基本資料</span></span>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 stepwizard-step">
+                <span href="#step-3" type="button" class="stepbar-off" disabled="disabled"><label class="circle">3</label> <span class="Tab-View">註冊成功</span></span>
+            </div>
+        </div>
+    </div>
+    <!-- 設定帳號 -->
+    <div class="row setup-content" id="step-1">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="account">帳號</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input maxlength="10" type="text" required="required" class="form-control account-input" id="account" placeholder="帳號/請輸入手機號碼">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptUID" class="checkfont">
+                        請填寫正確手機號碼，註冊後即無法變更
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="pwd">密碼</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input maxlength="12" type="password" required="required" class="form-control account-input" id="pwd" placeholder="6-12位英數組合密碼">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptPassword1" class="checkfont"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="pwd-check">確認密碼</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input maxlength="12" type="password" required="required" class="form-control account-input" id="pwd-check" placeholder="請再次輸入密碼">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <div id="promptPassword2" class="checkfont"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">手機認證碼</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input maxlength="10" type="text" required="required" class="form-control account-input-s " id="txtSMSAuthCode" style="width:50%" placeholder="請輸入手機認證碼">
+                    <div class="pull-right" style="width:48%">
+                        <button type="button" id="btnSendSMSAuthCode" class="account-btn-s" style="width:100%">寄送認證碼</button>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div id="promptSMSAuthCode" class="checkfont"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="photo-pwd">圖形認證碼</label>
+                <div class="col-sm-6 col-md-6">
+                    <input maxlength="10" type="text" required="required" class="form-control account-input-s" id="photo-pwd" style="width:50%" placeholder="請輸入圖形認證碼">
+                    <div class="pull-right" style="width:50%">
+                        <img id="imgCaptcha" src="" alt="" class="s-img-margin-left imgCaptcha">
+                        <input type="image" id="btnCaptchaRefresh" style="margin-left: 10px; vertical-align: super;" src="~/wwwroot/Image/desktop_img/ic_reload.png">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-sm-3 col-md-3"></div>
+                <div class="col-sm-9 col-md-9">
+                    <div class="checkbox checkbox-s">
+                        <input type="checkbox" id="c1-1" name="check" />
+                        <label class="check-frame account-text-s" for="c1-1"><span></span>我已閱讀並同意<a href="" data-toggle="modal" data-target=".TermsOfUse">使用條款</a>與<a href="" data-toggle="modal" data-target=".Privacy">隱私權保護聲明</a></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3 col-md-3">
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <button type="button" id="SettingAcc" class="account-btn nextBtn" style="width:100%">下一步</button>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 填寫會員基本資料 -->
+    <div class="row setup-content" id="step-2">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3 account-text">手機號碼(帳號)</label>
+                <label id="acc" class="control-label col-sm-3 account-text text-left"></label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 姓名</label>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <input maxlength="2" type="text" required="required" class="form-control account-input" id="txtLastName" placeholder="請輸入您的姓氏">
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <input maxlength="4" type="text" required="required" class="form-control account-input" id="txtFirstName" placeholder="請輸入您的名字">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptUserName" class="checkfont">請填寫真實姓名以利日後活動中獎通知</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 性別</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text" style="width: 100px; float: left">
+                            <input type="radio" id="rcSex1" value="1" name="rcSex" checked><span></span>男
+                        </label>
+                        <label class="radio-inline account-text" style="width: 103px; float: left">
+                            <input type="radio" id="rcSex0" value="0" name="rcSex"><span></span>女
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcSex2" value="2" name="rcSex"><span></span>其他
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 生日</label>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2">
+                    <select id="year" class="form-control dropdown-toggle account-input"></select>
+                    @*<button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="年份">
+                        1980年
+                        <label class="icondown"></label>
+                        </button>*@
+                    @*<ul class="dropdown-menu">
+                        <li><a href="#">1980年</a></li>
+                        <li><a href="#">1981年</a></li>
+                        <li><a href="#">1982年</a></li>
+                        </ul>*@
+                    @*<asp:dropdownlist id="ddlBirthdayYear" cssclass="form-control placeholder" autopostback="true" onselectedindexchanged="ddlBirthday_SelectedIndexChanged">
+                        </asp:dropdownlist>*@
+                </div>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2">
+                    <select id="month" class="form-control dropdown-toggle account-input"></select>
+                    @*<button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="月份">
+                        3月
+                        <label class="icondown"></label>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="#">1月</a></li>
+                        <li><a href="#">2月</a></li>
+                        <li><a href="#">3月</a></li>
+                        </ul>
+                        <asp:dropdownlist id="ddlBirthdayMonth" cssclass="form-control placeholder" onselectedindexchanged="ddlBirthday_SelectedIndexChanged" autopostback="true">
+                        </asp:dropdownlist>*@
+                </div>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2">
+                    <select id="date" class="form-control dropdown-toggle account-input">日期</select>
+                    @*<button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="月份">
+                        28日
+                        <label class="icondown"></label>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="#">1日</a></li>
+                        <li><a href="#">2日</a></li>
+                        <li><a href="#">3日</a></li>
+                        </ul>
+                        <asp:dropdownlist id="ddlBirthdayDay" cssclass="form-control placeholder"></asp:dropdownlist>*@
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptBirthday" class="checkfont">
+                        請輸入正確生日，以確保生日優惠不漏接貼心提醒，註冊完成後即無法更改
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* Email</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input maxlength="50" type="email" class="form-control account-input" id="txtEmail" placeholder="請輸入您的email">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptEmail" class="checkfont"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="promptSex" class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 居住地區</label>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2">
+                    <select id="city" class="form-control dropdown-toggle account-input"></select>
+
+                    @*<button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="縣市">
+                        台北市
+                        <label class="icondown"></label>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="#">台北市</a></li>
+                        <li><a href="#">新北市</a></li>
+                        <li>
+                        <a href="#">
+                        基隆市
+                        </a>
+                        </li>
+                        </ul>*@
+                    @*<asp:dropdownlist id="ddlCity" cssclass="form-control placeholder" autopostback="true" onselectedindexchanged="ddlAddress_SelectedIndexChanged">
+                        </asp:dropdownlist>*@
+                </div>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2">
+                    <select id="Town" class="form-control dropdown-toggle account-input">
+                        <option value="">鄉鎮市區</option>
+                    </select>
+
+
+                    @*<button class="btn dropdown-toggle select-l " type="button" data-toggle="dropdown" placeholder="鄉鎮市區">
+                        區域
+                        <label class="icondown"></label>
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a href="#">大同區</a></li>
+                        <li><a href="#">士林區</a></li>
+                        <li>
+                        <a href="#">
+                        北投區
+                        </a>
+                        </li>
+                        </ul>
+                        <asp:dropdownlist id="ddlTownship" cssclass="form-control placeholder" autopostback="true" onselectedindexchanged="ddlTownship_SelectedIndexChanged">
+                        </asp:dropdownlist>*@
+                </div>
+                <div class="col-xs-4 col-sm-2 col-md-2">
+                    <input maxlength="5" type="text" required="required" class="form-control dropdown-toggle account-input" id="txtZipcode" disabled="disabled" placeholder="郵遞區號">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptCity" class="checkfont">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">地址</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input id="txtAddress" class="form-control account-input" placeholder="請輸入您的詳細通訊地址">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="promptAddress">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">婚姻狀態</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text" style="width: 97px">
+                            <input type="radio" id="rcMaritalStatus0" value="0" name="rcMaritalStatus" checked><span></span>未婚
+                        </label>
+                        <label class="radio-inline account-text" style="width: 97px">
+                            <input type="radio" id="rcMaritalStatus1" value="1" name="rcMaritalStatus"><span></span>已婚
+                        </label>
+                        <label class="radio-inline account-text" style="width: 97px">
+                            <input type="radio" id="rcMaritalStatus2" value="2" name="rcMaritalStatus"><span></span>其他
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">有無小孩</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text" style="width: 97px">
+                            <input type="radio" id="rcChildren0" value="0" name="rcChildren" checked><span></span>無
+                        </label>
+                        <label class="radio-inline account-text" style="width: 97px">
+                            <input type="radio" id="rcChildren1" value="1" name="rcChildren"><span></span>有
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="hideChildrenYear" style="display:none">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">最幼小孩年次</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <select id="ChildrenYear" class="form-control dropdown-toggle account-input"></select>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptChildrenYear" class="checkfont"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-xs-12 col-sm-3 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9">
+                    <div class="checkbox checkbox-s">
+                        <input type="checkbox" id="c1-2" name="check" />
+                        <label class="check-frame account-text-s" for="c1-2"><span></span>我願意接收麥當勞最新資訊</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3 col-md-3">
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <button type="button" id="btnRegister" class="account-btn nextBtn" style="width:100%">下一步</button>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid setup-content" id="step-3">
+        <div class="row">
+            <div id="regstep" class="form-group">
+                <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-4">
+                    <img src="~/wwwroot/Image/desktop_img/ic_done.png" alt="" class="" />
+                </div>
+                <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12  col-md-8">
+                    <h2>註冊成功</h2>
+                    <span>成謝您的註冊，請重新登入，即可開始使用麥當勞電子會服務</span>
+                    <div class="">
+                        <button type="button" class="nextBtn account-btn" id="ReLogin">重新登入</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-item-title form-item-title-1  col-xs-12 col-sm-12 col-md-4">
+                <img src="~/wwwroot/Image/desktop_img/ic_link.png" alt="" class="" />
+            </div>
+            <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12 col-md-8">
+                <h2>連結社群帳號</h2>
+                <span>連結Facebook或Google+社群帳號，未來登入更方便！</span>
+                <div class="modal-body">
+                    <button type="button" name="imgFacebook_Login" id="imgFacebook_Login" class="fb-btn" onclick="Community('FB')">
+                        連結 Facebook 帳戶
+                        <label class="fbicon"></label>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <button type="button" name="imgFacebook_Login" id="imgFacebook_Login" class="google-btn" onclick="Community('Google')">
+                        連結 Google+ 帳戶
+                        <label class="googleicon"></label>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="divMessageBox">
+    <link type="text/css" href="css/message-box.css" rel="stylesheet">
+    <div id="background" class="background-message-box" style="display: none; width: 1263px; height: 875px;"></div>
+    <div id="messageBox" class="message-box" style="z-index: 9999; display: none; left: 381.5px; top: 462.833px;">
+        <div class="message-box-body">
+            <input type="image" id="btnMessageBoxClose" src="/wwwroot/Image/Other/close-black.png" class="message-box-close">
+            <div id="messageBoxTitle" class="message-box-title">
+                <h2><span id="msgtitle">同意服務及隱私條款</span><hr></h2>
+            </div>
+            <div>
+                <div id="messageBoxBody" class="message-box-body" style="padding-left: 20px; padding-right: 20px;"><span id="msgbody">請先勾選同意服務及隱私條款</span></div>
+            </div>
+            <div class="message-box-confirm">
+                <div>&nbsp;</div>
+                <div><input type="button" id="btnMessageBoxConfirm" value="確認" class="btn btn-lg btn-block btn-McDonald"></div>
+                <div>&nbsp;</div>
+            </div>
+            <div class="message-box-footer">&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    //For Step1
+    $(document).ready(function () {
+        var allWells = $('.setup-content'),
+            navListItems = $('div.setup-panel div span');
+        allWells.hide();//隱藏全部Step
+
+        navListItems.change(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            $(".stepwizard-step-in").removeClass("stepwizard-step-in");
+            if (!$item.hasClass('disabled')) {
+                // navListItems.removeClass('stepbar-on').addClass('stepbar-off');
+                $item.addClass('stepbar-on');
+                $item.parent().addClass("stepwizard-step-on").addClass("stepwizard-step-in");
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        $("#ReLogin").click(function () {
+            window.location.href = '/#Login';
+        });
+
+        //按下下一步後開始進行驗證
+        $("#SettingAcc").on("click", function () {
+            //帳號
+            if (!checkInput({
+                control: $('#account'),
+                minLength: 10,
+                maxLength: 10,
+                isNum: true,
+                prompt: $('#promptUID'),
+                promptFailClass: 'checkfont_error',//checkfont_error',
+                promptPassClass: 'checkfont_pass',//'checkfont_pass',
+                promptPassText: '您可以使用此帳號'
+            })) {
+                return false;
+            }
+            else {
+                var result_CheckUser;
+                var data_CheckUser = {
+                    "uid": $('#account').val()
+                };
+                ExecuteAjax('@Url.Action("CheckUser")', data_CheckUser, function (data) {
+                    result_CheckUser = data.Result;
+                });
+
+                //url待調整
+                if (result_CheckUser == '1') {
+                    showMessageBox({ title: '帳號驗證中', body: '您的帳號目前正處於Email驗證中<br>是否遺失驗證Email?', url: 'RegisterStep3.aspx?m=1&uid=' + $('#account').val() }); return false;
+                }
+                else if (result_CheckUser == '0') {
+                    prompt({
+                        prompt: $('#promptUID'),
+                        promptFailText: '此帳號已存在，是否忘記密碼?',
+                        promptFailClass: 'checkfont_error',//checkfont_error',
+                        promptPassClass: 'checkfont_pass',//'checkfont_pass',
+                        promptPassText: ''
+                    }, false); return false;
+                }
+                else if (result_CheckUser == '99') {
+                    prompt({
+                        prompt: $('#promptUID'),
+                        promptFailText: '您的帳號目前停用中',
+                        promptFailClass: 'checkfont_error',//checkfont_error',
+                        promptPassClass: 'checkfont_pass',//'checkfont_pass',
+                        promptPassText: ''
+                    }, false); return false;
+                }
+            }
+
+            //密碼
+            if (!checkInput({
+                control: $('#pwd'),
+                minLength: 6,
+                maxLength: 12,
+                isEng: true,
+                isNum: true,
+                isCH: true,
+                isMask: allMask,
+                prompt: $('#promptPassword1'),
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '您可以安心使用此密碼'
+            })) return false;
+
+            if (!checkInput({
+                control: $('#pwd-check'),
+                minLength: 6,
+                maxLength: 12,
+                isEng: true,
+                isNum: true,
+                isCH: true,
+                isMask: allMask,
+                prompt: $('#promptPassword2'),
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: ''
+            })) return false;
+
+            var check = $('#pwd').val() === $('#pwd-check').val()
+
+            prompt({
+                prompt: $('#promptPassword2'),
+                promptFailText: '密碼輸入不一致, 請再次檢查',
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '確認密碼正確'
+            }, check);
+            if (!check) {
+                return false;
+            }
+
+            //手機碼驗證
+            if ($('#txtSMSAuthCode').val() == '') {
+                showMessageBox({ title: '手機認證碼錯誤', body: '請輸入手機認證碼' });
+                return false;
+            }
+            else {
+                var data_Smsauthcode = {
+                    "uid": $('#account').val(),
+                    "code": $('#txtSMSAuthCode').val()
+                };
+                var result_SMS;
+                ExecuteAjax('@Url.Action("smsauthcode")', data_Smsauthcode, function (data) {
+                    result_SMS = data.Result;
+                })
+                if (result_SMS === false) {
+                    showMessageBox({ title: '手機認證碼錯誤', body: '手機認證碼錯誤' });
+                    return false;
+                }
+            }
+
+            var resultCaptcha;
+            var data_Captcha = {
+                "captcha": $('#photo-pwd').val(),
+            };
+            ExecuteAjax('@Url.Action("CheckCaptcha")', data_Captcha, function (data) {
+                resultCaptcha = data.Result;
+            })
+
+            if (!resultCaptcha) {
+                showMessageBox({ title: '圖形驗證碼錯誤', body: '請輸入正確的圖形驗證碼' });
+                return false;
+            }
+
+            //服務條款
+            if (!$('#c1-1')[0].checked) {
+                showMessageBox({ title: '同意服務及隱私條款', body: '請先勾選同意服務及隱私條款' }); return false;
+            }
+
+            //成功
+            $('#acc').text($('#account').val());
+
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div span[href="#' + curStepBtn + '"]').parent().next().children("span");
+
+            nextStepWizard.removeAttr('disabled').trigger('change');
+
+
+
+
+            //$(".form-group").removeClass("has-error");
+            //for (var i = 0; i < curInputs.length; i++) {
+            //    if (!curInputs[i].validity.valid) {
+            //        isValid = false;
+            //        $(curInputs[i]).closest(".form-group").addClass("has-error");
+            //    }
+            //}
+
+            //if (isValid) {
+            //    switch (btnID) {
+            //        case "SettingAcc":
+            //            isValid = true;
+            //            break;
+            //        case "SettingUser":
+            //            isValid = true;
+            //            break;
+            //        case "SettingCheck":
+            //            isValid = false;
+            //            //$('.Cancel').modal('toggle');
+            //            break;
+            //    }
+            //}
+            //if (isValid)
+            //    nextStepWizard.removeAttr('disabled').trigger('change');
+        });
+
+
+
+        var send_time = '';
+        //寄送簡訊
+        $("#btnSendSMSAuthCode").on("click", function () {
+            if ($('#account').val() == "") {
+                showMessageBox({ title: '認證碼發送失敗', body: '請輸入電話號碼' });
+                return false;
+            }
+            if (send_time != '') {
+                var t = (new Date()).getTime() - send_time;
+                var mt = (3 * 60) * 1000;
+                if (t <= mt) { alertBox('請於3分鐘後再試'); return false; }
+            }
+            send_time = (new Date()).getTime();
+
+            var data_SMS = {
+                "ump": $('#account').val(),
+            };
+            var resultSMS;
+            ExecuteAjax('@Url.Action("SendSMS")', data_SMS, function (data) {
+                resultSMS = data.Result;
+            })
+            var checkSMSCode = resultSMS.Code !== "99999";
+            showMessageBox({ title: checkSMSCode ? '認證碼已發送' : '認證碼發送失敗', body: checkSMSCode ? '您的手機認證碼已發出，請至手機簡訊收取。' : resultSMS.Message });
+        });
+
+        //other
+        $('div.setup-panel div span.stepbar-on').trigger('change');
+    });
+
+    //For Step2
+    $(document).ready(function () {
+        //取得生日
+        CreateYear();
+        CreateMonth();
+        CreateDate();
+        CreateChildrenYear();
+
+        //取得地址
+        GetCity();
+        CityChanged();
+        TownChanged();
+
+        //有無小孩
+        $('input[type=radio][name=rcChildren]').change(function () {
+            if (this.id == 'rcChildren1') {
+                $('#hideChildrenYear').show()
+            }
+            else if (this.id == 'rcChildren0') {
+                $('#hideChildrenYear').hide();
+            }
+        });
+
+        //按下下一步後開始進行驗證
+        $("#btnRegister").on("click", function () {
+            //姓氏
+            var checkLastName = $('#txtLastName').val().length > 0
+            prompt({
+                prompt: $('#promptUserName'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '請輸入您的姓氏',
+                promptPassClass: 'checkfont_pass'
+            }, checkLastName);
+            if (!checkLastName) {
+                return false;
+            }
+            //名字
+            var checkFirstName = $('#txtFirstName').val().length > 0;
+            prompt({
+                prompt: $('#promptUserName'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '請輸入您的名字',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '姓名格式正確'
+            }, checkFirstName);
+            if (!checkFirstName) {
+                return false;
+            }
+            //生日(年份)
+            var checkYear = $("#year").val() != '';
+            prompt({
+                prompt: $('#promptBirthday'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '請選擇您的生日年份',
+                promptPassClass: 'checkfont_pass'
+            }, checkYear);
+            if (!checkYear) {
+                return false;
+            }
+            //生日(月份)
+            var checkMonth = $("#month").val() != '';
+            prompt({
+                prompt: $('#promptBirthday'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '請選擇您的生日月份',
+                promptPassClass: 'checkfont_pass',
+            }, checkMonth);
+            if (!checkMonth) {
+                return false;
+            }
+            //生日(日期)
+            var checkDate = $("#date").val() != '';
+            prompt({
+                prompt: $('#promptBirthday'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '請選擇您的生日日期',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '生日格式正確'
+            }, checkDate);
+            if (!checkDate) {
+                return false;
+            }
+            //Email
+            var checkEmail = validateEmail($('#txtEmail').val());
+            prompt({
+                prompt: $('#promptEmail'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: 'Email格式錯誤',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: 'Email格式正確'
+            }, checkEmail);
+            if (!checkEmail) {
+                return false;
+            }
+            //居住地
+            var checkAddress = $('#txtZipcode').val() != '';
+            prompt({
+                prompt: $('#promptCity'),
+                promptFailText: '請選擇居住地區',
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: ''
+            }, checkAddress);
+            if (!checkAddress) return false;
+
+            //小孩年次
+            if ($('input[type=radio][name=rcChildren]:checked').val() == "1") {
+                checkChildrenYear = $('#ChildrenYear option:selected').val() != '';
+                prompt({
+                    prompt: $('#promptChildrenYear'),
+                    promptFailText: '請選擇年齡最小的小孩年次',
+                    promptFailClass: 'checkfont_error',
+                    promptPassClass: 'checkfont_pass',
+                    promptPassText: ''
+                }, checkChildrenYear);
+                if (!checkChildrenYear) return false;
+            }
+
+            //驗證成功後建立使用者
+            var resultCreate;
+            var data_CreateUser = {
+                "UID": $('#account').val(),
+                "Password": $('#pwd').val(),
+                "LastName": $('#txtLastName').val(),
+                "FirstName": $('#txtFirstName').val(),
+                "Sex": $('input[type=radio][name=rcSex]:checked').val(),
+                "Birthday": $('#year').val() + '/' + $('#month').val() + '/' + $('#date').val(),
+                "Mail": $('#txtEmail').val(),
+                "Zipcode": $('#txtZipcode').val(),
+                "City": $('#city option:selected').val(),
+                "Township": $('#Town option:selected').val(),
+                "Address": $('#txtAddress').val(),
+                "MaritalStatus": $('input[type=radio][name=rcMaritalStatus]:checked').val(),
+                "Children": $('input[type=radio][name=rcChildren]:checked').val(),
+                "ChildrenYear": $('#ChildrenYear option:selected').val() != "" ? $('#ChildrenYear option:selected').val() : "0",
+                "ReceiveNews": $('#c1-2')[0].checked ? "1" : "0"
+            };
+            ExecuteAjax('@Url.Action("CreateUser")', data_CreateUser, function (data) {
+                resultCreate = data.Result;
+            })
+
+            if (!resultCreate) {
+                showMessageBox({ title: '註冊失敗', body: '請聯繫相關人員' }); return false;
+            }
+            else {
+                //成功
+                var curStep = $(this).closest(".setup-content"),
+                    curStepBtn = curStep.attr("id"),
+                    nextStepWizard = $('div.setup-panel div span[href="#' + curStepBtn + '"]').parent().next().children("span");
+
+                nextStepWizard.removeAttr('disabled').trigger('change');
+            }
+        });
+    });
+
+    function CreateYear() {
+        var start = 1900;
+        var end = new Date().getFullYear();
+        var options = "<option value=''>年份</option>";
+        for (var year = start ; year <= end; year++) {
+            options += "<option value='" + year + "'>" + year + "</option>";
+        }
+        document.getElementById("year").innerHTML = options;
+    }
+    function CreateMonth() {
+        var start = 1;
+        var end = 12;
+        var options = "<option value=''>月份</option>";
+        for (var month = start ; month <= end; month++) {
+            options += "<option value='" + month + "'>" + month + "</option>";
+        }
+        document.getElementById("month").innerHTML = options;
+    }
+    function CreateDate() {
+        var start = 1;
+        var end = 31;
+        var options = "<option value=''>日期</option>";
+        for (var date = start ; date <= end; date++) {
+            options += "<option value='" + date + "'>" + date + "</option>";
+        }
+        document.getElementById("date").innerHTML = options;
+    }
+    function CreateChildrenYear() {
+        var end = new Date().getFullYear();
+        var start = end - 20;
+        var options = "<option value=''>請選擇最幼小孩年次</option><option value='9999'>更多</option>";
+        for (var year = start ; year <= end; year++) {
+            options += "<option value='" + year + "'>" + year + "</option>";
+        }
+        document.getElementById("ChildrenYear").innerHTML = options;
+    }
+    function GetCity() {
+        ExecuteAjax('@Url.Action("GetCity")', null, function (data) {
+            var options = "<option value=''>縣市</option>";
+            for (var i = 0; i < data.Result.length; i++) {
+                options += "<option value='" + data.Result[i].City + "'>" + data.Result[i].City + "</option>";
+            }
+            document.getElementById("city").innerHTML = options;
+        })
+    }
+    //地址連動
+    function CityChanged() {
+        $('#city').on('change', function () {
+            $("#Town").empty();
+            $("#txtZipcode").val('');
+
+            var data_Town = {
+                "city": $('#city :selected').val()
+            };
+            ExecuteAjax('@Url.Action("GetTown")', data_Town, function (data) {
+                var options = "<option value=''>鄉鎮市區</option>";
+                if (data.Result.length > 0) {
+                    for (var i = 0; i < data.Result.length; i++) {
+                        options += "<option value='" + data.Result[i].Township + "'>" + data.Result[i].Township + "</option>";
+                    }
+                }
+                document.getElementById("Town").innerHTML = options;
+            })
+        });
+    }
+    function TownChanged() {
+        $('#Town').on('change', function () {
+            $("#txtZipcode").val('');
+
+            var data_Zip = {
+                "city": $('#city :selected').val(),
+                "town": $('#Town :selected').val()
+            };
+            ExecuteAjax('@Url.Action("GetZipCode")', data_Zip, function (data) {
+                $("#txtZipcode").val(data.Result[0].Zipcode);
+            })
+        });
+    }
+
+    function Community(community) {
+        var data_Community = {
+            "community": community,
+            "UID": $('#account').val(),
+            "Password": $('#pwd').val(),
+            "LastName": $('#txtLastName').val(),
+            "FirstName": $('#txtFirstName').val(),
+            "Sex": $('input[type=radio][name=rcSex]:checked').val(),
+            "Birthday": $('#year').val() + '/' + $('#month').val() + '/' + $('#date').val(),
+            "Mail": $('#txtEmail').val(),
+            "Zipcode": $('#txtZipcode').val(),
+            "City": $('#city option:selected').val(),
+            "Township": $('#Town option:selected').val(),
+            "Address": $('#txtAddress').val(),
+            "MaritalStatus": $('input[type=radio][name=rcMaritalStatus]:checked').val(),
+            "Children": $('input[type=radio][name=rcChildren]:checked').val(),
+            "ChildrenYear": $('#ChildrenYear option:selected').val() != "" ? $('#ChildrenYear option:selected').val() : "0",
+            "ReceiveNews": $('#c1-2')[0].checked ? "1" : "0"
+        };
+        ExecuteAjax('@Url.Action("Community")', data_Community, function (data) {
+            alert(123);
+        })
+    }
+</script>

@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="#">首頁</a></li>
+    <li class="link-text ">常見問題</li>
+</ol>
+
+<!-- 常見問題 -->
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <img class="img-responsive" src="~/wwwroot/Image/desktop_img/pic_qa_banner.png" />
+        </div>
+    </div>
+
+    <div class="row qa-box">
+        <ul class="nav nav-pills nav-justified">
+            <li role="presentation" class="qa-title-off qa-title active">
+                <a href="#">電子會員註冊</a>
+            </li>
+            <li role="presentation" class="qa-title-off qa-title">
+                <a href="#">卡片掛失</a>
+            </li>
+            <li role="presentation" class="qa-title-off qa-title">
+                <a href="#">優惠券/歡樂貼使用</a>
+            </li>
+            <li role="presentation" class="qa-title-off qa-title">
+                <a href="#">卡片記名</a>
+            </li>
+        </ul>
+
+        <div class="panel-group qna-content-box" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading active" role="tab" id="headingOne">
+                    <div class="panel-title qa-q">
+                        <label class="arrow active"></label>
+                        <div role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            Q1.為什麼我同一天設定了好幾次天氣提醒，卻只收到一次優惠券或歡樂貼?
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in qa-text" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        麥當勞報報APP所提供的優惠券或歡樂貼，將於每天第一次的天氣提醒出現時提供，如果您在當天已經獲得優惠券或歡樂貼，第二次後的天氣提醒提示出現時，即不會再提供。下一次的優惠券或歡樂貼將會在隔日 (00:01過後) 才會出現。
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading2">
+                    <div class="panel-title qa-q">
+                        <label class="arrow"></label>
+                        <div class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            Q1.為什麼我同一天設定了好幾次天氣提醒，卻只收到一次優惠券或歡樂貼?
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse qa-text" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        麥當勞報報APP所提供的優惠券或歡樂貼，將於每天第一次的天氣提醒出現時提供，如果您在當天已經獲得優惠券或歡樂貼，第二次後的天氣提醒提示出現時，即不會再提供。下一次的優惠券或歡樂貼將會在隔日 (00:01過後) 才會出現。
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading3">
+                    <div class="panel-title qa-q">
+                        <label class="arrow"></label>
+                        <div class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            Q1.為什麼我同一天設定了好幾次天氣提醒，卻只收到一次優惠券或歡樂貼?
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse qa-text" role="tabpanel" aria-labelledby="heading3">
+                    <div class="panel-body">
+                        麥當勞報報APP所提供的優惠券或歡樂貼，將於每天第一次的天氣提醒出現時提供，如果您在當天已經獲得優惠券或歡樂貼，第二次後的天氣提醒提示出現時，即不會再提供。下一次的優惠券或歡樂貼將會在隔日 (00:01過後) 才會出現。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

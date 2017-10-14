@@ -1,0 +1,35 @@
+﻿@model List<string>
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box" style="">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">點點卡</li>
+    <li class="link-text ">點點卡回饋</li>
+</ol>
+<!-- main -->
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <picture>
+                <!-- 當解析度大於等於1024px像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024px像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+            </picture>
+        </div>
+    </div>
+    <div class="row couponttext-box">
+            <label class="coupon-title" style="">
+                @ViewBag.Description
+            </label>
+    </div>
+    <div class="row couponticket-box">
+        <div style="max-width:1024px;display: inline-block">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+                    <img class="img-responsive center-block" src="@item" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

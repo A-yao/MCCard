@@ -1,0 +1,145 @@
+﻿
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img style="margin-left:10px;height:32px;width:32px;" src="~/wwwroot/Image/desktop_img/ic_close.png"></span></button> <h3 class="modal-title" id="mySmallModalLabel">立即登入</h3>
+</div>
+<div id="signInBody" class="sign-in-body modal-body">
+    <div>
+        <div>
+            <div class="modal-body">
+                <input name="txtUID" type="text" maxlength="10" id="txtUID" class="form-control account-input" placeholder="帳號 / 請輸入手機號碼" value="0922823228">
+            </div>
+            <div class="modal-body">
+                <input name="txtPassword" type="password" maxlength="12" id="txtPassword" class="form-control account-input" placeholder="6-12位英數組合密碼" value="Tiffy1378">
+            </div>
+            <div class="modal-body">
+                <table border="0" width="100%" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td width="50%">
+                                <input name="txtAuthCode" type="text" maxlength="5" id="txtAuthCode" class="form-control account-input" placeholder="請輸入圖形認證碼" style="width:100%;">
+                            </td>
+                            <td width="50%">
+                                <div>
+                                    <img id="imgCaptcha" class="s-img-margin-left imgCaptcha" src="" alt="" style="" >
+                                    <input type="image" id="btnCaptchaRefresh" style="vertical-align: super;" src="~/wwwroot/Image/desktop_img/ic_reload.png" >
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-body" style="height: 75px;">
+                <input type="button" name="btnSign" value="登入" id="btnSign" class="btn btn-lg btn-block btn-McDonald account-btn" />
+            </div>
+            <div class="modal-body alert-text" style="z-index:200;">
+                <div style="float: left; text-align: left; width: 50%;">
+                    <a id="linkRegister" href="~/SignUp" class="alert-text" >還不是會員嗎?</a>
+                </div>
+                <div style="float: left; text-align: right; width: 50%;">
+                    <a id="linkMyPassword" data-toggle="modal" data-target=".linkMyPassword" class="pointer alert-text">忘記密碼</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="modal-body">
+            <img class="imgor" style="width: 100%;" src="~/wwwroot/Image/desktop_img/img_or.png">
+        </div>
+    </div>
+    <div>
+        <div class="modal-body">
+            <button type="button" name="imgFacebook_Login" id="imgFacebook_Login" class="fb-btn">
+                以 Facebook 帳戶登入
+                <label class="fbicon"></label>
+            </button>
+        </div>
+        <div class="modal-body">
+            <button type="button" name="imgFacebook_Login" id="imgFacebook_Login" class="google-btn">
+                以 Google+ 帳戶登入
+                <label class="googleicon"></label>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#btnSign").bind("click", function () {
+
+            if (!checkInput({
+                control: $('#txtUID'),
+                minLength: 10,
+                maxLength: 10,
+                isNum: true
+            })) return false;
+
+            if (!checkInput({
+                control: $('#txtPassword'),
+                minLength: 6,
+                maxLength: 12,
+                isEng: true,
+                isNum: true,
+                isCH: true,
+                isMask: allMask
+            })) return false;
+
+            if (!checkInput({
+                control: $('#txtAuthCode'),
+                minLength: 5,
+                maxLength: 5,
+                isEng: true,
+                isNum: true
+            })) return false;
+
+            var check = checkAuthCode();
+            debugger
+            if (check) { check = checkUserLogin(); }
+
+            return check;
+        });
+
+    })
+
+    function checkAuthCode() {
+        var check = false;
+        var ObjData = {
+            "captcha": $('#txtAuthCode').val()
+        };
+
+        ExecuteAjax('@Url.Action("CheckCaptcha")', ObjData, function (data) {
+            if (data.Result === true) {
+                check = true
+                //alert("驗證碼正確");
+            }
+            else {
+                alert("驗證碼錯誤");
+            }
+        })
+        return check;
+    }
+
+    function checkUserLogin() {
+        var check = false;
+        var ObjData = {
+            "uid": $('#txtUID').val(),
+            "pwd": $('#txtPassword').val()
+        };
+
+        ExecuteAjax('@Url.Action("Login" )', ObjData, function (data) {
+            debugger
+            if (data.Result === true) {
+                check = true;
+                alert("登入成功");
+            }
+            else {
+                //alertBox('帳號或密碼錯誤');
+                alert("登入失敗");
+            }
+        })
+        return check;
+
+    }
+
+
+</script>

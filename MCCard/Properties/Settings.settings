@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MCCard.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MCCard_MCCard_EC_Service_MCCard_EC" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://210.63.32.124/MCCard_API/MCCard_EC.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

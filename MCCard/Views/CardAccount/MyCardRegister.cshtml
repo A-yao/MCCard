@@ -1,0 +1,290 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">點點卡帳戶</li>
+    <li class="link-text ">點點卡記名</li>
+</ol>
+<!-- main-banner -->
+<div class="main-banner">
+    <picture>
+        <!-- 當解析度大於等於1024像素時，載入此圖-->
+        <source style="width:100%" srcset="@ViewBag.BannerImg" media="(min-width: 1024px)">
+        <!-- 當解析度低於1024像素時，載入此圖-->
+        <img style="width:100%" srcset="@ViewBag.BannerMobileImg" alt="" class="img-responsive">
+    </picture>
+</div>
+<div class="container account-form-box">
+    <!-- 步驟 -->
+    <div class="stepwizard">
+        <div class="row stepwizard-row setup-panel">
+            <div class="stepwizard-step stepwizard-step-on col-sm-6 col-md-6 col-lg-6 ">
+                <span href="#step-1" type="button" class="stepbar-on"><label class="circle">1</label> 點點卡記名</span>
+            </div>
+            <div class="stepwizard-step col-sm-6 col-md-6 col-lg-6">
+                <span href="#step-2" type="button" class="stepbar-off" disabled="disabled"><label class="circle">2</label>記名成功</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group form-item-base" id="noLogin" style="display:none">
+        <div class="acc-title">您尚未登入，請先登入帳號</div>
+    </div>
+
+    <!-- 卡片記名 -->
+    <div class="row setup-content Reg_Step1" id="step-1" style="display:none">
+        <form class="form-horizontal account-form">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for="card-nub">卡號</label>
+                    <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+                        <input maxlength="20" type="text" required="required" class="form-control account-input" id="card-nub" placeholder="請輸入卡片號碼">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3  account-text" for="card-pwd">卡片驗證碼</label>
+                    <div class="col-xs-12  col-sm-12 col-md-6 col-lg-6">
+                        <input maxlength="10" type="password" required="required" class="form-control account-input" id="card-pwd" placeholder="請輸入卡片驗證碼">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="photo-pwd">圖形認證碼</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input maxlength="10" type="text" required="required" class="form-control account-input-s" id="photo-pwd" style="width:50%" placeholder="請輸入認證碼">
+                        <div class="pull-right" style="width:50%">
+                            <img id="imgCaptchaRegister" class="s-img-margin-left imgCaptcha" />
+                            <input type="image" id="btnCaptchaRefreshRegister" style="margin-left: 10px; vertical-align: super;" src="~/wwwroot/Image/desktop_img/ic_reload.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3  ">&nbsp;</div>
+                    <div class="col-xs-12  col-sm-6 col-md-6 col-lg-6">
+                        <button type="button" class="account-btn nextBtn" id="btn_Member_Card_Register" style="width:100%">新增</button>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3  ">&nbsp;</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 記名成功 -->
+    <div class="container-fluid setup-content mobile_no_padding" id="step-2" style="display:none">
+        <div class="row">
+            <div id="regstep" class="form-group">
+                <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-4">
+                    <img src="~/wwwroot/Image/desktop_img/ic_done.png" class="img-done" />
+                </div>
+                <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12  col-md-8">
+                    <h2>恭喜您記名成功</h2>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-30px;">
+            <div class="form-item-title form-item-title-1  col-xs-12 col-sm-12 col-md-1">
+            </div>
+            <div class="form-item-title form-item-title-1  col-xs-12 col-sm-12 col-md-5">
+                <img src="" alt="" id="CardImg" style="width:250px;">
+            </div>
+            <div class="form-item-input form-item-input-1 form-item-success col-xs-12 col-sm-12 col-md-6 cordInfo">
+                <form class="form-horizontal ">
+                    <div class="form-group cardsign-text" style="margin-bottom:0px;">
+                        <div class="col-xs-4 col-sm-4 col-md-4 pull-left">卡號</div>
+                        <div class="col-sm-8 col-md-8 " id="CardID"></div>
+                    </div>
+                    <div class="form-group cardsign-text" style="margin-bottom:0px;">
+                        <div class="col-xs-4 col-sm-4 col-md-4 pull-left">餘額</div>
+                        <div class="col-sm-8 col-md-8" id="CardBalance"></div>
+                    </div>
+                    <div class="form-group cardsign-text" style="">
+                        <div class="col-xs-4 col-sm-4 col-md-4 pull-left">點數</div>
+                        <div class="col-sm-8 col-md-8" id="CardPoints"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="margin:0;">
+            <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-3">
+            </div>
+            <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12  col-md-6">
+                <button type="button" class="account-btn nextBtn" id="btn_Member_Transaction_Detail">交易紀錄</button>
+            </div>
+            <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-3">
+            </div>
+        </div>
+        <div class="row" style="margin:0;">
+            <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-3">
+            </div>
+            <div class="form-item-input form-item-input-1 form-item-success  col-xs-12 col-sm-12  col-md-6">
+                <button type="button" class="account-btn nextBtn" id="btn_Member_Card_List">新增卡片</button>
+            </div>
+            <div class="form-item-title form-item-title-1 col-xs-12 col-sm-12 col-md-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var isLogin = false;
+    $(document).ready(function () {
+        //驗證登入
+        ExecuteAjax('@Url.Action("CheckLoginStatus", "Authority")', null, function (data) {
+            if (!data.Result) {
+                $('.ForcedLogin').modal('show');
+                $('#noLogin').show();
+            }
+            else {
+                isLogin = true;
+                $('#noLogin').hide();
+            }
+        });
+
+        $("#btnCaptchaRefreshRegister").click(function () { document.getElementById('imgCaptchaRegister').src = '/Authority/GetImage?r=' + (new Date()).getTime(); return false; });
+        GetCaptchaImageRegister();
+        var navListItems = $('div.setup-panel div span'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn');
+
+        allWells.hide();
+
+        navListItems.change(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+            $(".stepwizard-step-in").removeClass("stepwizard-step-in");
+            if (!$item.hasClass('disabled')) {
+                $item.addClass('stepbar-on');
+                $item.parent().addClass("stepwizard-step-on").addClass("stepwizard-step-in");
+                allWells.hide();
+                if (isLogin) {
+                    $target.show();
+                    $target.find('input:eq(0)').focus();
+                }
+            }
+
+            //非該步驟移除橘色顯示CSS
+            $(".stepwizard-step").each(function () {
+                if (!$(this).hasClass("stepwizard-step-in")) {
+                    $(this).removeClass("stepwizard-step-on");
+                }
+            });
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                btnID = $(this).attr("id"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div span[href="#' + curStepBtn + '"]').parent().next().children("span"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+            if (isValid) {
+                switch (btnID) {
+                    case "btn_Member_Card_Register":
+                        isValid = CardCheck();
+                        break;
+                    case "btn_Member_Card_List":
+                        isValid = false;
+                        $('div.setup-panel div span[href="#step-1"]').trigger('change');
+                        $("#step-1 input").val("");
+                        $(".stepwizard-step-on:gt(0)").removeClass("stepwizard-step-on");
+                        break;
+                    case "btn_Member_Transaction_Detail":
+                        window.location.href = '/CardAccount/MyCardExpenseRecords'
+                        break;
+                }
+            }
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('change');
+        });
+
+        $('div.setup-panel div span.stepbar-on').trigger('change');
+
+    });
+
+    function CardCheck() {
+        if (!CheckCaptcha()) {
+            return false;
+        }
+        if (!CheckCard()) {
+            return false;
+        }
+        if (!RegisterCard()) {
+            return false;
+        }
+        return true;
+    }
+
+    //儲存卡號
+    function RegisterCard() {
+        var check = false;
+        var ObjData = {
+            "CardNumber": $('#card-nub').val(),
+            "AuthenticationCode": $('#card-pwd').val()
+        };
+        ExecuteAjax('@Url.Action("RegisterCard", "CardAccount")', ObjData, function (data) {
+            if (data.Result !== "") {
+                showMessageBox({ title: '提示', body: data.Result });
+            }
+            else {
+                $("#CardImg").attr('src', data.Card.CardImg);
+                $("#CardID").text($('#card-nub').val());
+                $("#CardBalance").text(data.Card.Balance);
+                $("#CardPoints").text(data.Card.Points);
+                check = true;
+            }
+        })
+        return check;
+    }
+
+    //驗證卡號
+    function CheckCard() {
+        var check = false;
+        var ObjData = {
+            "CardID": $('#card-nub').val(),
+            "AuthenticationCode": $('#card-pwd').val()
+        };
+        ExecuteAjax('@Url.Action("CheckCard", "CardAccount")', ObjData, function (data) {
+            if (data.code_id === 0) {
+                check = true
+            }
+            else {
+                showMessageBox({ title: '提示', body: data.code_description });
+            }
+        })
+        return check;
+    }
+
+    //驗證碼
+    function GetCaptchaImageRegister() {
+        var getImgID = document.getElementById("imgCaptchaRegister");
+        getImgID.src = "/Authority/GetImage";
+    }
+
+    function CheckCaptcha() {
+        var check = false;
+        var ObjData = {
+            "captcha": $('#photo-pwd').val()
+        };
+
+        ExecuteAjax('@Url.Action("CheckCaptcha", "Authority")', ObjData, function (data) {
+            if (data.Result === true) {
+                check = true
+            }
+            else {
+                showMessageBox({ title: '圖形驗證碼錯誤', body: '請輸入正確的圖形驗證碼' });
+            }
+        })
+        return check;
+    }
+</script>

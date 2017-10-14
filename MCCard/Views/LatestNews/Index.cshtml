@@ -1,0 +1,96 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text ">最新消息</li>
+</ol>
+
+<!-- 最新消息 -->
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.Img" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.MobileImg" alt="" class="img-responsive">
+            </picture>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 nd-box">
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.NewsImg1" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.NewsMobileImg1" alt="" class="img-responsive">
+            </picture>
+        </div>
+        <div class="col-md-6 nd-text-box">
+            <div class="content-title">
+                @ViewBag.NewsTitle1
+            </div>
+            <div class="content-text">
+                @ViewBag.NewsDescription1
+            </div>
+            <div>
+                <a type="button" id="btn_News_MoreLink_@ViewBag.NewsTitle2" class="main-btn" href="@ViewBag.Newshref1" target="_blank">
+                    了解更多
+                    <img src="~/wwwroot/Image/desktop_img/btn_arrow.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 nd-box" style="float:right;">
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.NewsImg2" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.NewsMobileImg2" alt="" class="img-responsive">
+            </picture>
+        </div>
+        <div class="col-md-6 nd-text-box" style="float:left">
+            <div class="content-title">
+                @ViewBag.NewsTitle2
+            </div>
+            <div class="content-text">
+                @ViewBag.NewsDescription2
+            </div>
+            <div>
+                <a type="button" id="btn_News_MoreLink_@ViewBag.NewsTitle2" class="main-btn" role="button" href="@ViewBag.Newshref2" target="_blank">
+                    了解更多
+                    <img src="~/wwwroot/Image/desktop_img/btn_arrow.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 nd-box">
+            <picture>
+                <!-- 當解析度大於等於1024像素時，載入此圖-->
+                <source style="width:100%" srcset="@ViewBag.NewsImg3" media="(min-width: 1024px)">
+                <!-- 當解析度低於1024像素時，載入此圖-->
+                <img style="width:100%" srcset="@ViewBag.NewsMobileImg3" alt="" class="img-responsive">
+            </picture>
+        </div>
+        <div class="col-md-6 nd-text-box">
+            <div class="content-title">
+                @ViewBag.NewsTitle3
+            </div>
+            <div class="content-text">
+                @ViewBag.NewsDescription3
+            </div>
+            <div>
+                <a type="button" id="btn_News_MoreLink_@ViewBag.NewsTitle3" class="main-btn" href="@ViewBag.Newshref3" target="_blank">
+                    了解更多
+                    <img src="~/wwwroot/Image/desktop_img/btn_arrow.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

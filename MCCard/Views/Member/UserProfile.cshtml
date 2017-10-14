@@ -1,0 +1,525 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<ol class="breadcrumb link-box">
+    <li><a class="link-text" href="~/Home">首頁</a></li>
+    <li class="link-text">電子會員</li>
+    <li class="link-text ">修改個人資料</li>
+</ol>
+<!-- main-banner -->
+<div class="main-banner">
+    <picture>
+        <!-- 當解析度大於等於1024像素時，載入此圖-->
+        <source style="width:100%" srcset="@ViewBag.Img" media="(min-width: 1024px)">
+        <!-- 當解析度低於1024像素時，載入此圖-->
+        <img style="width:100%" srcset="@ViewBag.MobileImg" alt="" class="img-responsive">
+    </picture>
+</div>
+
+<!-- 修改個人資料 -->
+<div class="signup-box UserProfile_box">
+    <div class="row">
+        <div class="form-group form-item-base" id="noLogin" style="display:none">
+            <div class="acc-title">您尚未登入，請先登入帳號</div>
+        </div>
+
+        <form class="form-horizontal" id="profile" style="display:none;margin-top:-20px">
+            <div class="form-group">
+                <label class="control-label col-sm-3 account-text">手機號碼(帳號)</label>
+                <label id="account" class="control-label col-sm-3 account-text text-left"></label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-12 col-md-3 col-lg-3 account-text" for="pwd">密碼</label>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <input maxlength="12" type="password" required="required" class="form-control account-input" id="pwd" placeholder="6-12位英數組合密碼">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptPassword1" class="checkfont" style="line-height: 45px ; white-space: nowrap;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text" for="pwd-check">確認密碼</label>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input maxlength="12" type="password" required="required" class="form-control account-input" id="pwd-check" placeholder="請再次輸入密碼">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptPassword2" class="checkfont" style="line-height: 45px ; white-space: nowrap;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 姓名</label>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <input maxlength="2" type="text" required="required" class="form-control account-input" id="txtLastName" placeholder="請輸入您的姓氏">
+                </div>
+                <div class="col-xs-6 col-sm-3 col-md-3">
+                    <input maxlength="4" type="text" required="required" class="form-control account-input" id="txtFirstName" placeholder="請輸入您的名字">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptUserName" class="checkfont" style="line-height: 45px ; white-space: nowrap;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 性別</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcSex1" value="1" name="rcSex"><span></span>男
+                        </label>
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcSex0" value="0" name="rcSex"><span></span>女
+                        </label>
+                        <label class="radio-inline account-text">
+                            <input type="radio" id="rcSex2" value="2" name="rcSex"><span></span>其他
+                        </label>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label  col-sm-3 account-text">* 生日</label>
+                <label id="lblBirthDay" class="control-label  col-sm-9 account-text text-left"></label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* Email</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input id="txtEmail" maxlength="50" type="email" class="form-control account-input" placeholder="請輸入您的email" />
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptEmail" class="checkfont" style="line-height: 45px ; white-space: nowrap;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label id="promptSex" class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">* 居住地區</label>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2" style="padding-right:0">
+                    <select id="city" class="form-control dropdown-toggle account-input"></select>
+                </div>
+                <div class="btn-group dropdown col-xs-4 col-sm-2 col-md-2" style="padding-left:5px; padding-right:0">
+                    <select id="Town" class="form-control dropdown-toggle account-input">
+                        <option value="">鄉鎮市區</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-sm-2 col-md-2" style="padding-left:5px;">
+                    <input id="txtZipcode" maxlength="5" type="text" required="required" class="form-control dropdown-toggle account-input" disabled="disabled" placeholder="郵遞區號" style="font-size:14px;">
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptCity" class="checkfont" style="line-height: 45px ; white-space: nowrap;">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">地址</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <input id="txtAddress" class="form-control account-input" placeholder="請輸入您的詳細通訊地址" />
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3" id="promptAddress">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">婚姻狀態</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcMaritalStatus0" value="0" name="rcMaritalStatus"><span></span>未婚
+                        </label>
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcMaritalStatus1" value="1" name="rcMaritalStatus"><span></span>已婚
+                        </label>
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcMaritalStatus2" value="2" name="rcMaritalStatus"><span></span>其他
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">有無小孩</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="radio-group">
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcChildren0" value="0" name="rcChildren"><span></span>無
+                        </label>
+                        <label class="radio-inline account-text" style="">
+                            <input type="radio" id="rcChildren1" value="1" name="rcChildren"><span></span>有
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="hideChildrenYear" style="display:none">
+                <label class="control-label col-xs-12 col-sm-3 col-md-3 col-lg-3 account-text">最幼小孩年次</label>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <select id="ChildrenYear" class="form-control dropdown-toggle account-input"></select>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                    <div id="promptChildrenYear" class="checkfont" style="line-height: 45px ; white-space: nowrap;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-xs-12 col-sm-3 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-9 col-md-9">
+                    <div class="checkbox checkbox-s">
+                        <input type="checkbox" id="c1-2" name="check" />
+                        <label class="check-frame account-text-s" for="c1-2"><span></span>我願意接收麥當勞最新資訊</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <input type="button" id="btn_Member_Data_Maintain" class="account-btn" style="width:100%; max-width:500px" value="確認修改">@*確認修改</input>*@
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-3">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 account-text">
+                    <span id="spnCommunity" style="display:none">連結Facebook或Google+社群帳號，未來登入更方便！</span>
+                    <div style="margin-bottom:15px">
+                        @*<input type="button" id="btn_Member_Data_Maintain_FB" style="display:none;" onclick="RegisterFBAccount()" class="SignUp_button fb-btn" />*@
+                        <div id="btn_Member_Data_Maintain_FB" class="div_Social div_Social_FB" onclick="RegisterFBAccount()" style="display:none; ">
+                            <label style="cursor: pointer;">連結Facebook帳戶</label>
+                        </div>
+                    </div>
+                    <div>
+                        @*<input type="button" id="btn_Member_Data_Maintain_Google" style="display:none" class="SignUp_button google-btn" />*@
+                        <div id="btn_Member_Data_Maintain_Google" class="div_Social div_Social_G" style="display:none; ">
+                            <label style="cursor: pointer;">連結Google+ 帳戶</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var $UserInfo;
+    $(document).ready(function () {
+        //驗證登入
+        ExecuteAjax('@Url.Action("CheckLoginStatus", "Authority")', null, function (data) {
+            if (!data.Result) {
+                $('.ForcedLogin').modal('show');
+                $('#noLogin').show();
+                $('#profile').hide();
+            }
+            else {
+                $('#noLogin').hide();
+                $('#profile').show();
+            }
+        });
+
+        //Google
+        gapi.load('auth2', function () {
+            var e = document.getElementById('btn_Member_Data_Maintain_Google');
+            gapi.auth2.init().attachClickHandler(e, {},
+                function (googleUser) {
+                    var name = googleUser.getBasicProfile().getName();
+                    var id = googleUser.getBasicProfile().getId();
+                    RegisterCommunityInfo("Google", id, name);
+               }, function (error) {
+                   //alert(JSON.stringify(error, undefined, 2));
+               });
+        });
+
+        //取得地址
+        GetCity();
+
+        //取得最幼小孩年次
+        CreateChildrenYear();
+
+        //取得使用者資料
+        ExecuteAjax('@Url.Action("GetUserInfo", "Authority")', null, function (data) {
+            $UserInfo = data.Result;
+        });
+        $('#account').text($UserInfo.UID);
+        $('#txtLastName').val($UserInfo.LastName);
+        $('#txtFirstName').val($UserInfo.FirstName);
+        $("input[name=rcSex][value=" + $UserInfo.Sex + "]").prop('checked', true);
+        var Birthday = $UserInfo.Birthday.toString();
+        $('#lblBirthDay').text(Birthday.split('/')[0] + ' 年' + Birthday.split('/')[1] + ' 月' + Birthday.split('/')[2] + ' 日');
+        $('#txtEmail').val($UserInfo.Mail);
+        SetCity();
+        $('#txtZipcode').val($UserInfo.Zipcode);
+        $('#txtAddress').val($UserInfo.Address);
+        $("input[name=rcMaritalStatus][value=" + $UserInfo.MaritalStatus + "]").prop('checked', true);
+        $("input[name=rcChildren][value=" + $UserInfo.Children + "]").prop('checked', true);
+        if ($UserInfo.ReceiveNews === 1) {
+            $('#c1-2').prop('checked', true);
+        }
+        if ($UserInfo.Children === 1) {
+            $('#hideChildrenYear').show();
+            $('#ChildrenYear').val($UserInfo.ChildrenYear);
+        }
+
+
+        //社群功能按鈕顯示
+        if ($UserInfo.FacebookUID == "") {
+            $('#btn_Member_Data_Maintain_FB').show();
+            $('#spnCommunity').show();
+        }
+        if ($UserInfo.GooglePlusUID == "") {
+            $('#btn_Member_Data_Maintain_Google').show();
+            $('#spnCommunity').show();
+        }
+
+        //連動
+        CityChanged();
+        TownChanged();
+
+        //有無小孩
+        $('input[type=radio][name=rcChildren]').change(function () {
+            if (this.id == 'rcChildren1') {
+                $('#hideChildrenYear').show();
+            }
+            else if (this.id == 'rcChildren0') {
+                $('#hideChildrenYear').hide();
+            }
+        });
+
+        //按確認修改後開始進行驗證
+        $("#btn_Member_Data_Maintain").on("click", function () {
+            //密碼
+            if (!checkInput({
+                control: $('#pwd'),
+                minLength: 6,
+                maxLength: 12,
+                isEng: true,
+                isNum: true,
+                isCH: true,
+                isMask: allMask,
+                prompt: $('#promptPassword1'),
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '<img src="/wwwroot/Image/desktop_img/ic_double_checked.png" alt="" />'
+            })) return false;
+
+            if (!checkInput({
+                control: $('#pwd-check'),
+                minLength: 6,
+                maxLength: 12,
+                isEng: true,
+                isNum: true,
+                isCH: true,
+                isMask: allMask,
+                prompt: $('#promptPassword2'),
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: ''
+            })) return false;
+
+            var check = $('#pwd').val() === $('#pwd-check').val()
+
+            prompt({
+                prompt: $('#promptPassword2'),
+                promptFailText: '<img style="width: 25px;" src="/wwwroot/Image/desktop_img/ic_error.png" alt="" />' + '密碼輸入不一致, 請再次檢查',
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '<img src="/wwwroot/Image/desktop_img/ic_double_checked.png" alt="" />'
+            }, check);
+            if (!check) {
+                return false;
+            }
+
+            //姓氏
+            var checkLastName = $('#txtLastName').val().length > 0
+            prompt({
+                prompt: $('#promptUserName'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '<img style="width: 25px;" src="/wwwroot/Image/desktop_img/ic_error.png" alt="" />' + '請輸入您的姓氏',
+                promptPassClass: 'checkfont_pass'
+            }, checkLastName);
+            if (!checkLastName) {
+                return false;
+            }
+            //名字
+            var checkFirstName = $('#txtFirstName').val().length > 0;
+            prompt({
+                prompt: $('#promptUserName'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '<img style="width: 25px;" src="/wwwroot/Image/desktop_img/ic_error.png" alt="" />' + '請輸入您的名字',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '<img src="/wwwroot/Image/desktop_img/ic_double_checked.png" alt="" />'
+            }, checkFirstName);
+            if (!checkFirstName) {
+                return false;
+            }
+            //Email
+            var checkEmail = validateEmail($('#txtEmail').val());
+            prompt({
+                prompt: $('#promptEmail'),
+                promptFailClass: 'checkfont_error',
+                promptFailText: '<img style="width: 25px;" src="/wwwroot/Image/desktop_img/ic_error.png" alt="" />' + 'Email格式錯誤',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: '<img src="/wwwroot/Image/desktop_img/ic_double_checked.png" alt="" />'
+            }, checkEmail);
+            if (!checkEmail) {
+                return false;
+            }
+            //居住地
+            var checkAddress = $('#txtZipcode').val() != '';
+            prompt({
+                prompt: $('#promptCity'),
+                promptFailText: '<img style="width: 25px;" src="/wwwroot/Image/desktop_img/ic_error.png" alt="" />' + '請選擇居住地區',
+                promptFailClass: 'checkfont_error',
+                promptPassClass: 'checkfont_pass',
+                promptPassText: ''
+            }, checkAddress);
+            if (!checkAddress) return false;
+
+            //小孩年次
+            if ($('input[type=radio][name=rcChildren]:checked').val() === '1') {
+                checkChildrenYear = $('#ChildrenYear option:selected').val() != '';
+                prompt({
+                    prompt: $('#promptChildrenYear'),
+                    promptFailText: '<img style="width: 25px;" src="/wwwroot/Image/desktop_img/ic_error.png" alt="" />' + '請選擇年齡最小的小孩年次',
+                    promptFailClass: 'checkfont_error',
+                    promptPassClass: 'checkfont_pass',
+                    promptPassText: ''
+                }, checkChildrenYear);
+                if (!checkChildrenYear) return false;
+            }
+            if (UpdateUserProfile()) {
+                showMessageBox({ title: '修改成功', body: '您的個人資料已修改成功' });
+            }
+        });
+    });
+    function CreateChildrenYear() {
+        var start = new Date().getFullYear();
+        var end = start - 20;
+        var options = "<option value=''>請選擇最幼小孩年次</option>";
+        for (var year = start ; year >= end; year--) {
+            options += "<option value='" + year + "'>" + year + "</option>";
+        }
+        options += "<option value='9999'>更多</option>"
+        document.getElementById("ChildrenYear").innerHTML = options;
+    }
+    function GetCity() {
+        ExecuteAjax('@Url.Action("GetCity","Address")', null, function (data) {
+            var options = "<option value=''>縣市</option>";
+            for (var i = 0; i < data.Result.length; i++) {
+                options += "<option value='" + data.Result[i].City + "'>" + data.Result[i].City + "</option>";
+            }
+            document.getElementById("city").innerHTML = options;
+        })
+    }
+    function SetCity() {
+        $('#city').val($UserInfo.City);
+        var data_Town = {
+            "city": $('#city :selected').val()
+        };
+        ExecuteAjax('@Url.Action("GetTown", "Address")', data_Town, function (data) {
+            var options = "<option value=''>鄉鎮市區</option>";
+            if (data.Result.length > 0) {
+                for (var i = 0; i < data.Result.length; i++) {
+                    options += "<option value='" + data.Result[i].Township + "'>" + data.Result[i].Township + "</option>";
+                }
+            }
+            document.getElementById("Town").innerHTML = options;
+        })
+        $('#Town').val($UserInfo.Township);
+    }
+    //地址連動
+    function CityChanged() {
+        $('#city').on('change', function () {
+            $("#Town").empty();
+            $("#txtZipcode").val('');
+
+            var data_Town = {
+                "city": $('#city :selected').val()
+            };
+            ExecuteAjax('@Url.Action("GetTown", "Address")', data_Town, function (data) {
+                var options = "<option value=''>鄉鎮市區</option>";
+                if (data.Result.length > 0) {
+                    for (var i = 0; i < data.Result.length; i++) {
+                        options += "<option value='" + data.Result[i].Township + "'>" + data.Result[i].Township + "</option>";
+                    }
+                }
+                document.getElementById("Town").innerHTML = options;
+            })
+        });
+    }
+    function TownChanged() {
+        $('#Town').on('change', function () {
+            $("#txtZipcode").val('');
+
+            var data_Zip = {
+                "city": $('#city :selected').val(),
+                "town": $('#Town :selected').val()
+            };
+            ExecuteAjax('@Url.Action("GetZipCode", "Address")', data_Zip, function (data) {
+                $("#txtZipcode").val(data.Result[0].Zipcode);
+            })
+        });
+    }
+    //驗證成功後更新使用者資料
+    function UpdateUserProfile() {
+        var result = false;
+        var UpdateData = {
+            "Password": $('#pwd').val(),
+            "LastName": $('#txtLastName').val(),
+            "FirstName": $('#txtFirstName').val(),
+            "Sex": $('input[type=radio][name=rcSex]:checked').val(),
+            "Mail": $('#txtEmail').val(),
+            "Zipcode": $('#txtZipcode').val(),
+            "City": $('#city option:selected').val(),
+            "Township": $('#Town option:selected').val(),
+            "Address": $('#txtAddress').val(),
+            "MaritalStatus": $('input[type=radio][name=rcMaritalStatus]:checked').val(),
+            "Children": $('input[type=radio][name=rcChildren]:checked').val(),
+            "ChildrenYear": $('input[type=radio][name=rcChildren]:checked').val() === '1' && $('#ChildrenYear option:selected').val() !== "" ? $('#ChildrenYear option:selected').val() : "0",
+            "ReceiveNews": $('#c1-2')[0].checked ? "1" : "0"
+        };
+        ExecuteAjax('@Url.Action("UpdateUserProfile")', UpdateData, function (data) {
+            result = data.Result;
+        })
+        return result;
+    }
+
+    //FB
+    function RegisterFBAccount() {
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                FB.api('/me', { fields: 'id,name' }, function (response) {
+                    RegisterCommunityInfo('FaceBook', response.id, response.name);
+                });
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                FB.login();
+                console.log('not authorized')
+            } else if (response.status === 'unknown') {
+                FB.login(function (response) {
+                    if (response.status === 'connected') {
+                        FB.api('/me', { fields: 'id,name' }, function (response) {
+                            RegisterCommunityInfo('FaceBook', response.id, response.name);
+                        });
+                    }
+                });
+            }
+        });
+    }
+    function RegisterCommunityInfo(community, id, name) {
+        var PostData = {
+            community: community,
+            id: id,
+            name: name
+        }
+        ExecuteAjax('@Url.Action("RegisterCommunityInfo", "Authority")', PostData, function (data) {
+            if (data.Result) {
+                showMessageBox({ title: '連結社群帳號成功', body: community + '帳戶連結成功' });
+            }
+            else {
+                showMessageBox({ title: '連結社群帳號失敗', body: data.Message });
+            }
+        })
+    }
+</script>
